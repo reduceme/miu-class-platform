@@ -1,0 +1,21 @@
+{
+  "name": "miu-class-platform",
+  "description": "",
+  "main": "",
+  "authors": [
+    "regdai <medairui@qq.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/reduceme/miu-class-platform",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.3.1"
+  }
+}
