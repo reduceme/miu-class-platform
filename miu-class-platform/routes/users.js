@@ -1,24 +1,28 @@
 var express = require('express');
 var mysql = require('mysql');
-// var $database = require('../database/db');
-// var $util = require('../util/util');
+var $database = require('../config/db');
+var sql = require('../config/sql');
 
 //使用连接池
-// var pool = mysql.createPool($util.extend({}, $database.mysql));
-
+var pool = mysql.createPool($database.mysql);
 var router = express.Router();
 
 //向客户端返回JSON数据的的简单封装
-/*function writeJSON(res, ret) {
+function writeJSON(res, ret) {
     if (typeof ret === 'undefined') {
         res.json({
             code: 1,
-            msg: '操作失败'
+            msg: '操作失败',
+            data: ''
         })
-    }else {
-        res.json(ret);
+    } else {
+        res.json({
+            code: 0,
+            data: ret,
+            msg: ''
+        });
     }
-}*/
+}
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
@@ -31,17 +35,29 @@ router.post('/login', function (req, res, next) {
     var username = req.body.username;
     var password = req.body.password;
 
-    if (username === 'admin' && password === '123456') {
-        res.cookie('user', username);
-        return res.send({
-            code: 1
-        })
-    }
+    var sqlStatement = sql.login + username;
 
-    return res.send({
-        code: 0,
-        msg: '用户名或账号错误'
-    })
+    pool.getConnection(function (err, connection) {
+        //建立连接
+        connection.query(sqlStatement, function (err, result) {
+            if (err) {
+                var data = {
+                    success: false,
+                    data: '',
+                    error: err.message
+                };
+                return res.end(data);
+            }
+
+            console.log((password === result[0].password));
+            if (password === result[0].password) {
+                // window.location.href = '/time-table'
+                writeJSON(res, []);
+            }
+            // 释放连接
+            connection.release();
+        })
+    });
 });
 
 module.exports = router;
