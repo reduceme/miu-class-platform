@@ -1,7 +1,11 @@
 extends layout
 
 block content
-    meta(name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" )
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no")
+    link(rel='stylesheet', href='/js/mui/css/mui.picker.css')
+    link(rel='stylesheet', href='/js/mui/css/mui.poppicker.css')
+    link(rel='stylesheet', href='/js/mui/css/time-table.css')
 
     header(class='mui-bar mui-bar-nav')
         h1(class='mui-title') 课程预约
@@ -9,4 +13,6 @@ block content
     button(id='showClassroomPicker' class='mui-btn mui-btn-block' type='button')
     div(id='classRoom' class='ui-alert')
 
+    script(type='text/javascript', src='/js/mui/js/mui.picker.js')
+    script(type='text/javascript', src='/js/mui/js/mui.poppicker.js')
     script(type='text/javascript', src='/js/timeTable.js')

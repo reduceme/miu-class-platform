@@ -1,6 +1,8 @@
 (function () {
-    var userPicker = new $.PopPicker();
-    userPicker.setData([{
+    $.init();
+
+    var classroomPicker = new $.PopPicker();
+    classroomPicker.setData([{
         name: '南阳锦城',
         id: '1'
     }, {
@@ -15,7 +17,7 @@
     }]);
 
     $('#showClassroomPicker').on('tap', function(event) {
-        userPicker.show(function(items) {
+        classroomPicker.show(function(items) {
             $('#classRoom').text(JSON.stringify(items[0]));
             //返回 false 可以阻止选择框的关闭
             //return false;
