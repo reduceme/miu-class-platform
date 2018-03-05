@@ -1,10 +1,10 @@
 var express = require('express');
 var mysql = require('mysql');
-var $database = require('../database/db');
-var $util = require('../util/util');
+// var $database = require('../database/db');
+// var $util = require('../util/util');
 
 //使用连接池
-var pool = mysql.createPool($util.extend({}, $database.mysql));
+// var pool = mysql.createPool($util.extend({}, $database.mysql));
 
 var router = express.Router();
 
