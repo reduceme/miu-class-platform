@@ -50,14 +50,20 @@ router.post('/login', function (req, res, next) {
             }
 
             console.log((password === result[0].password));
+            //todo - 密码加密
             if (password === result[0].password) {
-                // window.location.href = '/time-table'
+                res.cookie('user',username);
                 writeJSON(res, []);
             }
             // 释放连接
             connection.release();
         })
     });
+});
+
+router.get('/get_timetable', function (req, res, next) {
+    var classRoom = req.body.classRoom;
+    var classDate = req.body.classDate;
 });
 
 module.exports = router;
