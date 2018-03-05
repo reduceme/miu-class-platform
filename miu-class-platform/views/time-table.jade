@@ -3,16 +3,23 @@ extends layout
 block content
     meta(charset="utf-8")
     meta(name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no")
-    link(rel='stylesheet', href='/js/mui/css/mui.picker.css')
-    link(rel='stylesheet', href='/js/mui/css/mui.poppicker.css')
-    link(rel='stylesheet', href='/js/mui/css/time-table.css')
+    link(rel='stylesheet', href='/js/mui/css/mui.picker.min.css')
+    link(rel='stylesheet', href='/stylesheets/time-table.css')
 
     header(class='mui-bar mui-bar-nav')
         h1(class='mui-title') 课程预约
 
-    button(id='showClassroomPicker' class='mui-btn mui-btn-block')
-    div(id='classRoom' class='ui-alert')
+    div(id='showClassroomPicker' class='mui-btn' data-value='1' style='width: 100%;margin-top: 20px') Miuyoga瑜伽工作室（南阳锦城）
+    div(id='classRoom' class='ui-alert' style='display: none')
 
-    script(type='text/javascript', src='/js/mui/js/mui.picker.js')
-    script(type='text/javascript', src='/js/mui/js/mui.poppicker.js')
+    ul(class='date-tab')
+        li(class='nav-time date-tab-li active')
+        li(class='nav-time date-tab-li')
+        li(class='nav-time date-tab-li')
+        li(class='nav-time date-tab-li')
+        //li(class='date-tab-li') 03-09 周五
+        li(class='date-tab-li' style='border: none' id='datePicker' data-options='{"type":"date"}')
+            img(src='/image/date.png')
+
+    script(type='text/javascript', src='/js/mui/js/mui.picker.min.js')
     script(type='text/javascript', src='/js/timeTable.js')

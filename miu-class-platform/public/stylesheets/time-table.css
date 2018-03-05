@@ -1,0 +1,70 @@
+.mui-plus header.mui-bar {
+    display: none;
+}
+
+.mui-plus .mui-bar-nav ~ .mui-content {
+    padding: 0;
+}
+
+/*hm开头的表示仅为 Hello MUI示例定义*/
+.hm-description {
+    margin: .5em 0;
+}
+
+.hm-description > li {
+    font-size: 14px;
+    color: #8f8f94;
+}
+
+/**/
+.mui-btn {
+    font-size: 16px;
+    /*padding: 8px;*/
+    margin: 3px;
+}
+
+h5.mui-content-padded {
+    margin-left: 3px;
+    margin-top: 20px !important;
+}
+
+h5.mui-content-padded:first-child {
+    margin-top: 12px !important;
+}
+
+.ui-alert {
+    text-align: center;
+    padding: 20px 10px;
+    font-size: 16px;
+}
+
+#showClassroomPicker {
+    background: -webkit-linear-gradient(#FFF, #CECECE); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(#FFF, #CECECE); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(#FFF, #CECECE); /* Firefox 3.6 - 15 */
+    background: linear-gradient(#FFF, #CECECE); /* 标准的语法 */
+}
+
+.date-tab {
+    width: 100%;
+    height: 60px;
+    padding: 0 10px;
+}
+
+.date-tab-li {
+    list-style: none;
+    width: 50px;
+    height: 50px;
+    border: solid 1px #C1C1C1;
+    border-radius: 3px;
+    display: inline-block;
+    font-size: 13px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.active {
+    color: #fff;
+    border: 1px solid #52B297;
+    background-color: #52B297;
+}

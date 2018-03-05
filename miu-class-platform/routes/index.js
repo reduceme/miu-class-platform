@@ -3,7 +3,8 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    res.render('index', {title: '登录'});
+    // res.render('index', {title: '登录'});
+    res.render('time-table', {title: '课表'});
 });
 
 router.get('/time-table', function (req, res, next) {
