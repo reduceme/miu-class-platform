@@ -1,26 +1,25 @@
 (function () {
-    $.init();
+    // mui.init();
 
-    var classroomPicker = new $.PopPicker();
+    var classroomPicker = new mui.PopPicker();
     classroomPicker.setData([{
-        name: '南阳锦城',
-        id: '1'
+        value: '1',
+        text: '南阳锦城'
     }, {
-        name: '益州国际',
-        id: '2'
+        value: '2',
+        text: '益州国际'
     }, {
-        name: '光华逸家',
-        id: '3'
+        value: '3',
+        text: '光华逸家'
     }, {
-        name: '南湖逸家',
-        id: '4'
+        name: '4',
+        text: '南湖逸家'
     }]);
 
-    $('#showClassroomPicker').on('tap', function(event) {
-        classroomPicker.show(function(items) {
+    document.getElementById('showClassroomPicker').addEventListener('tap', function () {
+        classroomPicker.show(function (items) {
             $('#classRoom').text(JSON.stringify(items[0]));
-            //返回 false 可以阻止选择框的关闭
-            //return false;
-        });
-    }, false);
+        })
+    });
+
 })();
