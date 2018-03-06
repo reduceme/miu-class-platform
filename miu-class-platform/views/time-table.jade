@@ -9,18 +9,25 @@ block content
     header(class='mui-bar mui-bar-nav')
         h1(class='mui-title') 课程预约
 
-    div(id='showClassroomPicker' class='mui-btn' data-value='1' style='width: 100%;margin-top: 20px') Miuyoga瑜伽工作室（南阳锦城）
-    div(id='classRoom' class='ui-alert' style='display: none')
+    div(class='header-content')
+        div(id='showClassroomPicker' class='mui-btn' data-value='' style='width: 100%;margin-top: 20px')
+        div(id='classRoom' class='ui-alert' style='display: none')
 
-    ul(class='date-tab')
-        li(class='nav-time date-tab-li active')
-        li(class='nav-time date-tab-li')
-        li(class='nav-time date-tab-li')
-        li(class='nav-time date-tab-li')
-        li(class='date-tab-li' style='border: none' id='datePicker' data-options='{"type":"date"}')
-            img(src='/image/date.png')
+        ul(class='date-tab')
+            li(class='nav-time date-tab-li active')
+            li(class='nav-time date-tab-li')
+            li(class='nav-time date-tab-li')
+            li(class='nav-time date-tab-li')
+            li(class='date-tab-li' style='border: none' id='datePicker' data-options='{"type":"date"}')
+                img(src='/image/date.png')
 
-    div(id='result' class='ui-alert')
+    ul(class='mui-table-view')
+        li(class='mui-table-view-cell mui-media li-odd')
+            span(class='mui-media-object mui-pull-left') 12:00
+            div(class='mui-media-body') 空中瑜伽
+                p(class='mui-ellipsis') 妙
+            button test
+
 
     script(type='text/javascript', src='/js/mui/js/mui.picker.min.js')
     script(type='text/javascript', src='/js/timeTable.js')
