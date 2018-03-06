@@ -101,7 +101,7 @@
                 $(this).text(time.time).attr('date-week', time.week);
             });
 
-            $('.nav-time').eq(0).addClass('active').siblings('.nav-time').removeClass('nav-time');
+            $('.nav-time').eq(0).addClass('active').siblings('.nav-time').removeClass('active');
 
             _self.picker.dispose();
             _self.picker = null;
