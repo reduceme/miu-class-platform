@@ -130,4 +130,8 @@
             }
         });
     }
+
+    $('.date-tab').on('click', '.nav-time', function () {
+        getTimeTable();
+    })
 })();
