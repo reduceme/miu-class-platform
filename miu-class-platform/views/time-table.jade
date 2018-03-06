@@ -10,7 +10,7 @@ block content
         h1(class='mui-title') 课程预约
 
     div(class='header-content')
-        div(id='showClassroomPicker' class='mui-btn' data-value='' style='width: 100%;margin-top: 20px')
+        div(id='showClassroomPicker' class='mui-btn' data-value='' style='width: 100%;margin-top: 20px;height: 40px')
         div(id='classRoom' class='ui-alert' style='display: none')
 
         ul(class='date-tab')
@@ -21,13 +21,36 @@ block content
             li(class='date-tab-li' style='border: none' id='datePicker' data-options='{"type":"date"}')
                 img(src='/image/date.png')
 
-    ul(class='mui-table-view')
-        li(class='mui-table-view-cell mui-media li-odd')
-            span(class='mui-media-object mui-pull-left') 12:00
-            div(class='mui-media-body') 空中瑜伽
-                p(class='mui-ellipsis') 妙
-            button test
+    table(class='schedule-table')
+        tbody
+            tr(class='schedule-odd-row schedule-tr')
+                td(class='schedule-first-col')
+                    h5(class='time') 10:00
+                td(class='schedule-second-col')
+                    h5(class='title') 空中瑜伽
+                    p(class='info')
+                        a(href='#' class='teacher') 妙妙老师
+                        span(class='people-number') &nbsp;&nbsp;预约1人，剩余3人
+                td(class='schedule-third-col')
+                    button(class='class-btn') 预约
 
+            tr(class='schedule-double-row schedule-tr')
+                td(class='schedule-first-col')
+                    h5(class='time') 10:00
+                td(class='schedule-second-col')
+                    h5(class='title') 空中瑜伽
+                    p(class='info')
+                        a(href='#' class='teacher') 妙妙老师
+                        span(class='people-number') &nbsp;&nbsp;预约1人，剩余3人
+                td(class='schedule-third-col')
+                    button(class='class-btn') 预约
+
+    div(class='prompt')
+        p(class='prompt-title') —— 温馨提示 ——
+        p(class='prompt-info') 会员约课需知
+        p(class='prompt-info') 1、   预约时间：预约时间预约时间预约时间预约时间。
+        p(class='prompt-info') 2、   预约截止：开课前1小时。
+        p(class='prompt-info') 3、   爽约：限制每周爽约次数1次，超过1次后，您的会员卡将被暂时冻结（7天）。
 
     script(type='text/javascript', src='/js/mui/js/mui.picker.min.js')
     script(type='text/javascript', src='/js/timeTable.js')

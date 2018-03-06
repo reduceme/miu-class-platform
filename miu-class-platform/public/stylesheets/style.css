@@ -12,10 +12,22 @@ a {
 }
 
 .mui-media-body {
-    width: 66%;
+    width: 60%;
     display: inline-block;
 }
 
 .li-odd {
     background: #eee;
+}
+
+.time-info {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.title {
+    margin-top: 0.45em;
+    margin-bottom: 0.2em;
+    font-size: 0.9rem;
+    font-weight: bold;
 }

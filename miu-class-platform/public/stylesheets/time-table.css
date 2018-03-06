@@ -68,3 +68,98 @@ h5.mui-content-padded:first-child {
     border: 1px solid #52B297;
     background-color: #52B297;
 }
+
+tbody {
+    border-top: 1px solid #ddd;
+}
+
+td {
+    vertical-align: middle;
+    padding: 10px 2px;
+    border-bottom: 1px solid #ddd;
+}
+
+.schedule-table {
+    width: 100%;
+}
+
+.schedule-tr {
+    width: 100%;
+}
+
+.schedule-odd-row {
+    background: #F9F9F9;
+}
+
+.schedule-double-row {
+    background: #FCFCFC;
+}
+
+.schedule-first-col {
+    width: 23%;
+}
+
+.schedule-third-col {
+    width: 17%;
+}
+
+.schedule-second-col {
+    width: 60%;
+}
+
+.info {
+    margin-top: 0.1em;
+    margin-bottom: 0.4em;
+    font-weight: 300;
+    color: #2e2e2e;
+    font-size: 0.8rem;
+}
+
+.title {
+    color: #53b196;
+}
+
+.time {
+    font-size: 20px;
+    font-weight: 800;
+    color: #000000;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.teacher {
+    color: #efa236;
+}
+
+.class-btn {
+    color: #fff;
+    background-color: #53b196;
+    border-color: #53b196;
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+    white-space: nowrap;
+}
+
+.class-btn:active {
+    color: #fff;
+    background-color: #398972;
+    border-color: #47c75c;
+}
+
+.prompt {
+    padding: 5px 15px;
+    font-family: "微软雅黑";
+    margin-top: 15px;
+}
+
+.prompt-title {
+    text-align: center;
+}
+
+.prompt-info {
+    font-size: 14px !important;
+    margin-bottom: 5px !important;
+    font-weight: 200;
+}

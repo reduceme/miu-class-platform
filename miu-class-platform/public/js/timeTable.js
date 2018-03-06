@@ -58,7 +58,11 @@
         var week = date.getDay();
 
         var time = formatTime(month) + "-" + formatTime(day) + ' ' + weekday[week];
-        return time;
+        var format = {
+            time: time,
+            week: week
+        }
+        return format;
     }
 
     //格式化时间
@@ -69,17 +73,10 @@
         return num;
     }
 
-    //获取星期几
-    function getWeek(date, index) {
-        var oneDay = 24 * 60 * 60 * 1000;
-        date.setTime(date.getTime() + index * oneDay);
-        var week = date.getDay();
-        return week;
-    }
-
     //循环生成选项卡里面的文字
     $('.nav-time').each(function (index) {
-        $(this).text(getTime(new Date(), index)).attr('data-week', getWeek(new Date(), index));
+        var time = getTime(new Date(), index);
+        $(this).text(time.time).attr('data-week', time.week);
     });
 
     //时间
@@ -100,9 +97,11 @@
              * rs.i 分（minutes 的第二个字母），用法同年
              */
             $('.nav-time').each(function (index) {
-                $(this).text(getTime(new Date(rs.text), index)).attr('date-week', getWeek(new Date(rs.text), index));
-                ;
+                var time = getTime(new Date(rs.text), index);
+                $(this).text(time.time).attr('date-week', time.week);
             });
+
+            $('.nav-time').eq(0).addClass('active').siblings('.nav-time').removeClass('nav-time');
 
             _self.picker.dispose();
             _self.picker = null;
