@@ -36,7 +36,8 @@
 
     $('.date-tab').on('click', '.nav-time', function () {
         $(this).addClass('active').siblings('.nav-time').removeClass('active');
-    })
+        getTimeTable();
+    });
 
     var weekday = {
         '0': '周日',
@@ -45,7 +46,7 @@
         '3': '周三',
         '4': '周四',
         '5': '周五',
-        '6': '周六',
+        '6': '周六'
     };
 
     //获取指定的日期
@@ -131,7 +132,26 @@
         });
     }
 
-    $('.date-tab').on('click', '.nav-time', function () {
-        getTimeTable();
-    })
+    var tableTimeList = [{
+        time: '10:00',
+        classname: '空中瑜伽',
+        teacher: '妙妙老师',
+        hasReservation: '1',
+        lastReservation: '2',
+        classId: '1'
+    }, {
+        time: '15:00',
+        classname: '产后修复',
+        teacher: '妙妙老师',
+        hasReservation: '1',
+        lastReservation: '2',
+        classId: '2'
+    }, {
+        time: '18:30',
+        classname: '初级瑜伽',
+        teacher: '妙妙老师',
+        hasReservation: '1',
+        lastReservation: '2',
+        classId: '3'
+    }]
 })();
