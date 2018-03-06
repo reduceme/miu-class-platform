@@ -40,14 +40,14 @@ router.post('/login', function (req, res, next) {
     pool.getConnection(function (err, connection) {
         //建立连接
         connection.query(sqlStatement, function (err, result) {
-            if (err) {
+            /*if (err) {
                 var data = {
                     code: false,
                     data: '',
                     msg: err.message
                 };
                 return res.end(data);
-            }
+            }*/
 
             //todo - 密码加密
             if (password === result[0].password) {
@@ -65,14 +65,14 @@ router.get('/get_class_room', function (req, res, next) {
     pool.getConnection(function (err, connection) {
         //建立连接
         connection.query(sql.classRoom, function (err, result) {
-            if (err) {
+            /*if (err) {
                 var data = {
                     code: false,
                     data: '',
                     msg: err.message
                 };
                 return res.end(data);
-            }
+            }*/
 
             writeJSON(res, result);
 
@@ -89,14 +89,14 @@ router.post('/get_timetable', function (req, res, next) {
     //建立连接
     pool.getConnection(function (err, connection) {
         connection.query(sql.timeTable, [req.body.roomId, req.body.week], function (err, result) {
-            if (err) {
+            /*if (err) {
                 var data = {
-                    code: false,
+                    code: 1,
                     data: '',
                     msg: err.message
                 };
                 return res.end(data);
-            }
+            }*/
 
             writeJSON(res, result);
 
