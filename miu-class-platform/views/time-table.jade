@@ -6,53 +6,42 @@ block content
     link(rel='stylesheet', href='/js/mui/css/mui.picker.min.css')
     link(rel='stylesheet', href='/stylesheets/time-table.css')
 
-    header(class='mui-bar mui-bar-nav')
-        h1(class='mui-title') 课程预约
+    header.mui-bar.mui-bar-nav
+        h1.mui-title 课程预约
 
-    div(class='header-content')
-        div(id='showClassroomPicker' class='mui-btn' data-value='' style='width: 100%;margin-top: 20px;height: 40px')
-        div(id='classRoom' class='ui-alert' style='display: none')
+    div.header-content
+        div.mui-btn(id='showClassroomPicker' data-value='' style='width: 100%;margin-top: 20px;height: 36px')
+        div.ui-alert(id='classRoom' style='display: none')
 
-        ul(class='date-tab')
-            li(class='nav-time date-tab-li active')
-            li(class='nav-time date-tab-li')
-            li(class='nav-time date-tab-li')
-            li(class='nav-time date-tab-li')
-            li(class='date-tab-li' style='border: none' id='datePicker' data-options='{"type":"date"}')
+        ul.date-tab
+            li.nav-time.date-tab-li.active
+            li.nav-time.date-tab-li
+            li.nav-time.date-tab-li
+            li.nav-time.date-tab-li
+            li.date-tab-li(style='border: none' id='datePicker' data-options='{"type":"date"}')
                 img(src='/image/date.png')
 
-    table(class='schedule-table')
-        tbody
-            tr(class='schedule-odd-row schedule-tr')
-                td(class='schedule-first-col')
-                    h5(class='time') 10:00
-                td(class='schedule-second-col')
-                    h5(class='title') 空中瑜伽
-                    p(class='info')
-                        a(href='#' class='teacher') 妙妙老师
-                        span(class='people-number') &nbsp;&nbsp;预约1人，剩余3人
-                td(class='schedule-third-col')
-                    button(class='class-btn') 预约
+    table.schedule-table
+        tbody(id='tableContent')
+            //
+                tr.schedule-odd-row.schedule-tr
+                    td.schedule-first-col
+                        h5.time 10:00
+                    td.schedule-second-col
+                        h5.title 空中瑜伽
+                        p.info
+                            a.teacher(href='#') 毛毛
+                            span.people-number &nbsp;&nbsp;预约1人，剩余2人
+                    td.schedule-third-col
+                        button.class-btn 预约
 
-            tr(class='schedule-double-row schedule-tr')
-                td(class='schedule-first-col')
-                    h5(class='time') 10:00
-                td(class='schedule-second-col')
-                    h5(class='title') 空中瑜伽
-                    p(class='info')
-                        a(href='#' class='teacher') 妙妙老师
-                        span(class='people-number') &nbsp;&nbsp;预约1人，剩余3人
-                td(class='schedule-third-col')
-                    button(class='class-btn') 预约
+    div.prompt
+        p.prompt-title —— 温馨提示 ——
+        p.prompt-info 会员约课需知
+        p.prompt-info 1、   预约时间：预约时间预约时间预约时间预约时间。
+        p.prompt-info 2、   预约截止：开课前1小时。
+        p.prompt-info 3、   取消预约：怎么取消预约呢怎么取消预约呢。
 
-    div(class='prompt')
-        p(class='prompt-title') —— 温馨提示 ——
-        p(class='prompt-info') 会员约课需知
-        p(class='prompt-info') 1、   预约时间：预约时间预约时间预约时间预约时间。
-        p(class='prompt-info') 2、   预约截止：开课前1小时。
-        p(class='prompt-info') 3、   取消预约：怎么取消预约呢怎么取消预约呢。
 
     script(type='text/javascript', src='/js/mui/js/mui.picker.min.js')
     script(type='text/javascript', src='/js/timeTable.js')
-
-

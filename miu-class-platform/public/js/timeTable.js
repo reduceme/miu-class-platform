@@ -62,7 +62,7 @@
         var format = {
             time: time,
             week: week
-        }
+        };
         return format;
     }
 
@@ -99,10 +99,10 @@
              */
             $('.nav-time').each(function (index) {
                 var time = getTime(new Date(rs.text), index);
-                $(this).text(time.time).attr('date-week', time.week);
-            });
+                $(this).text(time.time).attr('data-week', time.week);
+            }).eq(0).addClass('active').siblings('.nav-time').removeClass('active');
 
-            $('.nav-time').eq(0).addClass('active').siblings('.nav-time').removeClass('active');
+            getTimeTable();
 
             _self.picker.dispose();
             _self.picker = null;
@@ -110,6 +110,7 @@
 
     }, false);
 
+    var timeTableList = [];
     //获取课表
     function getTimeTable() {
         var postData = {
@@ -122,36 +123,41 @@
             url: '/users/get_timetable',
             data: postData,
             success: function (data) {
-                console.log(data);
                 if (data.code === 0) {
-                    console.log(data.data);
+                    timeTableList = data.data;
+                    var html = '';
+                    timeTableList.forEach(function (item, index) {
+                        var isOdd = index % 2 === 0 ? 'schedule-odd-row' : 'schedule-double-row';
+                        html += '<tr class="' + isOdd + ' schedule-tr">' +
+                            '<td class="schedule-first-col">' +
+                            '<h5 class="time">' + item.time + '</h5>' +
+                            '</td>' +
+
+                            '<td class="schedule-second-col">' +
+                            '<h5 class="title">' + item.classname + '</h5>' +
+                            '<p class="info">' +
+                            '<a class="teacher" href="#">' + item.teacher + '</a>' +
+                            '<span class="people-number">' + '&nbsp;&nbsp;预约' + item.hasReservation + '人，剩余' + item.lastReservation + '人</span>' +
+                            '</p>' +
+                            '</td>' +
+
+                            '<td class="schedule-third-col">' +
+                            '<button class="class-btn" data-classid="' + item.classId + '">预约</button>' +
+                            '</td>' +
+                            '</tr>'
+                    });
+
+                    console.log(html);
+                    if (html === '') {
+                        html += '<tr class="schedule-tr" style="background: #FCFCFC">' +
+                            '<td><div class="has-no-class">暂时没有课程</div></td>' +
+                            '</tr>'
+                    }
+                    $('#tableContent').html(html);
                 }
             },
             error: function (err) {
             }
         });
     }
-
-    var tableTimeList = [{
-        time: '10:00',
-        classname: '空中瑜伽',
-        teacher: '妙妙老师',
-        hasReservation: '1',
-        lastReservation: '2',
-        classId: '1'
-    }, {
-        time: '15:00',
-        classname: '产后修复',
-        teacher: '妙妙老师',
-        hasReservation: '1',
-        lastReservation: '2',
-        classId: '2'
-    }, {
-        time: '18:30',
-        classname: '初级瑜伽',
-        teacher: '妙妙老师',
-        hasReservation: '1',
-        lastReservation: '2',
-        classId: '3'
-    }]
 })();

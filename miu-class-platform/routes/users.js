@@ -42,7 +42,7 @@ router.post('/login', function (req, res, next) {
         connection.query(sqlStatement, function (err, result) {
             //todo - 密码加密
             if (password === result[0].password) {
-                res.cookie('user',username);
+                res.cookie('user', username);
                 writeJSON(res, []);
             }
             // 释放连接
@@ -67,6 +67,10 @@ router.post('/get_timetable', function (req, res, next) {
     //建立连接
     pool.getConnection(function (err, connection) {
         connection.query(sql.timeTable, [req.body.roomId, req.body.week], function (err, result) {
+            // var timeTableList = result;
+            // res.render('index', timeTableList);
+            // res.render('time-table', {timeTableList: timeTableList});
+
             writeJSON(res, result);
             // 释放连接
             connection.release();

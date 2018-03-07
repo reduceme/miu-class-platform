@@ -163,3 +163,9 @@ td {
     margin-bottom: 5px !important;
     font-weight: 200;
 }
+
+.has-no-class {
+    height: 66px;
+    line-height: 66px;
+    text-align: center;
+}

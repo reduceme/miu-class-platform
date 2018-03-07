@@ -4,22 +4,22 @@ block content
   meta(name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" )
   link(rel='stylesheet', href='/stylesheets/index.css')
 
-  header(class='mui-bar mui-bar-nav')
-    h1(class='mui-title') MiuYoga会员约课系统
+  header.mui-bar.mui-bar-nav
+    h1.mui-title MiuYoga会员约课系统
 
-  div(class='mui-content')
-    div(class='log-content')
-      img(src='image/logo.png' class='logo-img')
-    form(class='mui-input-group' id='login-form')
-      div(class='mui-input-row')
+  div.mui-content
+    div.log-content
+      img.logo-img(src='image/logo.png')
+    form.mui-input-group(id='login-form')
+      div.mui-input-row
         label 帐号
-        input(id='userid' type='text' class='mui-input-clear mui-input' placeholder='请输入帐号')
+        input.mui-input-clear.mui-input(id='userid' type='text' placeholder='请输入帐号')
 
-      div(class='mui-input-row')
+      div.mui-input-row
         label 密码
-        input(id='password' type='password' class='mui-input-clear mui-input' placeholder='请输入密码')
+        input.mui-input-clear.mui-input(id='password' type='password' placeholder='请输入密码')
 
-    div(class='mui-content-padded')
-      button(id='login' class='mui-btn mui-btn-block mui-btn-primary') 登录
+    div.mui-content-padded
+      button.mui-btn.mui-btn-block.mui-btn-primary(id='login') 登录
 
   script(type='text/javascript', src='/js/login.js')
