@@ -67,14 +67,33 @@ router.post('/get_timetable', function (req, res, next) {
     //建立连接
     pool.getConnection(function (err, connection) {
         connection.query(sql.timeTable, [req.body.roomId, req.body.week], function (err, result) {
-            // var timeTableList = result;
-            // res.render('index', timeTableList);
-            // res.render('time-table', {timeTableList: timeTableList});
-
             writeJSON(res, result);
             // 释放连接
             connection.release();
         })
+    })
+});
+
+router.post('/get_reserved_count', function (req, res, next) {
+    pool.getConnection(function (err, connection) {
+        connection.query(sql.get_reserved_count, [req.body.roomId, req.body.time, req.body.classIdList], function (err, result) {
+
+            var data = [];
+            for (var i = 0; i < req.body.classIdList.length; i++) {
+                data[i] = {};
+                var count = 0;
+                var key = req.body.classIdList[i];
+                for (var j = 0; j < result.length; j++) {
+                    if (result[j].classId === key) {
+                        count++;
+                    }
+                }
+                data[i][key] = count;
+            }
+
+            writeJSON(res, data);
+            connection.release();
+        });
     })
 });
 

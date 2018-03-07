@@ -1,6 +1,4 @@
 (function () {
-
-
     var classroomPicker = new mui.PopPicker();
 
     function getClassroom() {
@@ -31,6 +29,7 @@
     document.getElementById('showClassroomPicker').addEventListener('tap', function () {
         classroomPicker.show(function (items) {
             $('#showClassroomPicker').text(items[0].text).attr('data-value', items[0].value);
+            getTimeTable();
         })
     });
 
@@ -54,12 +53,16 @@
         var oneDay = 24 * 60 * 60 * 1000;
         date.setTime(date.getTime() + num * oneDay);
 
+        var year = date.getFullYear();
+
         var month = date.getMonth() + 1;
         var day = date.getDate();
         var week = date.getDay();
 
+        var fullYear = year + '-' + formatTime(month) + '-' + formatTime(day);
         var time = formatTime(month) + "-" + formatTime(day) + ' ' + weekday[week];
         var format = {
+            fullYear: fullYear,
             time: time,
             week: week
         };
@@ -77,7 +80,7 @@
     //循环生成选项卡里面的文字
     $('.nav-time').each(function (index) {
         var time = getTime(new Date(), index);
-        $(this).text(time.time).attr('data-week', time.week);
+        $(this).text(time.time).attr('data-week', time.week).attr('data-year', time.fullYear);
     });
 
     //时间
@@ -99,7 +102,7 @@
              */
             $('.nav-time').each(function (index) {
                 var time = getTime(new Date(rs.text), index);
-                $(this).text(time.time).attr('data-week', time.week);
+                $(this).text(time.time).attr('data-week', time.week).attr('data-year', time.fullYear);
             }).eq(0).addClass('active').siblings('.nav-time').removeClass('active');
 
             getTimeTable();
@@ -126,6 +129,14 @@
                 if (data.code === 0) {
                     timeTableList = data.data;
                     var html = '';
+
+                    //课程信息，用来获取每节课当前预约人数
+                    var classInfo = {
+                        roomId: $('#showClassroomPicker').attr('data-value'),
+                        classIdList: [],
+                        time: $('.date-tab .active').attr('data-year')
+                    };
+
                     timeTableList.forEach(function (item, index) {
                         var isOdd = index % 2 === 0 ? 'schedule-odd-row' : 'schedule-double-row';
                         html += '<tr class="' + isOdd + ' schedule-tr">' +
@@ -137,27 +148,63 @@
                             '<h5 class="title">' + item.classname + '</h5>' +
                             '<p class="info">' +
                             '<a class="teacher" href="#">' + item.teacher + '</a>' +
-                            '<span class="people-number">' + '&nbsp;&nbsp;预约' + item.hasReservation + '人，剩余' + item.lastReservation + '人</span>' +
+                            '<span class="people-number" style="padding-left: 10px" data-classid="' + item.classId + '"></span>' +
                             '</p>' +
                             '</td>' +
 
                             '<td class="schedule-third-col">' +
                             '<button class="class-btn" data-classid="' + item.classId + '">预约</button>' +
                             '</td>' +
-                            '</tr>'
+                            '</tr>';
+
+                        classInfo.classIdList.push(item.classId);
                     });
 
-                    console.log(html);
+                    getReservedCount(classInfo);
+
                     if (html === '') {
                         html += '<tr class="schedule-tr" style="background: #FCFCFC">' +
                             '<td><div class="has-no-class">暂时没有课程</div></td>' +
                             '</tr>'
                     }
                     $('#tableContent').html(html);
+                } else {
+
                 }
             },
             error: function (err) {
             }
         });
+    }
+
+    function getReservedCount(classIdList) {
+        $.ajax({
+            method: 'post',
+            url: '/users/get_reserved_count',
+            data: JSON.stringify(classIdList),
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                if (data.code === 0) {
+                    console.log(data);
+                    for (var i = 0; i < data.data.length; i++) {
+                        for(var j in data.data[i]){
+                            $('.people-number').each(function (index) {
+                                var dataId = $(this).attr('data-classid');
+                                console.log(dataId);
+                                console.log(i);
+                                console.log(dataId === j);
+                                if (dataId === j) {
+                                    var string = '已预约' + data.data[i][j] + '人';
+                                    $(this).text(string);
+                                }
+                            })
+                        }
+
+                    }
+                }
+            },
+            error: function () {
+            }
+        })
     }
 })();
