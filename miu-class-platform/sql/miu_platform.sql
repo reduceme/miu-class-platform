@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : 65001
 
- Date: 07/03/2018 17:52:27
+ Date: 08/03/2018 18:02:44
 */
 
 SET NAMES utf8mb4;
@@ -92,18 +92,20 @@ DROP TABLE IF EXISTS `user_class_info`;
 CREATE TABLE `user_class_info`  (
   `userId` int(11) NOT NULL,
   `classId` int(11) NOT NULL,
-  `classname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `time` date NOT NULL,
-  `roomId` int(11) NOT NULL
+  `time` date NOT NULL
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_class_info
 -- ----------------------------
-INSERT INTO `user_class_info` VALUES (1, 1, '空中瑜伽', '2018-03-07', 1);
-INSERT INTO `user_class_info` VALUES (1, 3, '空中瑜伽', '2018-03-07', 1);
-INSERT INTO `user_class_info` VALUES (2, 3, '空中瑜伽', '2018-03-07', 1);
-INSERT INTO `user_class_info` VALUES (2, 8, '初级瑜伽', '2018-03-07', 1);
+INSERT INTO `user_class_info` VALUES (1, 1, '2018-03-07');
+INSERT INTO `user_class_info` VALUES (1, 3, '2018-03-07');
+INSERT INTO `user_class_info` VALUES (2, 3, '2018-03-07');
+INSERT INTO `user_class_info` VALUES (2, 8, '2018-03-07');
+INSERT INTO `user_class_info` VALUES (2, 5, '2018-03-09');
+INSERT INTO `user_class_info` VALUES (1, 5, '2018-03-08');
+INSERT INTO `user_class_info` VALUES (1, 6, '2018-03-10');
+INSERT INTO `user_class_info` VALUES (1, 1, '2018-03-12');
 
 -- ----------------------------
 -- Table structure for user_info
@@ -113,7 +115,7 @@ CREATE TABLE `user_info`  (
   `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `userid` int(255) NOT NULL AUTO_INCREMENT,
-  `cardName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `cardType` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `totalCount` int(64) NULL DEFAULT NULL,
   `lastCount` int(64) NULL DEFAULT NULL,
   PRIMARY KEY (`userid`) USING BTREE
@@ -122,10 +124,10 @@ CREATE TABLE `user_info`  (
 -- ----------------------------
 -- Records of user_info
 -- ----------------------------
-INSERT INTO `user_info` VALUES ('13541147949', '123456', 1, '', NULL, NULL);
-INSERT INTO `user_info` VALUES ('18030850749', '123456', 2, '', NULL, NULL);
-INSERT INTO `user_info` VALUES ('15902827532', '123456', 3, '', NULL, NULL);
-INSERT INTO `user_info` VALUES ('13438968830', '123456', 4, '', NULL, NULL);
-INSERT INTO `user_info` VALUES ('13699097908', '123456', 5, '', NULL, NULL);
+INSERT INTO `user_info` VALUES ('13541147949', '123456', 1, '1', NULL, NULL);
+INSERT INTO `user_info` VALUES ('18030850749', '123456', 2, '2', NULL, NULL);
+INSERT INTO `user_info` VALUES ('15902827532', '123456', 3, '3', NULL, NULL);
+INSERT INTO `user_info` VALUES ('13438968830', '123456', 4, '4', NULL, NULL);
+INSERT INTO `user_info` VALUES ('13699097908', '123456', 5, '1', NULL, NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;

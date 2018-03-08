@@ -68,8 +68,8 @@
       <file leaf-file-name="sql.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config/sql.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="9" column="21" lean-forward="true" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+            <state relative-caret-position="176">
+              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -397,12 +397,12 @@
       <workItem from="1520472490895" duration="613000" />
       <workItem from="1520473209895" duration="8290000" />
       <workItem from="1520489065710" duration="235000" />
-      <workItem from="1520495865828" duration="6997000" />
+      <workItem from="1520495865828" duration="7363000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73621000" />
+    <option name="totallyTimeSpent" value="73987000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -854,8 +854,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/sql.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="21" lean-forward="true" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+        <state relative-caret-position="176">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>
