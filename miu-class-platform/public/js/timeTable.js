@@ -59,22 +59,20 @@
         var day = date.getDate();
         var week = date.getDay();
 
+        var hours = date.getHours();
+        var minute = date.getMinutes();
+
         var fullYear = year + '-' + formatTime(month) + '-' + formatTime(day);
+        var completeTime = year + '-' + formatTime(month) + '-' + formatTime(day) + ' ' + formatTime(hours) + ':' + formatTime(minute);
+
         var time = formatTime(month) + "-" + formatTime(day) + ' ' + weekday[week];
         var format = {
             fullYear: fullYear,
+            completeTime: completeTime,
             time: time,
             week: week
         };
         return format;
-    }
-
-    //获取时分秒
-    function getMinute(date) {
-        var hour = date.getHours();
-        var minute = date.getMinutes();
-        var time = formatTime(hour) + ":" + formatTime(minute);
-        return time;
     }
 
     //格式化时间
@@ -136,9 +134,6 @@
             beforeSend: function () {
                 $('.loading').show()
             },
-            /*complete: function () {
-                $('.loading').hide()
-            },*/
             success: function (data) {
                 if (data.code === 0) {
                     timeTableList = data.data;
@@ -194,16 +189,13 @@
     function getReservedCount(classInfo) {
         var time = $('.date-tab .active').attr('data-year');
 
-        var minute = getMinute(new Date());
+        var minute = getTime(new Date(), 0).completeTime;
 
         if (classInfo.time >= time) {
             $.ajax({
                 method: 'post',
                 url: '/users/get_reserved_count',
                 data: JSON.stringify(classInfo),
-                /*beforeSend: function () {
-                    $('.loading').show()
-                },*/
                 contentType: "application/json;charset=utf-8",
                 complete: function () {
                     $('.loading').hide()
@@ -215,7 +207,10 @@
                             for (var j in data.data[i]) {
                                 $('.people-number').each(function (index) {
                                     var dataId = $(this).attr('data-classid');
+
                                     var classTime = $('.time').eq(index).html();
+                                    classTime = time + ' ' + classTime;
+
                                     if (dataId === j && classTime > minute) {
                                         var string = '已预约' + data.data[i][j] + '人';
                                         $(this).text(string);
@@ -228,10 +223,9 @@
                         $('.schedule-third-col').each(function (index) {
                             var classMinute = $('.time').eq(index).html();
                             var classTime = time + ' ' + classMinute;
-                            var now = getTime(new Date(), 0).fullYear + ' ' + minute;
                             classTime = new Date(classTime);
-                            now = new Date(now);
-                            var result = classTime.getTime() - now.getTime();
+                            minute = new Date(minute);
+                            var result = classTime.getTime() - minute.getTime();
                             var anHour = 60 * 60 * 1000;
                             if (anHour > result) {
                                 var html = '<span class="stop-class">停止约课</span>';
