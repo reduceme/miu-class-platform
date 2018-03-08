@@ -42,6 +42,17 @@ block content
         p.prompt-info 2、   预约截止：开课前1小时。
         p.prompt-info 3、   取消预约：怎么取消预约呢怎么取消预约呢。
 
+    div.loading(style='display: none')
+        div.mask-transparent
+        div.toast
+            div.spinner
+                div.rect2
+                div.rect3
+                div.rect4
+                div.rect5
+            p.toast-content 正在加载
+
+
 
     script(type='text/javascript', src='/js/mui/js/mui.picker.min.js')
     script(type='text/javascript', src='/js/timeTable.js')

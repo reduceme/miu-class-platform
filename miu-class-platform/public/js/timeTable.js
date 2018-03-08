@@ -69,6 +69,14 @@
         return format;
     }
 
+    //获取时分秒
+    function getMinute(date) {
+        var hour = date.getHours();
+        var minute = date.getMinutes();
+        var time = formatTime(hour) + ":" + formatTime(minute);
+        return time;
+    }
+
     //格式化时间
     function formatTime(num) {
         if (num < 10) {
@@ -125,6 +133,12 @@
             method: 'post',
             url: '/users/get_timetable',
             data: postData,
+            beforeSend: function () {
+                $('.loading').show()
+            },
+            /*complete: function () {
+                $('.loading').hide()
+            },*/
             success: function (data) {
                 if (data.code === 0) {
                     timeTableList = data.data;
@@ -160,14 +174,14 @@
                         classInfo.classIdList.push(item.classId);
                     });
 
-                    getReservedCount(classInfo);
-
                     if (html === '') {
                         html += '<tr class="schedule-tr" style="background: #FCFCFC">' +
                             '<td><div class="has-no-class">暂时没有课程</div></td>' +
                             '</tr>'
                     }
+
                     $('#tableContent').html(html);
+                    getReservedCount(classInfo);
                 } else {
 
                 }
@@ -177,34 +191,64 @@
         });
     }
 
-    function getReservedCount(classIdList) {
-        $.ajax({
-            method: 'post',
-            url: '/users/get_reserved_count',
-            data: JSON.stringify(classIdList),
-            contentType: "application/json;charset=utf-8",
-            success: function (data) {
-                if (data.code === 0) {
-                    console.log(data);
-                    for (var i = 0; i < data.data.length; i++) {
-                        for(var j in data.data[i]){
-                            $('.people-number').each(function (index) {
-                                var dataId = $(this).attr('data-classid');
-                                console.log(dataId);
-                                console.log(i);
-                                console.log(dataId === j);
-                                if (dataId === j) {
-                                    var string = '已预约' + data.data[i][j] + '人';
-                                    $(this).text(string);
-                                }
-                            })
+    function getReservedCount(classInfo) {
+        var time = $('.date-tab .active').attr('data-year');
+
+        var minute = getMinute(new Date());
+
+        if (classInfo.time >= time) {
+            $.ajax({
+                method: 'post',
+                url: '/users/get_reserved_count',
+                data: JSON.stringify(classInfo),
+                /*beforeSend: function () {
+                    $('.loading').show()
+                },*/
+                contentType: "application/json;charset=utf-8",
+                complete: function () {
+                    $('.loading').hide()
+                },
+                success: function (data) {
+                    if (data.code === 0) {
+                        //生成预约信息
+                        for (var i = 0; i < data.data.length; i++) {
+                            for (var j in data.data[i]) {
+                                $('.people-number').each(function (index) {
+                                    var dataId = $(this).attr('data-classid');
+                                    var classTime = $('.time').eq(index).html();
+                                    if (dataId === j && classTime > minute) {
+                                        var string = '已预约' + data.data[i][j] + '人';
+                                        $(this).text(string);
+                                    }
+                                })
+                            }
                         }
 
+                        //课程开始一小时前停止约课
+                        $('.schedule-third-col').each(function (index) {
+                            var classMinute = $('.time').eq(index).html();
+                            var classTime = time + ' ' + classMinute;
+                            var now = getTime(new Date(), 0).fullYear + ' ' + minute;
+                            classTime = new Date(classTime);
+                            now = new Date(now);
+                            var result = classTime.getTime() - now.getTime();
+                            var anHour = 60 * 60 * 1000;
+                            if (anHour > result) {
+                                var html = '<span class="stop-class">停止约课</span>';
+                                $(this).empty().html(html);
+                            }
+                        })
                     }
+                },
+                error: function () {
                 }
-            },
-            error: function () {
-            }
-        })
+            })
+        } else {
+            $('.schedule-third-col').each(function () {
+                var html = '<span class="stop-class">停止约课</span>';
+                $(this).empty().html(html);
+            })
+        }
+
     }
 })();
