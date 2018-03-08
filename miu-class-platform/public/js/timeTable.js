@@ -157,7 +157,7 @@
                             '<h5 class="title">' + item.classname + '</h5>' +
                             '<p class="info">' +
                             '<a class="teacher" href="#">' + item.teacher + '</a>' +
-                            '<span class="people-number" style="padding-left: 10px" data-classid="' + item.classId + '"></span>' +
+                            '<span class="people-number" style="padding-left: 10px" data-max="' + item.maxCount + '" data-min="' + item.minCount + '" data-classid="' + item.classId + '"></span>' +
                             '</p>' +
                             '</td>' +
 
@@ -213,6 +213,9 @@
 
                                     if (dataId === j && classTime > minute) {
                                         var string = '已预约' + data.data[i][j] + '人';
+                                        $(this).attr('data-has-count', data.data[i][j]);
+                                        var minCount = $(this).attr('data-min');
+                                        string += '；' + minCount + '人开课';
                                         $(this).text(string);
                                     }
 
