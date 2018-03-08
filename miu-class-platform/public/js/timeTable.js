@@ -215,7 +215,14 @@
                                         var string = '已预约' + data.data[i][j] + '人';
                                         $(this).text(string);
                                     }
+
+                                    var item = data.data[i].hasReservation;
+                                    if (item === true) {
+                                        $('.class-btn').eq(index).text('取消').addClass('cancle-btn');
+                                    }
                                 })
+
+
                             }
                         }
 
@@ -244,5 +251,55 @@
             })
         }
 
+    }
+
+    $('#tableContent').on('click', '.class-btn', function () {
+        var isCancle = $(this).hasClass('cancle-btn');
+
+        var classId = $(this).attr('data-classid');
+        var time = $('.date-tab .active').attr('data-year');
+
+        var postData = {
+            classId: classId,
+            time: time
+        };
+
+        if (!isCancle) {
+            reservClass(postData);
+        } else {
+            cancleClass(postData);
+        }
+    });
+
+    function reservClass(data) {
+        $.ajax({
+            method: 'post',
+            url: '/users/user_reservation_class',
+            data: data,
+            success: function (data) {
+                if (data.code === 0) {
+                    mui.alert('预约成功！', '');
+                    getTimeTable();
+                }
+            },
+            error: function (err) {
+            }
+        })
+    }
+
+    function cancleClass(data) {
+        $.ajax({
+            method: 'post',
+            url: '/users/cancle_class',
+            data: data,
+            success: function (data) {
+                if (data.code === 0) {
+                    mui.alert('取消成功', '');
+                    getTimeTable();
+                }
+            },
+            error: function (err) {
+            }
+        })
     }
 })();

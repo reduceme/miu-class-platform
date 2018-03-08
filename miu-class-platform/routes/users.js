@@ -3,6 +3,7 @@ var mysql = require('mysql');
 var $database = require('../config/db');
 var sql = require('../config/sql');
 
+
 //使用连接池
 var pool = mysql.createPool($database.mysql);
 var router = express.Router();
@@ -35,19 +36,18 @@ router.post('/login', function (req, res, next) {
     var username = req.body.username;
     var password = req.body.password;
 
-    var sqlStatement = sql.login + username;
 
     pool.getConnection(function (err, connection) {
         //建立连接
-        connection.query(sqlStatement, function (err, result) {
+        connection.query(sql.login, [username], function (err, result) {
             //todo - 密码加密
             if (password === result[0].password) {
-                res.cookie('user', username);
+                res.cookie('user', result[0].userid);
                 writeJSON(res, []);
             }
             // 释放连接
             connection.release();
-        })
+        });
     });
 });
 
@@ -76,8 +76,7 @@ router.post('/get_timetable', function (req, res, next) {
 
 router.post('/get_reserved_count', function (req, res, next) {
     pool.getConnection(function (err, connection) {
-        connection.query(sql.get_reserved_count, [req.body.roomId, req.body.time, req.body.classIdList], function (err, result) {
-
+        connection.query(sql.get_reserved_count, [req.body.time, req.body.classIdList], function (err, result) {
             var data = [];
             for (var i = 0; i < req.body.classIdList.length; i++) {
                 data[i] = {};
@@ -87,11 +86,35 @@ router.post('/get_reserved_count', function (req, res, next) {
                     if (result[j].classId === key) {
                         count++;
                     }
+
+                    if (Number(result[j].userId) === Number(req.cookies.user)) {
+                        data[i].hasReservation = true;
+                    } else {
+                        data[i].hasReservation = false;
+                    }
                 }
                 data[i][key] = count;
             }
 
             writeJSON(res, data);
+            connection.release();
+        });
+    })
+});
+
+router.post('/user_reservation_class', function (req, res, next) {
+    pool.getConnection(function (err, connection) {
+        connection.query(sql.user_reservation_class, [req.cookies.user, req.body.classId, req.body.time], function (err, result) {
+            writeJSON(res, []);
+            connection.release();
+        });
+    })
+});
+
+router.post('/cancle_class', function (req, res, next) {
+    pool.getConnection(function (err, connection) {
+        connection.query(sql.cancle_class, [req.cookies.user, req.body.classId, req.body.time], function (err, result) {
+            writeJSON(res, []);
             connection.release();
         });
     })

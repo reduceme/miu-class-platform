@@ -253,3 +253,8 @@ td {
 .spinner .rect5 {
     animation-delay: -0.8s;
 }
+
+.cancle-btn {
+    background: #ea6f5a;
+    border: solid 1px #ea6f5a;
+}
