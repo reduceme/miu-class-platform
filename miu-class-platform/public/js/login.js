@@ -19,13 +19,13 @@
             url: '/users/login',
             data: userInfo,
             success: function (data) {
+                console.log(data);
                 if (data.code === 1) {
                     console.log(data);
                     mui.alert(data.msg, '');
                 } else {
                     console.log('success');
                     window.location.href = '/time-table';
-                    // window.location.href = 'http://www.baidu.com';
                 }
             },
             error: function (err) {

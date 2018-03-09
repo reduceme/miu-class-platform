@@ -11,7 +11,6 @@ router.get('/time-table', function (req, res, next) {
     if (!req.cookies.user) {
         return res.render('index', {title: '登录'})
     }
-    // res.render('time-table', {timeTableList: timeTableList});
     res.render('time-table', {title: '课表'});
 });
 

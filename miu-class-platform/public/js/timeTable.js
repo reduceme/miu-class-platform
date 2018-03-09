@@ -67,9 +67,13 @@
 
         var time = formatTime(month) + "-" + formatTime(day) + ' ' + weekday[week];
         var format = {
+            //2018-03-09
             fullYear: fullYear,
+            //2018-03-09 14:00
             completeTime: completeTime,
+            //03-09 周五
             time: time,
+            //5
             week: week
         };
         return format;
@@ -150,7 +154,7 @@
                         var isOdd = index % 2 === 0 ? 'schedule-odd-row' : 'schedule-double-row';
                         html += '<tr class="' + isOdd + ' schedule-tr">' +
                             '<td class="schedule-first-col">' +
-                            '<h5 class="time">' + item.time + '</h5>' +
+                            '<h5 class="time" data-complate-time="' + classInfo.time + ' ' + item.time + '">' + item.time + '</h5>' +
                             '</td>' +
 
                             '<td class="schedule-second-col">' +
@@ -186,6 +190,7 @@
         });
     }
 
+    //获取课程的预约人次
     function getReservedCount(classInfo) {
         var time = $('.date-tab .active').attr('data-year');
 
@@ -224,19 +229,25 @@
                                         $('.class-btn').eq(index).text('取消').addClass('cancle-btn');
                                     }
                                 })
-
-
                             }
                         }
 
                         //课程开始一小时前停止约课
                         $('.schedule-third-col').each(function (index) {
                             var classMinute = $('.time').eq(index).html();
+                            var minCount = $('.people-number').eq(index).attr('data-min');
+                            var nowCount = $('.people-number').eq(index).attr('data-has-count');
+
                             var classTime = time + ' ' + classMinute;
                             classTime = new Date(classTime);
                             minute = new Date(minute);
                             var result = classTime.getTime() - minute.getTime();
                             var anHour = 60 * 60 * 1000;
+
+                            if (nowCount >= minCount) {
+                                return;
+                            }
+
                             if (anHour > result) {
                                 var html = '<span class="stop-class">停止约课</span>';
                                 $(this).empty().html(html);
@@ -270,7 +281,7 @@
         if (!isCancle) {
             reservClass(postData);
         } else {
-            cancleClass(postData);
+            cancleClass(postData, this);
         }
     });
 
@@ -283,6 +294,8 @@
                 if (data.code === 0) {
                     mui.alert('预约成功！', '');
                     getTimeTable();
+                } else {
+                    mui.alert(data.msg, '');
                 }
             },
             error: function (err) {
@@ -290,7 +303,21 @@
         })
     }
 
-    function cancleClass(data) {
+    function cancleClass(data, _this) {
+        var nowTime = getTime(new Date(), 0).completeTime;
+        nowTime = timeToNumber(nowTime);
+
+        var classTime = $(_this).parent('.schedule-third-col').siblings('.schedule-first-col').children('h5').attr('data-complate-time');
+        classTime = timeToNumber(classTime);
+
+        var timeFlag = 1.5 * 60 * 60 * 1000;
+        var timeDiscrepancy = classTime - nowTime;
+
+        if (timeDiscrepancy < timeFlag) {
+            mui.alert('开课前90分钟内不能取消预约', '');
+            return;
+        }
+
         $.ajax({
             method: 'post',
             url: '/users/cancle_class',
@@ -299,10 +326,18 @@
                 if (data.code === 0) {
                     mui.alert('取消成功', '');
                     getTimeTable();
+                } else {
+                    mui.alert(data.msg, '');
                 }
             },
             error: function (err) {
             }
         })
+    }
+
+    function timeToNumber(time) {
+        time = new Date(time);
+        time = Number(time.getTime());
+        return time;
     }
 })();

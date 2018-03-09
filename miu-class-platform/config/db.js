@@ -5,7 +5,6 @@ module.exports = {
         user: 'root',
         password: '123456',
         database: 'miu_platform',
-        // database: 'miuyoga',
         port: '3306'
     }
 };

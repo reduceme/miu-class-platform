@@ -1,6 +1,10 @@
 var express = require('express');
 var mysql = require('mysql');
+//定时器模块
+var later = require('later');
+//数据库配置
 var $database = require('../config/db');
+//sql语句
 var sql = require('../config/sql');
 
 
@@ -25,6 +29,23 @@ function writeJSON(res, ret) {
     }
 }
 
+function getTime(date) {
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    var time = year + '-' + formatTime(month) + '-' + formatTime(day);
+
+    return time;
+}
+
+//格式化时间
+function formatTime(num) {
+    if (num < 10) {
+        num = '0' + num;
+    }
+    return num;
+}
+
 /* GET users listing. */
 router.get('/', function (req, res, next) {
     res.send('respond with a resource');
@@ -32,21 +53,41 @@ router.get('/', function (req, res, next) {
 
 //登录接口
 router.post('/login', function (req, res, next) {
-    //用户名、密码、验证码
-    var username = req.body.username;
-    var password = req.body.password;
-
-
     pool.getConnection(function (err, connection) {
+        var data = [];
         //建立连接
-        connection.query(sql.login, [username], function (err, result) {
+        connection.query(sql.login, [req.body.username], function (err, result) {
             //todo - 密码加密
-            if (password === result[0].password) {
-                res.cookie('user', result[0].userid);
-                writeJSON(res, []);
+            if (result.length >= 1) {
+                console.log((result[0].userid));
+                //验证密码是否正确
+                if (req.body.password === result[0].password) {
+                    res.cookie('user', result[0].userid, {
+                        //过期时间，1小时
+                        maxAge: 60 * 60 * 1000
+                    });
+                }
+
+                //验证卡是否在有效期内，卡是否还有次数
+                var time = getTime(new Date());
+                if (result[0].lastTime < time || result[0].lastCount <= 0) {
+                    res.send({
+                        code: 1,
+                        msg: '用户已过期',
+                        data: ''
+                    });
+                    connection.release();
+                    return;
+                } else {
+                    writeJSON(res, []);
+                    connection.release();
+                    return;
+                }
+            } else {
+                writeJSON(res);
+                connection.release();
+                return;
             }
-            // 释放连接
-            connection.release();
         });
     });
 });
@@ -63,6 +104,7 @@ router.get('/get_class_room', function (req, res, next) {
     });
 });
 
+//获取课表
 router.post('/get_timetable', function (req, res, next) {
     //建立连接
     pool.getConnection(function (err, connection) {
@@ -74,6 +116,7 @@ router.post('/get_timetable', function (req, res, next) {
     })
 });
 
+//获取某节课预约人数
 router.post('/get_reserved_count', function (req, res, next) {
     pool.getConnection(function (err, connection) {
         connection.query(sql.get_reserved_count, [req.body.time, req.body.classIdList], function (err, result) {
@@ -102,15 +145,38 @@ router.post('/get_reserved_count', function (req, res, next) {
     })
 });
 
+//用户预约课程
 router.post('/user_reservation_class', function (req, res, next) {
     pool.getConnection(function (err, connection) {
-        connection.query(sql.user_reservation_class, [req.cookies.user, req.body.classId, req.body.time], function (err, result) {
-            writeJSON(res, []);
-            connection.release();
+        var lastCount = 0;
+        var classSwipeNum = 0;
+        //查询用户是否还有可用次数
+        connection.query(sql.select_user_card_valid, [req.cookies.user], function (err, result) {
+            lastCount = result[0].lastCount;
+            if (lastCount > 0) {
+                //查询每节课的刷卡次数
+                connection.query(sql.class_swipe_num, [req.body.classId], function (err, swipte_result) {
+                    classSwipeNum = swipte_result[0].swipeNumber;
+                    if (lastCount > classSwipeNum) {
+                        connection.query(sql.user_reservation_class, [req.cookies.user, req.body.classId, req.body.time], function (err, reserv_result) {
+                            writeJSON(res, []);
+                            connection.release();
+                        });
+                    } else {
+                        res.send({
+                            code: 1,
+                            msg: '剩余次数不足，请及时续卡',
+                            data: ''
+                        });
+                        connection.release();
+                    }
+                });
+            }
         });
     })
 });
 
+//用户取消课程
 router.post('/cancle_class', function (req, res, next) {
     pool.getConnection(function (err, connection) {
         connection.query(sql.cancle_class, [req.cookies.user, req.body.classId, req.body.time], function (err, result) {
@@ -119,5 +185,20 @@ router.post('/cancle_class', function (req, res, next) {
         });
     })
 });
+
+//定时任务，每天的某个时间查询约课人数，判断是否约课成功
+var composite = [
+    {h: [14], m: [0, 1, 2, 3, 4, 5]}
+];
+
+var sched = {
+    schedules: composite
+};
+
+later.date.localTime();
+
+var t = later.setInterval(function () {
+    console.log(new Date());
+}, sched);
 
 module.exports = router;
