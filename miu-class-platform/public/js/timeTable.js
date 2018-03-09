@@ -272,7 +272,8 @@
 
         var classId = $(this).attr('data-classid');
         var time = $('.date-tab .active').attr('data-year');
-        var swipeNumber = $(this).parent('.data-card-count').attr('data-card-count');
+        var swipeNumber = $(this).parent('.schedule-third-col').attr('data-card-count');
+        console.log(swipeNumber);
 
         var postData = {
             classId: classId,

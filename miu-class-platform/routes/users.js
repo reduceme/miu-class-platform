@@ -169,6 +169,10 @@ router.post('/user_reservation_class', function (req, res, next) {
         //查询用户是否还有可用次数
         connection.query(sql.select_user_card_valid, [req.cookies.user], function (err, result) {
             lastCount = result[0].lastCount;
+
+            console.log(lastCount);
+            console.log(classSwipeNum);
+
             if (lastCount > classSwipeNum) {
                 //预约成功
                 connection.query(sql.user_reservation_class, [req.cookies.user, req.body.classId, req.body.time, classSwipeNum], function (err, reserv_result) {
