@@ -165,7 +165,7 @@
                             '</p>' +
                             '</td>' +
 
-                            '<td class="schedule-third-col">' +
+                            '<td class="schedule-third-col" data-card-count="' + item.swipeNumber + '">' +
                             '<button class="class-btn" data-classid="' + item.classId + '">预约</button>' +
                             '</td>' +
                             '</tr>';
@@ -272,10 +272,12 @@
 
         var classId = $(this).attr('data-classid');
         var time = $('.date-tab .active').attr('data-year');
+        var swipeNumber = $(this).parent('.data-card-count').attr('data-card-count');
 
         var postData = {
             classId: classId,
-            time: time
+            time: time,
+            swipeNumber: swipeNumber
         };
 
         if (!isCancle) {
