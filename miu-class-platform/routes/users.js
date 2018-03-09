@@ -233,6 +233,7 @@ var t = later.setInterval(function () {
         var count = 0;
         var userIdList = [];
 
+        console.log('1');
         //查询课程的classId
         connection.query(sql.select_classinfo_for_reservation, [time.week, time.complate], function (err, result) {
             classid = result[0].classId;
@@ -240,6 +241,7 @@ var t = later.setInterval(function () {
             //课程扣除的次数
             swipeNumber = result[0].swipeNumber
         });
+        console.log('2');
 
         connection.query(sql.get_reserved_count, [time.time, classid], function (err, result) {
             count = result.length;
@@ -247,6 +249,7 @@ var t = later.setInterval(function () {
                 userIdList.push(result[i].userId);
             }
         });
+        console.log('3');
 
         if (count < minCount) {
             //删除已经预约了的信息
@@ -256,9 +259,9 @@ var t = later.setInterval(function () {
             //恢复已经扣除的次数
             connection.query(sql.update_last_count, [-swipeNumber, userIdList], function (err, result) {
             });
-        } else {
-            //
         }
+        console.log('4');
+
         //释放连接
         connection.release();
     })

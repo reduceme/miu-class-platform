@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : 65001
 
- Date: 08/03/2018 18:02:44
+ Date: 09/03/2018 17:55:05
 */
 
 SET NAMES utf8mb4;
@@ -27,16 +27,17 @@ CREATE TABLE `card_type_info`  (
   `cardCount` int(255) NOT NULL,
   `cardValidity` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`cardTypeId`) USING BTREE,
-  INDEX `cardName`(`cardName`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+  INDEX `cardName`(`cardName`) USING BTREE,
+  INDEX `cardCount`(`cardCount`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 40000 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of card_type_info
 -- ----------------------------
-INSERT INTO `card_type_info` VALUES (1, '半年卡', 500, '6');
-INSERT INTO `card_type_info` VALUES (2, '30次卡', 30, '6');
-INSERT INTO `card_type_info` VALUES (3, '50次卡', 50, '8');
-INSERT INTO `card_type_info` VALUES (4, '100次卡', 100, '12');
+INSERT INTO `card_type_info` VALUES (1, '半年卡', 500, '183');
+INSERT INTO `card_type_info` VALUES (2, '30次卡', 30, '183');
+INSERT INTO `card_type_info` VALUES (3, '50次卡', 50, '244');
+INSERT INTO `card_type_info` VALUES (4, '100次卡', 100, '365');
 
 -- ----------------------------
 -- Table structure for class_room
@@ -46,7 +47,7 @@ CREATE TABLE `class_room`  (
   `roomId` int(64) NOT NULL AUTO_INCREMENT,
   `classroom` varchar(512) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`roomId`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 30000 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of class_room
@@ -69,21 +70,24 @@ CREATE TABLE `timetable`  (
   `minCount` int(11) NOT NULL,
   `classname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `swipeNumber` int(64) NOT NULL,
   PRIMARY KEY (`classId`) USING BTREE,
   INDEX `for_roomid`(`roomId`) USING BTREE,
   CONSTRAINT `for_roomid` FOREIGN KEY (`roomId`) REFERENCES `class_room` (`roomId`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 20002 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of timetable
 -- ----------------------------
-INSERT INTO `timetable` VALUES (1, 1, '10:00', '毛毛老师', 1, 5, 2, '空中瑜伽', 'true');
-INSERT INTO `timetable` VALUES (2, 1, '10:01', '毛毛老师', 2, 5, 2, '初级瑜伽', 'true');
-INSERT INTO `timetable` VALUES (3, 1, '10:03', '毛毛老师', 3, 5, 2, '高温瑜珈', 'true');
-INSERT INTO `timetable` VALUES (4, 1, '10:04', '毛毛老师', 4, 5, 2, '肩颈理疗', 'true');
-INSERT INTO `timetable` VALUES (5, 1, '10:05', '毛毛老师', 5, 5, 2, '入门瑜伽', 'true');
-INSERT INTO `timetable` VALUES (6, 1, '10:06', '毛毛老师', 6, 5, 2, '流瑜伽', 'true');
-INSERT INTO `timetable` VALUES (8, 1, '19:30', '蛋蛋老师', 3, 5, 2, '拜日式', 'true');
+INSERT INTO `timetable` VALUES (1, 1, '10:00', '毛毛老师', 1, 5, 2, '空中瑜伽', 'true', 2);
+INSERT INTO `timetable` VALUES (2, 1, '10:01', '毛毛老师', 2, 5, 2, '初级瑜伽', 'true', 1);
+INSERT INTO `timetable` VALUES (3, 1, '10:03', '毛毛老师', 3, 5, 2, '高温瑜珈', 'true', 2);
+INSERT INTO `timetable` VALUES (4, 1, '10:04', '毛毛老师', 4, 5, 2, '肩颈理疗', 'true', 2);
+INSERT INTO `timetable` VALUES (5, 1, '10:05', '毛毛老师', 5, 5, 2, '入门瑜伽', 'true', 2);
+INSERT INTO `timetable` VALUES (6, 1, '10:06', '毛毛老师', 6, 5, 2, '流瑜伽', 'true', 2);
+INSERT INTO `timetable` VALUES (8, 1, '19:30', '蛋蛋老师', 3, 5, 2, '拜日式', 'true', 2);
+INSERT INTO `timetable` VALUES (20000, 1, '15:50', '钟', 5, 5, 2, '球', 'true', 2);
+INSERT INTO `timetable` VALUES (20001, 1, '18:55', 'd', 5, 5, 2, 'd', 'true', 2);
 
 -- ----------------------------
 -- Table structure for user_class_info
@@ -92,20 +96,18 @@ DROP TABLE IF EXISTS `user_class_info`;
 CREATE TABLE `user_class_info`  (
   `userId` int(11) NOT NULL,
   `classId` int(11) NOT NULL,
-  `time` date NOT NULL
+  `time` date NOT NULL,
+  `cardCount` int(11) NOT NULL
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_class_info
 -- ----------------------------
-INSERT INTO `user_class_info` VALUES (1, 1, '2018-03-07');
-INSERT INTO `user_class_info` VALUES (1, 3, '2018-03-07');
-INSERT INTO `user_class_info` VALUES (2, 3, '2018-03-07');
-INSERT INTO `user_class_info` VALUES (2, 8, '2018-03-07');
-INSERT INTO `user_class_info` VALUES (2, 5, '2018-03-09');
-INSERT INTO `user_class_info` VALUES (1, 5, '2018-03-08');
-INSERT INTO `user_class_info` VALUES (1, 6, '2018-03-10');
-INSERT INTO `user_class_info` VALUES (1, 1, '2018-03-12');
+INSERT INTO `user_class_info` VALUES (10004, 20000, '2018-03-09', 2);
+INSERT INTO `user_class_info` VALUES (10000, 20000, '2018-03-09', 2);
+INSERT INTO `user_class_info` VALUES (10001, 20000, '2018-03-09', 2);
+INSERT INTO `user_class_info` VALUES (10000, 6, '2018-03-10', 2);
+INSERT INTO `user_class_info` VALUES (10000, 20001, '2018-03-09', 2);
 
 -- ----------------------------
 -- Table structure for user_info
@@ -114,20 +116,25 @@ DROP TABLE IF EXISTS `user_info`;
 CREATE TABLE `user_info`  (
   `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `userid` int(255) NOT NULL AUTO_INCREMENT,
-  `cardType` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `totalCount` int(64) NULL DEFAULT NULL,
-  `lastCount` int(64) NULL DEFAULT NULL,
-  PRIMARY KEY (`userid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+  `userid` int(255) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `cardType` int(64) NOT NULL,
+  `totalCount` int(64) NOT NULL,
+  `lastCount` int(64) NOT NULL,
+  `lastTime` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `createTime` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`userid`) USING BTREE,
+  INDEX `for_total_count`(`totalCount`) USING BTREE,
+  INDEX `for_card_type`(`cardType`) USING BTREE,
+  CONSTRAINT `for_total_count` FOREIGN KEY (`totalCount`) REFERENCES `card_type_info` (`cardCount`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `for_card_type` FOREIGN KEY (`cardType`) REFERENCES `card_type_info` (`cardTypeId`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 10005 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_info
 -- ----------------------------
-INSERT INTO `user_info` VALUES ('13541147949', '123456', 1, '1', NULL, NULL);
-INSERT INTO `user_info` VALUES ('18030850749', '123456', 2, '2', NULL, NULL);
-INSERT INTO `user_info` VALUES ('15902827532', '123456', 3, '3', NULL, NULL);
-INSERT INTO `user_info` VALUES ('13438968830', '123456', 4, '4', NULL, NULL);
-INSERT INTO `user_info` VALUES ('13699097908', '123456', 5, '1', NULL, NULL);
+INSERT INTO `user_info` VALUES ('18030850749', '123456', 10000, 1, 500, 14, '2018-10-09', '2018-02-09');
+INSERT INTO `user_info` VALUES ('15902827532', '123456', 10001, 2, 30, 32, '2018-12-11', '2018-03-09');
+INSERT INTO `user_info` VALUES ('13438968830', '123456', 10003, 3, 50, 50, '2018-03-08', '2017-09-09');
+INSERT INTO `user_info` VALUES ('13541147949', '123456', 10004, 2, 30, 1, '2018-11-12', '2017-03-08');
 
 SET FOREIGN_KEY_CHECKS = 1;
