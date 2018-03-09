@@ -33,9 +33,24 @@ function getTime(date) {
     var year = date.getFullYear();
     var month = date.getMonth() + 1;
     var day = date.getDate();
-    var time = year + '-' + formatTime(month) + '-' + formatTime(day);
 
-    return time;
+    var week = date.getDay();
+
+    var hours = date.getHours() + 1;
+    var minute = date.getMinutes();
+    var time = year + '-' + formatTime(month) + '-' + formatTime(day);
+    var complate = formatTime(hours) + ':' + formatTime(minute);
+
+    var format = {
+        //2018-03-10
+        time: time,
+        //15:00
+        complate: complate,
+        //3
+        week: week
+    };
+
+    return format;
 }
 
 //格式化时间
@@ -69,7 +84,7 @@ router.post('/login', function (req, res, next) {
                 }
 
                 //验证卡是否在有效期内，卡是否还有次数
-                var time = getTime(new Date());
+                var time = getTime(new Date()).time;
                 if (result[0].lastTime < time || result[0].lastCount <= 0) {
                     res.send({
                         code: 1,
@@ -188,7 +203,10 @@ router.post('/cancle_class', function (req, res, next) {
 
 //定时任务，每天的某个时间查询约课人数，判断是否约课成功
 var composite = [
-    {h: [14], m: [0, 1, 2, 3, 4, 5]}
+    {h: [9], m: [0]},
+    {h: [14], m: [0]},
+    {h: [17], m: [20]},
+    {h: [18], m: [30]}
 ];
 
 var sched = {
@@ -198,7 +216,32 @@ var sched = {
 later.date.localTime();
 
 var t = later.setInterval(function () {
-    console.log(new Date());
+    var time = getTime(new Date());
+    var classid = 0;
+    var minCount = 0;
+    pool.getConnection(function (err, connection) {
+        //查询课程的classId
+        connection.query(sql.select_classinfo_for_reservation, [time.week, time.complate], function (err, result) {
+            classid = result[0].classId;
+            minCount = result[0].minCount;
+        });
+
+        connection.query(sql.get_reserved_count, [time.time, classid], function (err, result) {
+            var count = result.length;
+        });
+
+        if (count < minCount) {
+            //删除已经预约了的信息
+            connection.query(sql.delete_min_count, [classid, time.complate], function (err, result) {
+            });
+        }
+        //释放连接
+        connection.release();
+    })
 }, sched);
+
+
+//查询指定时间的课程的约课人数
+
 
 module.exports = router;
