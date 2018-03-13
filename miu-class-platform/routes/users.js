@@ -254,12 +254,12 @@ var t = later.setInterval(function () {
                 if (count < minCount) {
                     //删除已经预约了的信息
                     connection.query(sql.delete_min_count, [classid, time.complate], function (err, result) {
+                        //恢复已经扣除的次数
+                        connection.query(sql.update_last_count, [-swipeNumber, userIdList], function (err, result) {
+                        });
                     });
-                    //恢复已经扣除的次数
-                    connection.query(sql.update_last_count, [-swipeNumber, userIdList], function (err, result) {
-                    });
-                    connection.release();
                 }
+                connection.release();
             });
         });
     })
