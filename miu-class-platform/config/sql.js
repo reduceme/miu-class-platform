@@ -6,7 +6,7 @@ var sql = {
     //查询某个教室某一天的课表
     timeTable: 'select * from timetable where `roomId` = ? and `week` = ? and status = "true"',
     //查询每节课已经预约了的人数
-    get_reserved_count: 'select * from user_class_info WHERE `time` = ? and `classId` in (?)',
+    get_reserved_count: 'select * from user_class_info where `time` = ? and `classId` in (?)',
     //查询用户的卡是否有效
     select_user_card_valid: 'select * from user_info where `userid` = ?',
     //查询某节课程的最小开课人数
@@ -20,7 +20,8 @@ var sql = {
     //人数不满足最小预约人数时，取消
     delete_min_count: 'delete from user_class_info where `classId` = ? and `time` = ?',
     //约课成功，扣除相应次数
-    update_last_count: 'update user_info set `lastCount` = `lastCount` - ? where `userid` in (?)'
+    update_last_count: 'update user_info set `lastCount` = `lastCount` - ? where `userid` in (?)',
+    //
 };
 
 module.exports = sql;

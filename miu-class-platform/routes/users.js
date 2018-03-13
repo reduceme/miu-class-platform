@@ -225,7 +225,7 @@ later.date.localTime();
 //定时任务
 var t = later.setInterval(function () {
     var time = getTime(new Date());
-    var classid = 0;
+    var classid = [];
     var minCount = 0;
     //查询指定时间的课程的约课人数，如果不满足开课要求，则删除
     pool.getConnection(function (err, connection) {
@@ -233,37 +233,35 @@ var t = later.setInterval(function () {
         var count = 0;
         var userIdList = [];
 
-        console.log('1');
         //查询课程的classId
         connection.query(sql.select_classinfo_for_reservation, [time.week, time.complate], function (err, result) {
-            classid = result[0].classId;
-            minCount = result[0].minCount;
-            //课程扣除的次数
-            swipeNumber = result[0].swipeNumber
-        });
-        console.log('2');
-
-        connection.query(sql.get_reserved_count, [time.time, classid], function (err, result) {
-            count = result.length;
-            for (var i = 0; i < result.length; i++) {
-                userIdList.push(result[i].userId);
+            if (result[0].classId) {
+                classid.push(result[0].classId);
+                minCount = result[0].minCount;
+                //课程扣除的次数
+                swipeNumber = result[0].swipeNumber
+            } else {
+                return
             }
+
+            //查询约课人数
+            connection.query(sql.get_reserved_count, [time.time, classid], function (err, result) {
+                //约课人数
+                count = result.length;
+                for (var i = 0; i < result.length; i++) {
+                    userIdList.push(result[i].userId);
+                }
+                if (count < minCount) {
+                    //删除已经预约了的信息
+                    connection.query(sql.delete_min_count, [classid, time.complate], function (err, result) {
+                    });
+                    //恢复已经扣除的次数
+                    connection.query(sql.update_last_count, [-swipeNumber, userIdList], function (err, result) {
+                    });
+                    connection.release();
+                }
+            });
         });
-        console.log('3');
-
-        if (count < minCount) {
-            //删除已经预约了的信息
-            connection.query(sql.delete_min_count, [classid, time.complate], function (err, result) {
-            });
-
-            //恢复已经扣除的次数
-            connection.query(sql.update_last_count, [-swipeNumber, userIdList], function (err, result) {
-            });
-        }
-        console.log('4');
-
-        //释放连接
-        connection.release();
     })
 }, sched);
 
