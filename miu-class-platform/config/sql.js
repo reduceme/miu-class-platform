@@ -12,9 +12,10 @@ var sql = {
     //查询某节课程的最小开课人数
     class_swipe_num: 'select * from timetable where `classId` = ?',
     //会员约课
-    user_reservation_class: 'insert into user_class_info(userId, classId, time, cardCount) values(?, ?, ?, ?)',
+    user_reservation_class: 'insert into user_class_info(userId, classId, time, cardCount, isEffective) values(?, ?, ?, ?, 1)',
     //会员取消课程
-    cancle_class: 'delete from user_class_info where `userId` = ? and `classId` = ? and `time` = ?',
+    // cancle_class: 'delete from user_class_info where `userId` = ? and `classId` = ? and `time` = ?',
+    cancle_class: 'update user_class_info set `isEffective` = 3 where `userId` = ? and `classId` = ? and `time` = ?',
     //查询指定的课程，用来判断约课人数
     select_classinfo_for_reservation: 'select * from timetable where `week` = ? and `time` = ?',
     //人数不满足最小预约人数时，取消

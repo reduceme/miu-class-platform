@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : 65001
 
- Date: 09/03/2018 17:55:05
+ Date: 13/03/2018 17:44:24
 */
 
 SET NAMES utf8mb4;
@@ -74,7 +74,7 @@ CREATE TABLE `timetable`  (
   PRIMARY KEY (`classId`) USING BTREE,
   INDEX `for_roomid`(`roomId`) USING BTREE,
   CONSTRAINT `for_roomid` FOREIGN KEY (`roomId`) REFERENCES `class_room` (`roomId`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 20002 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 20003 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of timetable
@@ -88,6 +88,7 @@ INSERT INTO `timetable` VALUES (6, 1, '10:06', '毛毛老师', 6, 5, 2, '流瑜�
 INSERT INTO `timetable` VALUES (8, 1, '19:30', '蛋蛋老师', 3, 5, 2, '拜日式', 'true', 2);
 INSERT INTO `timetable` VALUES (20000, 1, '15:50', '钟', 5, 5, 2, '球', 'true', 2);
 INSERT INTO `timetable` VALUES (20001, 1, '18:55', 'd', 5, 5, 2, 'd', 'true', 2);
+INSERT INTO `timetable` VALUES (20002, 1, '15:00', 'd', 2, 5, 2, 'da', 'true', 2);
 
 -- ----------------------------
 -- Table structure for user_class_info
@@ -97,17 +98,21 @@ CREATE TABLE `user_class_info`  (
   `userId` int(11) NOT NULL,
   `classId` int(11) NOT NULL,
   `time` date NOT NULL,
-  `cardCount` int(11) NOT NULL
+  `cardCount` int(11) NOT NULL,
+  `isEffective` int(11) NOT NULL COMMENT '1：开课；2：未开课；3：用户取消课程'
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_class_info
 -- ----------------------------
-INSERT INTO `user_class_info` VALUES (10004, 20000, '2018-03-09', 2);
-INSERT INTO `user_class_info` VALUES (10000, 20000, '2018-03-09', 2);
-INSERT INTO `user_class_info` VALUES (10001, 20000, '2018-03-09', 2);
-INSERT INTO `user_class_info` VALUES (10000, 6, '2018-03-10', 2);
-INSERT INTO `user_class_info` VALUES (10000, 20001, '2018-03-09', 2);
+INSERT INTO `user_class_info` VALUES (10004, 20000, '2018-03-09', 2, 1);
+INSERT INTO `user_class_info` VALUES (10000, 20000, '2018-03-09', 2, 1);
+INSERT INTO `user_class_info` VALUES (10001, 20000, '2018-03-09', 2, 1);
+INSERT INTO `user_class_info` VALUES (10000, 6, '2018-03-10', 2, 1);
+INSERT INTO `user_class_info` VALUES (10000, 20001, '2018-03-09', 2, 1);
+INSERT INTO `user_class_info` VALUES (10000, 20002, '2018-03-13', 2, 2);
+INSERT INTO `user_class_info` VALUES (10000, 3, '2018-03-14', 2, 1);
+INSERT INTO `user_class_info` VALUES (10000, 5, '2018-03-16', 2, 1);
 
 -- ----------------------------
 -- Table structure for user_info
@@ -125,14 +130,14 @@ CREATE TABLE `user_info`  (
   PRIMARY KEY (`userid`) USING BTREE,
   INDEX `for_total_count`(`totalCount`) USING BTREE,
   INDEX `for_card_type`(`cardType`) USING BTREE,
-  CONSTRAINT `for_total_count` FOREIGN KEY (`totalCount`) REFERENCES `card_type_info` (`cardCount`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `for_card_type` FOREIGN KEY (`cardType`) REFERENCES `card_type_info` (`cardTypeId`) ON DELETE RESTRICT ON UPDATE RESTRICT
+  CONSTRAINT `for_card_type` FOREIGN KEY (`cardType`) REFERENCES `card_type_info` (`cardTypeId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `for_total_count` FOREIGN KEY (`totalCount`) REFERENCES `card_type_info` (`cardCount`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 10005 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_info
 -- ----------------------------
-INSERT INTO `user_info` VALUES ('18030850749', '123456', 10000, 1, 500, 14, '2018-10-09', '2018-02-09');
+INSERT INTO `user_info` VALUES ('18030850749', '123456', 10000, 1, 500, 16, '2018-10-09', '2018-02-09');
 INSERT INTO `user_info` VALUES ('15902827532', '123456', 10001, 2, 30, 32, '2018-12-11', '2018-03-09');
 INSERT INTO `user_info` VALUES ('13438968830', '123456', 10003, 3, 50, 50, '2018-03-08', '2017-09-09');
 INSERT INTO `user_info` VALUES ('13541147949', '123456', 10004, 2, 30, 1, '2018-11-12', '2017-03-08');

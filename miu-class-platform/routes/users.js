@@ -136,25 +136,36 @@ router.post('/get_reserved_count', function (req, res, next) {
     pool.getConnection(function (err, connection) {
         connection.query(sql.get_reserved_count, [req.body.time, req.body.classIdList], function (err, result) {
             var data = [];
+            // console.log(req.body.classIdList);
+            // console.log(result);
             for (var i = 0; i < req.body.classIdList.length; i++) {
                 data[i] = {};
                 var count = 0;
                 var key = req.body.classIdList[i];
-                for (var j = 0; j < result.length; j++) {
-                    if (result[j].classId === key) {
-                        count++;
-                    }
+                // var flag = 0;
+                // if (flag < i) {
+                    // for (var j = 0; j < result.length; j++) {
+                    for (var j = i; j < result.length; j++) {
+                        if (result[j].classId === key) {
+                            count++;
+                        }
 
-                    if (Number(result[j].userId) === Number(req.cookies.user)) {
-                        data[i].hasReservation = true;
-                    } else {
-                        data[i].hasReservation = false;
+                        console.log('isEffective:' + (result[j].isEffective));
+
+                        /*if (Number(result[j].userId) === Number(req.cookies.user) && result[j].classId === key) {
+                         data[i].hasReservation = true;
+                         } else {
+                         data[i].hasReservation = false;
+                         }*/
+                        data[i].hasReservation = result[j].isEffective;
                     }
-                }
-                data[i][key] = count;
+                    // flag++;
+                    data[i][key] = count;
+                // }
             }
 
             writeJSON(res, data);
+            // writeJSON(res, result);
             connection.release();
         });
     })
@@ -169,9 +180,6 @@ router.post('/user_reservation_class', function (req, res, next) {
         //查询用户是否还有可用次数
         connection.query(sql.select_user_card_valid, [req.cookies.user], function (err, result) {
             lastCount = result[0].lastCount;
-
-            console.log(lastCount);
-            console.log(classSwipeNum);
 
             if (lastCount > classSwipeNum) {
                 //预约成功

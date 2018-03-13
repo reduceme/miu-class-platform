@@ -208,6 +208,7 @@
                 success: function (data) {
                     if (data.code === 0) {
                         //生成预约信息
+                        console.log(data.data.length);
                         for (var i = 0; i < data.data.length; i++) {
                             for (var j in data.data[i]) {
                                 $('.people-number').each(function (index) {
@@ -225,12 +226,15 @@
                                     }
 
                                     var item = data.data[i].hasReservation;
-                                    if (item === true) {
+                                    console.log(data.data[i].hasReservation);
+                                    if (item === 1) {
                                         $('.class-btn').eq(index).text('取消').addClass('cancle-btn');
                                     }
                                 })
                             }
                         }
+
+
 
                         //课程开始一小时前停止约课
                         $('.schedule-third-col').each(function (index) {
