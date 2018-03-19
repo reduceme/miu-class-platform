@@ -7,7 +7,6 @@ var $database = require('../config/db');
 //sql语句
 var sql = require('../config/sql');
 
-
 //使用连接池
 var pool = mysql.createPool($database.mysql);
 var router = express.Router();
@@ -144,11 +143,13 @@ router.post('/get_reserved_count', function (req, res, next) {
                     if (result[j].classId === key && result[j].isEffective === 1) {
                         count++;
                     }
+                    console.log(result[j].classId === key && result[j].isEffective === 1 && Number(req.cookies.user) === Number(result[j].userId));
                     if (result[j].classId === key && result[j].isEffective === 1 && Number(req.cookies.user) === Number(result[j].userId)) {
-                        data[i].hasReservation = result[j].isEffective;
-                    } else {
-                        data[i].hasReservation = 0;
+                        data[i].hasReservation = 1;
                     }
+                    /*else {
+                     data[i].hasReservation = 0;
+                     }*/
                 }
                 data[i]['count'] = count;
                 data[i]['classId'] = key;
@@ -172,7 +173,14 @@ router.post('/user_reservation_class', function (req, res, next) {
 
             if (lastCount > classSwipeNum) {
                 //预约成功
-                connection.query(sql.user_reservation_class, [req.cookies.user, req.body.classId, req.body.time, classSwipeNum], function (err, reserv_result) {
+                connection.query(sql.select_has_reservation, [req.cookies.user, req.body.classId, req.body.time], function (err, has_reservation_result) {
+                    if (has_reservation_result[0]) {
+                        connection.query(sql.update_has_reservation, [req.cookies.user, req.body.classId, req.body.time], function (err, reserv_result) {
+                        });
+                    } else {
+                        connection.query(sql.user_reservation_class, [req.cookies.user, req.body.classId, req.body.time, classSwipeNum], function (err, reserv_result) {
+                        });
+                    }
                 });
 
                 //扣除相应次数
