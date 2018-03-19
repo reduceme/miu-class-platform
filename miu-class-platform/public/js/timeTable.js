@@ -279,7 +279,13 @@
         };
 
         if (!isCancle) {
-            reservClass(postData);
+            var nowTime = getTime(new Date(), 0).fullYear;
+            var timeDiffer = Number((postData.time).split('-')[2]) - Number(nowTime.split('-')[2]);
+            if(timeDiffer <= 7){
+                reservClass(postData);
+            }else {
+                mui.alert('只能预约未来7天的课程');
+            }
         } else {
             cancleClass(postData, this);
         }
