@@ -208,33 +208,27 @@
                 success: function (data) {
                     if (data.code === 0) {
                         //生成预约信息
-                        console.log(data.data.length);
                         for (var i = 0; i < data.data.length; i++) {
-                            for (var j in data.data[i]) {
-                                $('.people-number').each(function (index) {
-                                    var dataId = $(this).attr('data-classid');
+                            $('.people-number').each(function (index) {
+                                var dataId = $(this).attr('data-classid');
 
-                                    var classTime = $('.time').eq(index).html();
-                                    classTime = time + ' ' + classTime;
+                                var classTime = $('.time').eq(index).html();
+                                classTime = time + ' ' + classTime;
 
-                                    if (dataId === j && classTime > minute) {
-                                        var string = '已预约' + data.data[i][j] + '人';
-                                        $(this).attr('data-has-count', data.data[i][j]);
-                                        var minCount = $(this).attr('data-min');
-                                        string += '；' + minCount + '人开课';
-                                        $(this).text(string);
-                                    }
+                                if (Number(dataId) === data.data[i].classId && classTime > minute) {
+                                    var string = '已预约' + data.data[i].count + '人';
+                                    $(this).attr('data-has-count', data.data[i].count);
+                                    var minCount = $(this).attr('data-min');
+                                    string += '；' + minCount + '人开课';
+                                    $(this).text(string);
+                                }
+                            });
 
-                                    var item = data.data[i].hasReservation;
-                                    console.log(data.data[i].hasReservation);
-                                    if (item === 1) {
-                                        $('.class-btn').eq(index).text('取消').addClass('cancle-btn');
-                                    }
-                                })
+                            var item = data.data[i].hasReservation;
+                            if (item === 1) {
+                                $('.class-btn[data-classid="' + data.data[i].classId + '"]').text('取消').addClass('cancle-btn');
                             }
                         }
-
-
 
                         //课程开始一小时前停止约课
                         $('.schedule-third-col').each(function (index) {
@@ -277,7 +271,6 @@
         var classId = $(this).attr('data-classid');
         var time = $('.date-tab .active').attr('data-year');
         var swipeNumber = $(this).parent('.schedule-third-col').attr('data-card-count');
-        console.log(swipeNumber);
 
         var postData = {
             classId: classId,

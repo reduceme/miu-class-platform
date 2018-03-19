@@ -136,36 +136,25 @@ router.post('/get_reserved_count', function (req, res, next) {
     pool.getConnection(function (err, connection) {
         connection.query(sql.get_reserved_count, [req.body.time, req.body.classIdList], function (err, result) {
             var data = [];
-            // console.log(req.body.classIdList);
-            // console.log(result);
             for (var i = 0; i < req.body.classIdList.length; i++) {
                 data[i] = {};
                 var count = 0;
                 var key = req.body.classIdList[i];
-                // var flag = 0;
-                // if (flag < i) {
-                    // for (var j = 0; j < result.length; j++) {
-                    for (var j = i; j < result.length; j++) {
-                        if (result[j].classId === key) {
-                            count++;
-                        }
-
-                        console.log('isEffective:' + (result[j].isEffective));
-
-                        /*if (Number(result[j].userId) === Number(req.cookies.user) && result[j].classId === key) {
-                         data[i].hasReservation = true;
-                         } else {
-                         data[i].hasReservation = false;
-                         }*/
-                        data[i].hasReservation = result[j].isEffective;
+                for (var j = i; j < result.length; j++) {
+                    if (result[j].classId === key && result[j].isEffective === 1) {
+                        count++;
                     }
-                    // flag++;
-                    data[i][key] = count;
-                // }
+                    if (result[j].classId === key && result[j].isEffective === 1 && Number(req.cookies.user) === Number(result[j].userId)) {
+                        data[i].hasReservation = result[j].isEffective;
+                    } else {
+                        data[i].hasReservation = 0;
+                    }
+                }
+                data[i]['count'] = count;
+                data[i]['classId'] = key;
             }
 
             writeJSON(res, data);
-            // writeJSON(res, result);
             connection.release();
         });
     })

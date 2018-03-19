@@ -41,8 +41,8 @@
       <file leaf-file-name="users.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/users.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="650">
-              <caret line="159" column="42" lean-forward="false" selection-start-line="159" selection-start-column="42" selection-end-line="159" selection-end-column="42" />
+            <state relative-caret-position="390">
+              <caret line="143" column="83" lean-forward="true" selection-start-line="143" selection-start-column="83" selection-end-line="143" selection-end-column="83" />
               <folding>
                 <element signature="n#!!block;n#writeJSON#0" expanded="false" />
                 <element signature="n#!!block;n#getTime#0" expanded="false" />
@@ -51,9 +51,9 @@
                 <element signature="e#1396#2657#0" expanded="false" />
                 <element signature="e#2726#2970#0" expanded="false" />
                 <element signature="e#3037#3310#0" expanded="false" />
-                <element signature="e#6507#6602#0" expanded="false" />
-                <element signature="e#6617#6645#0" expanded="false" />
-                <element signature="e#6718#8172#0" expanded="false" />
+                <element signature="e#6121#6216#0" expanded="false" />
+                <element signature="e#6231#6259#0" expanded="false" />
+                <element signature="e#6332#7786#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -82,8 +82,8 @@
       <file leaf-file-name="timeTable.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/timeTable.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="211" column="24" lean-forward="false" selection-start-line="211" selection-start-column="24" selection-end-line="234" selection-end-column="25" />
+            <state relative-caret-position="214">
+              <caret line="214" column="76" lean-forward="true" selection-start-line="214" selection-start-column="76" selection-end-line="214" selection-end-column="76" />
               <folding>
                 <element signature="e#91#815#0" expanded="false" />
                 <element signature="e#925#1113#0" expanded="false" />
@@ -94,9 +94,8 @@
                 <element signature="e#2591#2740#0" expanded="false" />
                 <element signature="e#2831#3806#0" expanded="false" />
                 <element signature="e#4490#4703#0" expanded="false" />
-                <element signature="e#6150#6378#0" expanded="false" />
-                <marker date="1520934252886" expanded="true" signature="5524:5542" ph="..." />
-                <marker date="1520934252886" expanded="true" signature="6216:6235" ph="..." />
+                <marker date="1521436391970" expanded="true" signature="5524:5542" ph="..." />
+                <marker date="1521436391970" expanded="true" signature="6216:6235" ph="..." />
               </folding>
             </state>
           </provider>
@@ -145,7 +144,6 @@
       <find>fullYear</find>
       <find>cookieUsername</find>
       <find>cookieUserId</find>
-      <find>class-btn</find>
       <find>console</find>
       <find>.time</find>
       <find>getTime</find>
@@ -157,6 +155,12 @@
       <find>user_reservation_class</find>
       <find>classid</find>
       <find>get_reserved_count</find>
+      <find>cancle-btn</find>
+      <find>cancle_class</find>
+      <find>req.cookies.user</find>
+      <find>cookies</find>
+      <find>class-btn</find>
+      <find>cookie</find>
     </findStrings>
     <replaceStrings>
       <replace>id</replace>
@@ -184,8 +188,8 @@
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/views/time-table.jade" />
         <option value="$PROJECT_DIR$/config/sql.js" />
-        <option value="$PROJECT_DIR$/routes/users.js" />
         <option value="$PROJECT_DIR$/public/js/timeTable.js" />
+        <option value="$PROJECT_DIR$/routes/users.js" />
       </list>
     </option>
   </component>
@@ -227,6 +231,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -291,8 +297,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -431,12 +435,13 @@
       <workItem from="1520845108916" duration="818000" />
       <workItem from="1520911004134" duration="6577000" />
       <workItem from="1520924952329" duration="2363000" />
-      <workItem from="1520932120042" duration="2108000" />
+      <workItem from="1520932120042" duration="4139000" />
+      <workItem from="1521427202859" duration="7753000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="111038000" />
+    <option name="totallyTimeSpent" value="120822000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -518,9 +523,8 @@
             <element signature="e#2591#2740#0" expanded="false" />
             <element signature="e#2831#3806#0" expanded="false" />
             <element signature="e#4490#4703#0" expanded="false" />
-            <element signature="e#6150#6378#0" expanded="false" />
-            <marker date="1520934252886" expanded="true" signature="5524:5542" ph="..." />
-            <marker date="1520934252886" expanded="true" signature="6216:6235" ph="..." />
+            <marker date="1521436391970" expanded="true" signature="5524:5542" ph="..." />
+            <marker date="1521436391970" expanded="true" signature="6216:6235" ph="..." />
           </folding>
         </state>
       </provider>
@@ -544,9 +548,9 @@
             <element signature="e#1396#2657#0" expanded="false" />
             <element signature="e#2726#2970#0" expanded="false" />
             <element signature="e#3037#3310#0" expanded="false" />
-            <element signature="e#6507#6602#0" expanded="false" />
-            <element signature="e#6617#6645#0" expanded="false" />
-            <element signature="e#6718#8172#0" expanded="false" />
+            <element signature="e#6121#6216#0" expanded="false" />
+            <element signature="e#6231#6259#0" expanded="false" />
+            <element signature="e#6332#7786#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -611,9 +615,8 @@
             <element signature="e#2591#2740#0" expanded="false" />
             <element signature="e#2831#3806#0" expanded="false" />
             <element signature="e#4490#4703#0" expanded="false" />
-            <element signature="e#6150#6378#0" expanded="false" />
-            <marker date="1520934252886" expanded="true" signature="5524:5542" ph="..." />
-            <marker date="1520934252886" expanded="true" signature="6216:6235" ph="..." />
+            <marker date="1521436391970" expanded="true" signature="5524:5542" ph="..." />
+            <marker date="1521436391970" expanded="true" signature="6216:6235" ph="..." />
           </folding>
         </state>
       </provider>
@@ -647,9 +650,8 @@
             <element signature="e#2591#2740#0" expanded="false" />
             <element signature="e#2831#3806#0" expanded="false" />
             <element signature="e#4490#4703#0" expanded="false" />
-            <element signature="e#6150#6378#0" expanded="false" />
-            <marker date="1520934252886" expanded="true" signature="5524:5542" ph="..." />
-            <marker date="1520934252886" expanded="true" signature="6216:6235" ph="..." />
+            <marker date="1521436391970" expanded="true" signature="5524:5542" ph="..." />
+            <marker date="1521436391970" expanded="true" signature="6216:6235" ph="..." />
           </folding>
         </state>
       </provider>
@@ -856,14 +858,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="55" lean-forward="true" selection-start-line="6" selection-start-column="55" selection-end-line="6" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/sql.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
@@ -874,8 +868,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/users.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="650">
-          <caret line="159" column="42" lean-forward="false" selection-start-line="159" selection-start-column="42" selection-end-line="159" selection-end-column="42" />
+        <state relative-caret-position="390">
+          <caret line="143" column="83" lean-forward="true" selection-start-line="143" selection-start-column="83" selection-end-line="143" selection-end-column="83" />
           <folding>
             <element signature="n#!!block;n#writeJSON#0" expanded="false" />
             <element signature="n#!!block;n#getTime#0" expanded="false" />
@@ -884,17 +878,25 @@
             <element signature="e#1396#2657#0" expanded="false" />
             <element signature="e#2726#2970#0" expanded="false" />
             <element signature="e#3037#3310#0" expanded="false" />
-            <element signature="e#6507#6602#0" expanded="false" />
-            <element signature="e#6617#6645#0" expanded="false" />
-            <element signature="e#6718#8172#0" expanded="false" />
+            <element signature="e#6121#6216#0" expanded="false" />
+            <element signature="e#6231#6259#0" expanded="false" />
+            <element signature="e#6332#7786#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="6" column="55" lean-forward="true" selection-start-line="6" selection-start-column="55" selection-end-line="6" selection-end-column="55" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/timeTable.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="211" column="24" lean-forward="false" selection-start-line="211" selection-start-column="24" selection-end-line="234" selection-end-column="25" />
+        <state relative-caret-position="214">
+          <caret line="214" column="76" lean-forward="true" selection-start-line="214" selection-start-column="76" selection-end-line="214" selection-end-column="76" />
           <folding>
             <element signature="e#91#815#0" expanded="false" />
             <element signature="e#925#1113#0" expanded="false" />
@@ -905,9 +907,8 @@
             <element signature="e#2591#2740#0" expanded="false" />
             <element signature="e#2831#3806#0" expanded="false" />
             <element signature="e#4490#4703#0" expanded="false" />
-            <element signature="e#6150#6378#0" expanded="false" />
-            <marker date="1520934252886" expanded="true" signature="5524:5542" ph="..." />
-            <marker date="1520934252886" expanded="true" signature="6216:6235" ph="..." />
+            <marker date="1521436391970" expanded="true" signature="5524:5542" ph="..." />
+            <marker date="1521436391970" expanded="true" signature="6216:6235" ph="..." />
           </folding>
         </state>
       </provider>
