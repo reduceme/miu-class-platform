@@ -3,54 +3,65 @@ extends layout
 block content
     meta(charset="utf-8")
     meta(name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no")
+    meta(name="apple-mobile-web-app-capable" content="yes")
+    meta(name="apple-mobile-web-app-status-bar-style" content="black")
     link(rel='stylesheet', href='/js/mui/css/mui.picker.min.css')
     link(rel='stylesheet', href='/stylesheets/time-table.css')
 
+    //
+        头部导航栏
     header.mui-bar.mui-bar-nav
+        a.mui-icon.mui-action-menu.mui-icon-bars.mui-pull-left(href='#offCanvasSide' style='color: #52B297')
         h1.mui-title 课程预约
 
-    div.header-content
-        div.mui-btn(id='showClassroomPicker' data-value='' style='width: 100%;margin-top: 20px;height: 36px')
-        div.ui-alert(id='classRoom' style='display: none')
+    div.mui-content.mui-scroll-wrapper(id='offCanvasContentScroll')
+        div.mui-scroll
+            div.header-content
+                div.mui-btn(id='showClassroomPicker' data-value='' style='width: 100%;margin-top: 20px;height: 36px')
+                div.ui-alert(id='classRoom' style='display: none')
 
-        ul.date-tab
-            li.nav-time.date-tab-li.active
-            li.nav-time.date-tab-li
-            li.nav-time.date-tab-li
-            li.nav-time.date-tab-li
-            li.date-tab-li(style='border: none' id='datePicker' data-options='{"type":"date"}')
-                img(src='/image/date.png')
+                ul.date-tab
+                    li.nav-time.date-tab-li.active
+                    li.nav-time.date-tab-li
+                    li.nav-time.date-tab-li
+                    li.nav-time.date-tab-li
+                    li.date-tab-li(style='border: none' id='datePicker' data-options='{"type":"date"}')
+                        img(src='/image/date.png')
 
-    table.schedule-table
-        tbody(id='tableContent')
+            table.schedule-table
+                tbody(id='tableContent')
+                    //
+                        tr.schedule-odd-row.schedule-tr
+                            td.schedule-first-col
+                                h5.time 10:00
+                            td.schedule-second-col
+                                h5.title 空中瑜伽
+                                p.info
+                                    a.teacher(href='#') 毛毛
+                                    span.people-number &nbsp;&nbsp;预约1人，剩余2人
+                            td.schedule-third-col
+                                button.class-btn 预约
+
+            div.prompt
+                p.prompt-title —— 温馨提示 ——
+                p.prompt-info 会员约课需知
+                p.prompt-info 1、   预约时间：预约时间预约时间预约时间预约时间。
+                p.prompt-info 2、   预约截止：开课前1小时。
+                p.prompt-info 3、   取消预约：怎么取消预约呢怎么取消预约呢。
+
+
             //
-                tr.schedule-odd-row.schedule-tr
-                    td.schedule-first-col
-                        h5.time 10:00
-                    td.schedule-second-col
-                        h5.title 空中瑜伽
-                        p.info
-                            a.teacher(href='#') 毛毛
-                            span.people-number &nbsp;&nbsp;预约1人，剩余2人
-                    td.schedule-third-col
-                        button.class-btn 预约
-
-    div.prompt
-        p.prompt-title —— 温馨提示 ——
-        p.prompt-info 会员约课需知
-        p.prompt-info 1、   预约时间：预约时间预约时间预约时间预约时间。
-        p.prompt-info 2、   预约截止：开课前1小时。
-        p.prompt-info 3、   取消预约：怎么取消预约呢怎么取消预约呢。
-
-    div.loading(style='display: none')
-        div.mask-transparent
-        div.toast
-            div.spinner
-                div.rect2
-                div.rect3
-                div.rect4
-                div.rect5
-            p.toast-content 正在加载
+                loading样式
+            div.loading(style='display: none')
+                div.mask-transparent
+                div.toast
+                    div.spinner
+                        div.rect2
+                        div.rect3
+                        div.rect4
+                        div.rect5
+                    p.toast-content 正在加载
+    div.mui-off-canvas-backdrop
 
     script(type='text/javascript', src='/js/mui/js/mui.picker.min.js')
     script(type='text/javascript', src='/js/timeTable.js')

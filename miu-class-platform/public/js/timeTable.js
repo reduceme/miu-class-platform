@@ -33,10 +33,19 @@
         })
     });
 
-    $('.date-tab').on('click', '.nav-time', function () {
-        $(this).addClass('active').siblings('.nav-time').removeClass('active');
-        getTimeTable();
-    });
+
+    //点击时间按钮获取当天课表详情
+    function navTimeTouch() {
+        var navTime = document.querySelectorAll(".nav-time");
+        for (var i = 0; i < navTime.length; i++) {
+            navTime[i].addEventListener("touchstart", function (e) {
+                e.preventDefault();
+                $(this).addClass('active').siblings('.nav-time').removeClass('active');
+                getTimeTable();
+            });
+        }
+    }
+    navTimeTouch();
 
     var weekday = {
         '0': '周日',
@@ -281,9 +290,9 @@
         if (!isCancle) {
             var nowTime = getTime(new Date(), 0).fullYear;
             var timeDiffer = Number((postData.time).split('-')[2]) - Number(nowTime.split('-')[2]);
-            if(timeDiffer <= 7){
+            if (timeDiffer <= 7) {
                 reservClass(postData);
-            }else {
+            } else {
                 mui.alert('只能预约未来7天的课程');
             }
         } else {
