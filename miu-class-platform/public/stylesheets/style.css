@@ -1,5 +1,5 @@
 body {
-    padding: 50px 0px 20px 0px;
+    padding: 0;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -30,4 +30,10 @@ a {
     margin-bottom: 0.2em;
     font-size: 0.9rem;
     font-weight: bold;
+}
+
+.content{
+    text-align: center;
+    font-size: 15px;
+    padding: 30px 10px;
 }

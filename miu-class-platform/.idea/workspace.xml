@@ -21,8 +21,8 @@
       <file leaf-file-name="time-table.jade" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/time-table.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="670">
-              <caret line="63" column="6" lean-forward="false" selection-start-line="63" selection-start-column="6" selection-end-line="63" selection-end-column="6" />
+            <state relative-caret-position="1386">
+              <caret line="63" column="31" lean-forward="false" selection-start-line="63" selection-start-column="4" selection-end-line="63" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -31,7 +31,7 @@
       <file leaf-file-name="time-table.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/stylesheets/time-table.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="603">
+            <state relative-caret-position="5786">
               <caret line="263" column="1" lean-forward="false" selection-start-line="263" selection-start-column="1" selection-end-line="263" selection-end-column="1" />
               <folding />
             </state>
@@ -41,7 +41,7 @@
       <file leaf-file-name="timeTable.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/timeTable.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="716">
+            <state relative-caret-position="2926">
               <caret line="356" column="5" lean-forward="false" selection-start-line="356" selection-start-column="5" selection-end-line="356" selection-end-column="5" />
               <folding>
                 <element signature="e#2863#3012#0" expanded="false" />
@@ -62,8 +62,8 @@
       <file leaf-file-name="layout.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/layout.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="506">
-              <caret line="23" column="44" lean-forward="true" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
+            <state relative-caret-position="308">
+              <caret line="14" column="43" lean-forward="false" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -72,22 +72,21 @@
       <file leaf-file-name="users.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/users.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="484">
-              <caret line="65" column="3" lean-forward="false" selection-start-line="65" selection-start-column="3" selection-end-line="65" selection-end-column="3" />
+            <state relative-caret-position="1210">
+              <caret line="153" column="30" lean-forward="false" selection-start-line="153" selection-start-column="30" selection-end-line="153" selection-end-column="30" />
               <folding>
                 <element signature="n#!!block;n#writeJSON#0" expanded="false" />
                 <element signature="n#!!block;n#getTime#0" expanded="false" />
                 <element signature="n#!!block;n#formatTime#0" expanded="false" />
                 <element signature="e#1292#1336#0" expanded="false" />
-                <element signature="e#1395#2656#0" expanded="false" />
-                <element signature="e#2725#2969#0" expanded="false" />
-                <element signature="e#3036#3309#0" expanded="false" />
-                <element signature="e#3386#4628#0" expanded="false" />
-                <element signature="e#4706#6239#0" expanded="false" />
-                <element signature="e#6307#6697#0" expanded="false" />
-                <element signature="e#6747#6842#0" expanded="false" />
-                <element signature="e#6857#6885#0" expanded="false" />
-                <element signature="e#6958#8412#0" expanded="false" />
+                <element signature="e#1395#2607#0" expanded="false" />
+                <element signature="e#2676#2920#0" expanded="false" />
+                <element signature="e#2987#3260#0" expanded="false" />
+                <element signature="e#4406#5939#0" expanded="false" />
+                <element signature="e#6007#6397#0" expanded="false" />
+                <element signature="e#6447#6542#0" expanded="false" />
+                <element signature="e#6557#6585#0" expanded="false" />
+                <element signature="e#6658#8112#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -103,11 +102,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="layout.jade" pinned="false" current-in-tab="true">
+      <file leaf-file-name="layout.jade" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/layout.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="30" column="12" lean-forward="false" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="14" />
+            <state relative-caret-position="308">
+              <caret line="14" column="57" lean-forward="true" selection-start-line="14" selection-start-column="57" selection-end-line="14" selection-end-column="57" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-35">
+              <caret line="3" column="1" lean-forward="true" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -126,18 +135,8 @@
       <file leaf-file-name="user-info.jade" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/user-info.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="8" column="30" lean-forward="true" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user-info.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/stylesheets/user-info.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="220">
+              <caret line="10" column="25" lean-forward="true" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -156,7 +155,6 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>cookieUserId</find>
-      <find>console</find>
       <find>.time</find>
       <find>getTime</find>
       <find>_last_count</find>
@@ -183,8 +181,9 @@
       <find>getTimeTable</find>
       <find>mui-inner-wrap</find>
       <find>mui-off-canvas-backdrop</find>
-      <find>offCanvasWrapper</find>
       <find>.content</find>
+      <find>offCanvasWrapper</find>
+      <find>console</find>
     </findStrings>
     <replaceStrings>
       <replace>id</replace>
@@ -207,17 +206,17 @@
         <option value="$PROJECT_DIR$/config/db.js" />
         <option value="$PROJECT_DIR$/public/js/login.js" />
         <option value="$PROJECT_DIR$/config/sql.js" />
-        <option value="$PROJECT_DIR$/routes/users.js" />
         <option value="$PROJECT_DIR$/public/stylesheets/user-info.css" />
-        <option value="$PROJECT_DIR$/views/user-info.jade" />
         <option value="$PROJECT_DIR$/routes/index.js" />
-        <option value="$PROJECT_DIR$/public/stylesheets/style.css" />
-        <option value="$PROJECT_DIR$/public/stylesheets/time-table.css" />
         <option value="$PROJECT_DIR$/public/js/timeTable.js" />
         <option value="$PROJECT_DIR$/public/js/mui/layout.js" />
         <option value="$PROJECT_DIR$/public/js/layout.js" />
-        <option value="$PROJECT_DIR$/views/layout.jade" />
         <option value="$PROJECT_DIR$/views/time-table.jade" />
+        <option value="$PROJECT_DIR$/public/stylesheets/time-table.css" />
+        <option value="$PROJECT_DIR$/routes/users.js" />
+        <option value="$PROJECT_DIR$/views/layout.jade" />
+        <option value="$PROJECT_DIR$/views/user-info.jade" />
+        <option value="$PROJECT_DIR$/public/stylesheets/style.css" />
       </list>
     </option>
   </component>
@@ -268,6 +267,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="miu-class-platform" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="miu-class-platform" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="miu-class-platform" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -345,8 +358,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -494,12 +507,15 @@
       <workItem from="1521510238598" duration="627000" />
       <workItem from="1521511539000" duration="2986000" />
       <workItem from="1521515403342" duration="517000" />
-      <workItem from="1521516400436" duration="3443000" />
+      <workItem from="1521516400436" duration="4723000" />
+      <workItem from="1521536308519" duration="984000" />
+      <workItem from="1521537615948" duration="442000" />
+      <workItem from="1521538474972" duration="2000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="138022000" />
+    <option name="totallyTimeSpent" value="140730000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -509,8 +525,8 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973656" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -572,15 +588,14 @@
             <element signature="n#!!block;n#getTime#0" expanded="false" />
             <element signature="n#!!block;n#formatTime#0" expanded="false" />
             <element signature="e#1292#1336#0" expanded="false" />
-            <element signature="e#1395#2656#0" expanded="false" />
-            <element signature="e#2725#2969#0" expanded="false" />
-            <element signature="e#3036#3309#0" expanded="false" />
-            <element signature="e#3386#4628#0" expanded="false" />
-            <element signature="e#4706#6239#0" expanded="false" />
-            <element signature="e#6307#6697#0" expanded="false" />
-            <element signature="e#6747#6842#0" expanded="false" />
-            <element signature="e#6857#6885#0" expanded="false" />
-            <element signature="e#6958#8412#0" expanded="false" />
+            <element signature="e#1395#2607#0" expanded="false" />
+            <element signature="e#2676#2920#0" expanded="false" />
+            <element signature="e#2987#3260#0" expanded="false" />
+            <element signature="e#4406#5939#0" expanded="false" />
+            <element signature="e#6007#6397#0" expanded="false" />
+            <element signature="e#6447#6542#0" expanded="false" />
+            <element signature="e#6557#6585#0" expanded="false" />
+            <element signature="e#6658#8112#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -836,7 +851,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="10" column="9" lean-forward="true" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -862,14 +876,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/user-info.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" column="30" lean-forward="true" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/index.jade">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -890,59 +896,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="616">
           <caret line="5" column="4046" lean-forward="false" selection-start-line="5" selection-start-column="4046" selection-end-line="5" selection-end-column="4046" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/users.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="65" column="3" lean-forward="false" selection-start-line="65" selection-start-column="3" selection-end-line="65" selection-end-column="3" />
-          <folding>
-            <element signature="n#!!block;n#writeJSON#0" expanded="false" />
-            <element signature="n#!!block;n#getTime#0" expanded="false" />
-            <element signature="n#!!block;n#formatTime#0" expanded="false" />
-            <element signature="e#1292#1336#0" expanded="false" />
-            <element signature="e#1395#2656#0" expanded="false" />
-            <element signature="e#2725#2969#0" expanded="false" />
-            <element signature="e#3036#3309#0" expanded="false" />
-            <element signature="e#3386#4628#0" expanded="false" />
-            <element signature="e#4706#6239#0" expanded="false" />
-            <element signature="e#6307#6697#0" expanded="false" />
-            <element signature="e#6747#6842#0" expanded="false" />
-            <element signature="e#6857#6885#0" expanded="false" />
-            <element signature="e#6958#8412#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="1" lean-forward="true" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/stylesheets/time-table.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="603">
-          <caret line="263" column="1" lean-forward="false" selection-start-line="263" selection-start-column="1" selection-end-line="263" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/layout.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="23" column="44" lean-forward="true" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/timeTable.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="716">
+        <state relative-caret-position="2926">
           <caret line="356" column="5" lean-forward="false" selection-start-line="356" selection-start-column="5" selection-end-line="356" selection-end-column="5" />
           <folding>
             <element signature="e#2863#3012#0" expanded="false" />
@@ -959,18 +918,71 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/time-table.jade">
+    <entry file="file://$PROJECT_DIR$/public/stylesheets/time-table.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="670">
-          <caret line="63" column="6" lean-forward="false" selection-start-line="63" selection-start-column="6" selection-end-line="63" selection-end-column="6" />
+        <state relative-caret-position="5786">
+          <caret line="263" column="1" lean-forward="false" selection-start-line="263" selection-start-column="1" selection-end-line="263" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1210">
+          <caret line="153" column="30" lean-forward="false" selection-start-line="153" selection-start-column="30" selection-end-line="153" selection-end-column="30" />
+          <folding>
+            <element signature="n#!!block;n#writeJSON#0" expanded="false" />
+            <element signature="n#!!block;n#getTime#0" expanded="false" />
+            <element signature="n#!!block;n#formatTime#0" expanded="false" />
+            <element signature="e#1292#1336#0" expanded="false" />
+            <element signature="e#1395#2607#0" expanded="false" />
+            <element signature="e#2676#2920#0" expanded="false" />
+            <element signature="e#2987#3260#0" expanded="false" />
+            <element signature="e#4406#5939#0" expanded="false" />
+            <element signature="e#6007#6397#0" expanded="false" />
+            <element signature="e#6447#6542#0" expanded="false" />
+            <element signature="e#6557#6585#0" expanded="false" />
+            <element signature="e#6658#8112#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/layout.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="14" column="43" lean-forward="false" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/layout.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="30" column="12" lean-forward="false" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="14" />
+        <state relative-caret-position="308">
+          <caret line="14" column="57" lean-forward="true" selection-start-line="14" selection-start-column="57" selection-end-line="14" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/time-table.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1386">
+          <caret line="63" column="31" lean-forward="false" selection-start-line="63" selection-start-column="4" selection-end-line="63" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/user-info.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" column="25" lean-forward="true" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-35">
+          <caret line="3" column="1" lean-forward="true" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
           <folding />
         </state>
       </provider>

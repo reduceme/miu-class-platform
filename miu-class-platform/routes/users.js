@@ -73,7 +73,6 @@ router.post('/login', function (req, res, next) {
         connection.query(sql.login, [req.body.username], function (err, result) {
             //todo - 密码加密
             if (result.length >= 1) {
-                console.log((result[0].userid));
                 //验证密码是否正确
                 if (req.body.password === result[0].password) {
                     res.cookie('user', result[0].userid, {
@@ -143,13 +142,9 @@ router.post('/get_reserved_count', function (req, res, next) {
                     if (result[j].classId === key && result[j].isEffective === 1) {
                         count++;
                     }
-                    console.log(result[j].classId === key && result[j].isEffective === 1 && Number(req.cookies.user) === Number(result[j].userId));
                     if (result[j].classId === key && result[j].isEffective === 1 && Number(req.cookies.user) === Number(result[j].userId)) {
                         data[i].hasReservation = 1;
                     }
-                    /*else {
-                     data[i].hasReservation = 0;
-                     }*/
                 }
                 data[i]['count'] = count;
                 data[i]['classId'] = key;
