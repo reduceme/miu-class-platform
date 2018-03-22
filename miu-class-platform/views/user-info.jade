@@ -12,5 +12,20 @@ block content
 
     div.mui-content.mui-scroll-wrapper(id='offCanvasContentScroll')
         div.mui-scroll
+            div.user-info
+                div.user-info-row
+                    p.user-info-title 用户名
+                    p.user-info-detail(id='username')
+                div.user-info-row
+                    p.user-info-title 卡种类型
+                    p.user-info-detail(id='cardType')
+                div.user-info-row
+                    p.user-info-title 剩余次数
+                    p.user-info-detail(id='lastCount')
+                div.user-info-row(style='border-bottom: none')
+                    p.user-info-title 截止日期
+                    p.user-info-detail(id='lastTime')
 
     div.mui-off-canvas-backdrop
+
+    script(type='text/javascript', src='/js/userInfo.js')

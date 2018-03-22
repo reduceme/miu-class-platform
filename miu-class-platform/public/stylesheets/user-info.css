@@ -1,0 +1,30 @@
+.user-info {
+    padding: 0 10px;
+    background: #FFFFFF;
+    margin-top: 40px;
+    border-bottom: solid 1px #DADADA;
+}
+
+.user-info-row {
+    padding: 5px;
+    display: flex;
+    height: 50px;
+    border-bottom: solid 1px #DADADA;
+}
+
+.user-info-title, .user-info-detail {
+    height: 40px;
+    line-height: 40px;
+    margin-bottom: 0;
+}
+
+.user-info-title {
+    color: #2e2e2e;
+    font-weight: 600;
+    width: 75%;
+}
+
+.user-info-detail {
+    width: 25%;
+    direction: rtl
+}

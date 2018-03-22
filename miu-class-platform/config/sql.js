@@ -5,6 +5,7 @@ var sql = {
     init_open_time_and_last_time: 'update user_info set `openTime` = ?, `lastTime` = ? where `userid` = ?',
     //查询卡种信息
     card_type: 'select cardTypeId,cardValidity from card_type_info',
+    card_name: 'select cardTypeId,cardName from card_type_info',
     //查询所有教室
     classRoom: 'select * from class_room',
     //查询某个教室某一天的课表
@@ -27,7 +28,8 @@ var sql = {
     delete_min_count: 'update user_class_info set `isEffective` = 4 where `classId` = ? and `time` = ?',
     //约课成功，扣除相应次数
     update_last_count: 'update user_info set `lastCount` = `lastCount` - ? where `userid` in (?)',
-    //
+    //个人中心，获取用户信息
+    get_user_basic_info: 'select customerName, cardType, lastCount, lastTime from user_info where `userid` = ?'
 };
 
 module.exports = sql;
