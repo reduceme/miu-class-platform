@@ -68,7 +68,6 @@ router.get('/', function (req, res, next) {
 //登录接口
 router.post('/login', function (req, res, next) {
     pool.getConnection(function (err, connection) {
-        var data = [];
         //建立连接
         connection.query(sql.login, [req.body.username], function (err, result) {
             //todo - 密码加密
@@ -96,10 +95,6 @@ router.post('/login', function (req, res, next) {
                     connection.release();
                     return;
                 }
-            } else {
-                writeJSON(res);
-                connection.release();
-                return;
             }
         });
     });
@@ -166,13 +161,32 @@ router.post('/user_reservation_class', function (req, res, next) {
         connection.query(sql.select_user_card_valid, [req.cookies.user], function (err, result) {
             lastCount = result[0].lastCount;
 
+            //设置开卡日期和过期日期
+            if (!result[0].openTime) {
+                connection.query(sql.card_type, function (err, cardResult) {
+                    var cardList = {};
+                    for (var i = 0; i < cardResult.length; i++) {
+                        cardList[cardResult[i].cardTypeId] = cardResult[i].cardValidity;
+                    }
+                    var finishTime = cardList[result[0].cardType] * 24 * 60 * 60 * 1000;
+                    var openTime = getTime(new Date()).time;
+                    var time = new Date((new Date().getTime() + finishTime));
+                    var lastTime = getTime(time).time;
+
+                    connection.query(sql.init_open_time_and_last_time, [openTime, lastTime, req.cookies.user], function (err, timeResult) {
+                    })
+                })
+            }
+
             if (lastCount > classSwipeNum) {
                 //预约成功
                 connection.query(sql.select_has_reservation, [req.cookies.user, req.body.classId, req.body.time], function (err, has_reservation_result) {
                     if (has_reservation_result[0]) {
+                        //会员已经预约过某节课后来又取消了进行的操作
                         connection.query(sql.update_has_reservation, [req.cookies.user, req.body.classId, req.body.time], function (err, reserv_result) {
                         });
                     } else {
+                        //会员第一次预约某节课
                         connection.query(sql.user_reservation_class, [req.cookies.user, req.body.classId, req.body.time, classSwipeNum], function (err, reserv_result) {
                         });
                     }

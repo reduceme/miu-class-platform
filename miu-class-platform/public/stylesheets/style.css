@@ -32,8 +32,12 @@ a {
     font-weight: bold;
 }
 
-.content{
+.content {
     text-align: center;
     font-size: 15px;
     padding: 30px 10px;
+}
+
+.title {
+    color: #53b196;
 }

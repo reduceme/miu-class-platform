@@ -30,4 +30,16 @@
             });
         });
     }
-})()
+
+    //点击跳转
+    function navTimeTouch() {
+        var navigate = document.querySelectorAll(".mui-navigate-right");
+        for (var i = 0; i < navigate.length; i++) {
+            navigate[i].addEventListener("touchstart", function (e) {
+                e.preventDefault();
+                window.location.href = $(this).attr('href');
+            });
+        }
+    }
+    navTimeTouch();
+})();
