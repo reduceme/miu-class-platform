@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : 65001
 
- Date: 22/03/2018 17:43:25
+ Date: 23/03/2018 16:20:26
 */
 
 SET NAMES utf8mb4;
@@ -107,6 +107,9 @@ CREATE TABLE `user_class_info`  (
 -- Records of user_class_info
 -- ----------------------------
 INSERT INTO `user_class_info` VALUES (10007, 5, '2018-03-23', 2, 3);
+INSERT INTO `user_class_info` VALUES (10007, 20000, '2018-03-23', 2, 1);
+INSERT INTO `user_class_info` VALUES (10007, 3, '2018-03-28', 2, 1);
+INSERT INTO `user_class_info` VALUES (10007, 20001, '2018-03-23', 2, 1);
 
 -- ----------------------------
 -- Table structure for user_info
@@ -133,6 +136,6 @@ CREATE TABLE `user_info`  (
 -- ----------------------------
 -- Records of user_info
 -- ----------------------------
-INSERT INTO `user_info` VALUES ('18030850749', '123456', '戴瑞', 10007, 1, 500, 500, '2018-09-21', '2018-03-22', '2018-03-20');
+INSERT INTO `user_info` VALUES ('18030850749', '123456', '戴瑞', 10007, 1, 500, 484, '2018-09-21', '2018-03-22', '2018-03-20');
 
 SET FOREIGN_KEY_CHECKS = 1;

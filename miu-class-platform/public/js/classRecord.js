@@ -10,7 +10,7 @@
                         '1': '正常开课',
                         '3': '用户取消课程',
                         '4': '未满足开课条件',
-                    }
+                    };
                     for (var i = 0; i < data.data.length; i++) {
                         html += '<li class="mui-table-view-cell">'
                             + '<p class="navigate-left">' + data.data[i].time + '</p>'

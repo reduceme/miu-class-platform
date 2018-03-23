@@ -31,7 +31,7 @@ var sql = {
     //个人中心，获取用户信息
     get_user_basic_info: 'select customerName, cardType, lastCount, lastTime from user_info where `userid` = ?',
     //上课详情
-    class_record: 'select classId, time, isEffective from user_class_info where `userId` = ?',
+    class_record: 'select classId, time, isEffective from user_class_info where `userId` = ? order by time desc',
     //根据classId查询课表
     get_time_table_by_classid: 'select classId, time, classname from timetable'
 };
