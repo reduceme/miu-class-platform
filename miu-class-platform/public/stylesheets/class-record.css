@@ -1,0 +1,24 @@
+.mui-table-view-cell {
+    display: flex;
+}
+
+.navigate-title {
+    color: #2e2e2e;
+    font-weight: 600;
+}
+
+.navigate-left {
+    width: 46%;
+}
+
+.navigate-center {
+    width: 21%;
+}
+
+.navigate-right {
+    width: 33%;
+}
+
+.navigate-title, .navigate-center, .navigate-right, .navigate-left {
+    text-align: center;
+}

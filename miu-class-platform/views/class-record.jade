@@ -4,7 +4,7 @@ block content
     meta(charset="utf-8")
     meta(name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no")
     link(rel='stylesheet', href='/js/mui/css/mui.picker.min.css')
-    link(rel='stylesheet', href='/stylesheets/user-info.css')
+    link(rel='stylesheet', href='/stylesheets/class-record.css')
 
     header.mui-bar.mui-bar-nav
         a.mui-icon.mui-action-menu.mui-icon-bars.mui-pull-left(href='#offCanvasSide' style='color: #52B297')
@@ -12,5 +12,13 @@ block content
 
     div.mui-content.mui-scroll-wrapper(id='offCanvasContentScroll')
         div.mui-scroll
+            div.mui-card
+                ul.mui-table-view
+                    li.mui-table-view-cell
+                        p.navigate-title.navigate-left 时间
+                        p.navigate-title.navigate-center 课程名
+                        p.navigate-title.navigate-right 状态
 
     div.mui-off-canvas-backdrop
+
+    script(type='text/javascript', src='/js/classRecord.js')

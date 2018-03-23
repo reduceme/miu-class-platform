@@ -29,7 +29,11 @@ var sql = {
     //约课成功，扣除相应次数
     update_last_count: 'update user_info set `lastCount` = `lastCount` - ? where `userid` in (?)',
     //个人中心，获取用户信息
-    get_user_basic_info: 'select customerName, cardType, lastCount, lastTime from user_info where `userid` = ?'
+    get_user_basic_info: 'select customerName, cardType, lastCount, lastTime from user_info where `userid` = ?',
+    //上课详情
+    class_record: 'select classId, time, isEffective from user_class_info where `userId` = ?',
+    //根据classId查询课表
+    get_time_table_by_classid: 'select classId, time, classname from timetable'
 };
 
 module.exports = sql;
