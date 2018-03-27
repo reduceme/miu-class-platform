@@ -57,6 +57,7 @@ router.post('/login', function (req, res, next) {
                         '2': [2, 3],
                         '3': [3]
                     };
+                    //返回菜单
                     connection.query(sql.get_menu, [leaveList[req.cookies.leave]], function (err, menuResult) {
                         console.log(menuResult);
                         res.send({
@@ -78,20 +79,34 @@ router.post('/login', function (req, res, next) {
     });
 });
 
-//获取菜单列表
-/*router.post('/get_menu', function (req, res, next) {
+//获取会员列表
+router.get('/get_user_list', function (req, res, next) {
     pool.getConnection(function (err, connection) {
-        var leaveList = {
-            '1': [1, 2, 3],
-            '2': [2, 3],
-            '3': [3]
-        };
         //建立连接
-        connection.query(sql.get_menu, [leaveList[req.cookies.leave]], function (err, result) {
-            writeJSON(result);
-            connection.release();
+        connection.query(sql.get_card_type_list, function (err, cardTypeList) {
+            var item = {};
+            for (var i = 0; i < cardTypeList.length; i++) {
+                item[cardTypeList[i].cardTypeId] = cardTypeList[i].cardName;
+            }
+            connection.query(sql.get_user_list, function (err, result) {
+                writeJSON(res, {
+                    userList: result,
+                    cardType: item
+                });
+                connection.release();
+            })
+        });
+    })
+});
+
+//上课详情
+router.post('/get_user_class_detail', function (req, res, next) {
+    pool.getConnection(function (err, connection) {
+        //建立连接
+        connection.query(sql.get_user_class_detail, [req.body.userId],function (err, result) {
+            writeJSON(res, result);
         })
     })
-});*/
+});
 
 module.exports = router;

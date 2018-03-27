@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : 65001
 
- Date: 27/03/2018 08:31:09
+ Date: 27/03/2018 13:12:37
 */
 
 SET NAMES utf8mb4;
@@ -154,10 +154,7 @@ CREATE TABLE `user_class_info`  (
 -- ----------------------------
 -- Records of user_class_info
 -- ----------------------------
-INSERT INTO `user_class_info` VALUES (10007, 5, '2018-03-23', 2, 3);
-INSERT INTO `user_class_info` VALUES (10007, 20000, '2018-03-23', 2, 1);
-INSERT INTO `user_class_info` VALUES (10007, 3, '2018-03-28', 2, 1);
-INSERT INTO `user_class_info` VALUES (10007, 20001, '2018-03-23', 2, 1);
+INSERT INTO `user_class_info` VALUES (10007, 4, '2018-03-29', 2, 3);
 
 -- ----------------------------
 -- Table structure for user_info
@@ -174,6 +171,8 @@ CREATE TABLE `user_info`  (
   `lastTime` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '截止时间',
   `openTime` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '开卡时间',
   `createTime` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '创建时间',
+  `createRoom` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '办卡地点',
+  `createTeacher` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '业务员',
   PRIMARY KEY (`userid`) USING BTREE,
   INDEX `for_total_count`(`totalCount`) USING BTREE,
   INDEX `for_card_type`(`cardType`) USING BTREE,
@@ -184,6 +183,6 @@ CREATE TABLE `user_info`  (
 -- ----------------------------
 -- Records of user_info
 -- ----------------------------
-INSERT INTO `user_info` VALUES ('18030850749', '123456', '戴瑞', 10007, 1, 500, 484, '2018-09-21', '2018-03-22', '2018-03-20');
+INSERT INTO `user_info` VALUES ('18030850749', '123456', '戴瑞', 10007, 1, 500, 474, '2018-09-21', '2018-03-22', '2018-03-20', '1', '1');
 
 SET FOREIGN_KEY_CHECKS = 1;

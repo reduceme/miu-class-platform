@@ -4,6 +4,10 @@
     margin: 0;
 }
 
+/*.container{
+    width: calc(100% - 180px)
+}*/
+
 .modal-footer {
     padding: 10px 15px;
 }
@@ -51,12 +55,21 @@
     text-decoration: none;
     color: #b2b2b2;
 }
+
 .menu-href:focus {
     text-decoration: none;
     color: #b2b2b2;
 }
 
-
 .menu-info {
     display: block;
+}
+
+.container {
+    padding-top: 100px;
+    margin-left: 250px;
+}
+
+td {
+    text-align: center;
 }

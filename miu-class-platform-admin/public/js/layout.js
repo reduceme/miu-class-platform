@@ -17,5 +17,25 @@
             $('.menu-list').html(html);
         }
     }
-    getMenuList()
+
+    getMenuList();
+
+    function addActive() {
+
+    }
+
+    $('.menu-href').each(function () {
+        //parent
+        var href = $(this).attr('href').toLocaleLowerCase();
+        //url
+        var pathname = location.pathname.toLocaleLowerCase();
+
+        if (href === pathname) {
+            $(this).css({
+                'color': '#b2b2b2',
+                'background': '#424242',
+                'text-decoration': 'none'
+            })
+        }
+    });
 })();
