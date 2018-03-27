@@ -11,11 +11,28 @@
  Target Server Version : 50717
  File Encoding         : 65001
 
- Date: 23/03/2018 17:30:08
+ Date: 27/03/2018 08:31:09
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for admin_user_list
+-- ----------------------------
+DROP TABLE IF EXISTS `admin_user_list`;
+CREATE TABLE `admin_user_list`  (
+  `admin_id` int(64) NOT NULL AUTO_INCREMENT COMMENT '管理员id',
+  `admin_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '管理员名称',
+  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '密码',
+  `admin_leave` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '权限等级',
+  PRIMARY KEY (`admin_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of admin_user_list
+-- ----------------------------
+INSERT INTO `admin_user_list` VALUES (1, '18030850749', '123456', '1');
 
 -- ----------------------------
 -- Table structure for card_type_info
@@ -55,6 +72,37 @@ CREATE TABLE `class_room`  (
 INSERT INTO `class_room` VALUES (1, 'Miuyoga瑜伽工作室（光华逸家）');
 INSERT INTO `class_room` VALUES (2, 'Miuyoga瑜伽工作室（南湖逸家）');
 INSERT INTO `class_room` VALUES (3, 'Miuyoga瑜伽工作室（南阳锦城）');
+
+-- ----------------------------
+-- Table structure for menu_list
+-- ----------------------------
+DROP TABLE IF EXISTS `menu_list`;
+CREATE TABLE `menu_list`  (
+  `menu_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '菜单ID',
+  `menu_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '菜单 名称',
+  `menu_href` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '链接地址',
+  `menu_leave` int(255) NOT NULL COMMENT '菜单等级',
+  `menu_icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'icon',
+  PRIMARY KEY (`menu_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of menu_list
+-- ----------------------------
+INSERT INTO `menu_list` VALUES (1, '会员管理', '/user-list', 1, 'fa fa-database');
+INSERT INTO `menu_list` VALUES (2, '教师管理', '/teacher-list', 1, 'fa fa-database');
+
+-- ----------------------------
+-- Table structure for teacher_list
+-- ----------------------------
+DROP TABLE IF EXISTS `teacher_list`;
+CREATE TABLE `teacher_list`  (
+  `teacher_id` int(64) NOT NULL COMMENT '教师id',
+  `teacher_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '教师姓名',
+  `teacher_leave` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '权限等级',
+  `teacher_status` int(64) NOT NULL COMMENT '在职状态：1.有效   2.无效',
+  PRIMARY KEY (`teacher_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for timetable
