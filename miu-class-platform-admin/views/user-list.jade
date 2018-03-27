@@ -22,13 +22,19 @@ block content
                         td 上课详情
                     tbody(id='userListTable')
 
-    div.modal.fade(tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id='error')
+    div.modal.fade(tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id='classDetailModal')
         div.modal-dialog.modal-sm(role='document')
             div.modal-content
                 div.modal-header
                     h4.modal-title 约课详情
                 div.modal-body
-                    p 用户名或密码错误
+                    table.table.table-bordered
+                        thead
+                        tr
+                            td 时间
+                            td 课程
+
+                        tbody(id='classDetailTable')
                 div.modal-footer
                     button.btn.btn-default(data-dismiss="modal") 返回
     script(type='text/javascript', src='/js/userList.js')

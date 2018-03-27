@@ -47,7 +47,17 @@
             },
             success: function (data) {
                 if (data.code === 0) {
-                    console.log(data.data);
+                    $('#classDetailModal').modal('show');
+                    var html = '';
+                    for (var i = 0; i < data.data.length; i++) {
+                        var item = data.data[i];
+                        html += '<tr>' +
+                            '<td>' + item.time + ' ' + item.t_t_minute + '</td>' +
+                            '<td>' + item.classname + '</td>' +
+                            '</tr>'
+                    }
+
+                    $('#classDetailTable').html(html);
                 }
             }
         })
