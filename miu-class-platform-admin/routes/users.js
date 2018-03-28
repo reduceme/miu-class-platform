@@ -79,8 +79,8 @@ router.post('/login', function (req, res, next) {
     });
 });
 
-//获取会员列表
-router.get('/get_user_list', function (req, res, next) {
+//查询卡种
+router.get('/get_card_type_list', function (req, res, next) {
     pool.getConnection(function (err, connection) {
         //建立连接
         connection.query(sql.get_card_type_list, function (err, cardTypeList) {
@@ -88,14 +88,20 @@ router.get('/get_user_list', function (req, res, next) {
             for (var i = 0; i < cardTypeList.length; i++) {
                 item[cardTypeList[i].cardTypeId] = cardTypeList[i].cardName;
             }
-            connection.query(sql.get_user_list, function (err, result) {
-                writeJSON(res, {
-                    userList: result,
-                    cardType: item
-                });
-                connection.release();
-            })
-        });
+            writeJSON(res, item);
+            connection.release();
+        })
+    })
+});
+
+//获取会员列表
+router.get('/get_user_list', function (req, res, next) {
+    pool.getConnection(function (err, connection) {
+        //建立连接
+        connection.query(sql.get_user_list, function (err, result) {
+            writeJSON(res, result);
+            connection.release();
+        })
     })
 });
 
@@ -103,8 +109,19 @@ router.get('/get_user_list', function (req, res, next) {
 router.post('/get_user_class_detail', function (req, res, next) {
     pool.getConnection(function (err, connection) {
         //建立连接
-        connection.query(sql.get_user_class_detail, [req.body.userId],function (err, result) {
+        connection.query(sql.get_user_class_detail, [req.body.userId], function (err, result) {
             writeJSON(res, result);
+        })
+    })
+});
+
+//查询人员
+router.post('/get_special_user', function (req, res, next) {
+    pool.getConnection(function (err, connection) {
+        //建立连接
+        connection.query(sql.get_special_user, [req.body.username, req.body.customerName], function (err, result) {
+            writeJSON(res, result);
+            connection.release();
         })
     })
 });

@@ -1,12 +1,31 @@
 (function () {
-    function getUserList() {
+    var cardType = undefined;
+
+    function getCardTypeList() {
         $.ajax({
             method: 'get',
-            url: '/users/get_user_list',
+            url: '/users/get_card_type_list',
+            async: false,
             success: function (data) {
                 if (data.code === 0) {
-                    var userList = data.data.userList;
-                    var cardType = data.data.cardType;
+                    cardType = data.data;
+                }
+            },
+            error: function () {
+                alert('获取卡种失败');
+            }
+        })
+    }
+
+    function getUserList(method, url, postData) {
+        $.ajax({
+            method: method,
+            url: url,
+            async: false,
+            data: postData,
+            success: function (data) {
+                if (data.code === 0) {
+                    var userList = data.data;
 
                     var html = '';
                     for (var i = 0; i < userList.length; i++) {
@@ -35,7 +54,16 @@
         })
     }
 
-    getUserList();
+    getCardTypeList();
+    getUserList('get', '/users/get_user_list', '');
+
+    $('#search').on('click', function () {
+        var item = {
+            username: $('#searchInfo').val(),
+            customerName: $('#searchInfo').val()
+        };
+        getUserList('post', '/users/get_special_user', item);
+    });
 
     $('#userListTable').on('click', '.class-detail', function () {
         var userId = $(this).attr('data-id');
@@ -61,5 +89,7 @@
                 }
             }
         })
-    })
+    });
+
+
 })();

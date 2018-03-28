@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : 65001
 
- Date: 27/03/2018 13:12:37
+ Date: 28/03/2018 11:04:19
 */
 
 SET NAMES utf8mb4;
@@ -146,7 +146,7 @@ DROP TABLE IF EXISTS `user_class_info`;
 CREATE TABLE `user_class_info`  (
   `userId` int(11) NOT NULL,
   `classId` int(11) NOT NULL,
-  `time` date NOT NULL,
+  `time` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `cardCount` int(11) NOT NULL,
   `isEffective` int(11) NOT NULL COMMENT '1：开课；2：未开课；3：用户取消课程；4：不满足开课条件，系统自动取消课程'
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;

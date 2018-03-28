@@ -5,6 +5,12 @@ block content
     link(rel='stylesheet', href='/stylesheets/user-list.css')
     div.container
         div.row
+            form.form-inline
+                div.form-group
+                    input.form-control(placeholder='请输入会员姓名或卡号' id='searchInfo')
+                    button.btn.btn-primary(id='search' type='button') 查询
+
+        div.row
             div.table-responsive.col-md-12
                 table.table.table-hover
                     thead

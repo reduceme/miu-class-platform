@@ -1,4 +1,8 @@
 .class-detail:hover {
-    cursor:pointer;
+    cursor: pointer;
     color: #ff6633;
+}
+
+#search {
+    margin-left: 10px;
 }

@@ -73,3 +73,7 @@
 td {
     text-align: center;
 }
+
+.form-inline {
+    margin-bottom: 35px;
+}
