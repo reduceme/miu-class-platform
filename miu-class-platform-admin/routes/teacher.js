@@ -44,4 +44,26 @@ router.post('/get_teacher_list', function (req, res, next) {
     })
 });
 
+//设置老师的有效状态
+router.post('/set_teacher_status', function (req, res, next) {
+    pool.getConnection(function (err, connection) {
+        //建立连接
+        connection.query(sql.update_teacher_status, [req.body.status, req.body.userid],function (err, result) {
+            writeJSON(res, result);
+            connection.release();
+        })
+    })
+});
+
+//添加老师
+router.post('/add_teacher', function (req, res, next) {
+    pool.getConnection(function (err, connection) {
+        //建立连接
+        connection.query(sql.add_teacher, [req.body.name, req.body.phone, req.body.status],function (err, result) {
+            writeJSON(res, []);
+            connection.release();
+        })
+    })
+});
+
 module.exports = router;

@@ -12,6 +12,7 @@ block content
                         option(value="1") 有效
                         option(value="2") 无效
                     button.btn.btn-primary(id='newTeacher' type='button') 新建老师
+                    button.btn.btn-primary(id='setStatus' type='button') 状态设置
 
         div.row
             div.table-responsive.col-md-12
@@ -21,7 +22,52 @@ block content
                         td 选择
                         td 姓名
                         td 联系方式
-                        td 用户类型
                     tbody(id='teacherListTable')
+
+    div.modal.fade(tabindex="-1" role="dialog" id='statusModal')
+        div.modal-dialog(role='document')
+            div.modal-content
+                div.modal-header
+                    h4.modal-title 人员状态
+                div.modal-body
+                    form.form-horizontal(role="form")
+                        div.form-group
+                            label.col-sm-2.control-label(for="status") 状态设置
+                            div.col-sm-10
+                                select.form-control(id="status")
+                                    option(value="1") 有效
+                                    option(value="2") 失效
+
+                div.modal-footer
+                    button.btn.btn-primary(id="statusBtn") 确认
+                    button.btn.btn-default(data-dismiss="modal") 返回
+
+    div.modal.fade(tabindex="-1" role="dialog" id='createMemberModal')
+        div.modal-dialog(role='document')
+            div.modal-content
+                div.modal-header
+                    h4.modal-title 新建老师
+                div.modal-body
+                    form.form-horizontal(role="form")
+                        div.form-group
+                            label.col-sm-2.control-label(for="customerName") 姓名
+                            div.col-sm-10
+                                input.form-control(id="customerName")
+
+                        div.form-group
+                            label.col-sm-2.control-label(for="phone") 联系方式
+                            div.col-sm-10
+                                input.form-control(id="phone" type="number")
+
+                        div.form-group
+                            label.col-sm-2.control-label(for="teacherStatus") 状态
+                            div.col-sm-10
+                                select.form-control(id="teacherStatus")
+                                    option(value="1") 有效
+                                    option(value="2") 失效
+
+                div.modal-footer
+                    button.btn.btn-primary(id="createBtn") 确认添加
+                    button.btn.btn-default(data-dismiss="modal") 返回
 
     script(type='text/javascript', src='/js/teacherList.js')
