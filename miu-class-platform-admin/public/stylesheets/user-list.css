@@ -3,6 +3,6 @@
     color: #ff6633;
 }
 
-#search {
+.form-group button, #lastTime {
     margin-left: 10px;
 }

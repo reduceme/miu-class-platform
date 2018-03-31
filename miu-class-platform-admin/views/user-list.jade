@@ -3,22 +3,28 @@ extends layout
 block content
     meta(name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" )
     link(rel='stylesheet', href='/stylesheets/user-list.css')
+    link(rel='stylesheet', href='/lib/daterangepicker/daterangepicker.css')
     div.container
         div.row
             form.form-inline
                 div.form-group
                     input.form-control(placeholder='请输入会员姓名或卡号' id='searchInfo')
+                    input.form-control(placeholder='失效截止日期' id='lastTime')
                     button.btn.btn-primary(id='search' type='button') 查询
+                    button.btn.btn-primary(id='newMember' type='button') 新建会员
+                    button.btn.btn-primary(id='gift' type='button') 次数赠送
 
         div.row
             div.table-responsive.col-md-12
                 table.table.table-hover
                     thead
                     tr
+                        td 选择
                         td 会员姓名
                         td 联系电话
                         td 办卡教室
-                        td 办卡人员
+                        //
+                            td 办卡人员
                         td 卡种类型
                         td 创建时间
                         td 开卡时间
@@ -28,8 +34,8 @@ block content
                         td 上课详情
                     tbody(id='userListTable')
 
-    div.modal.fade(tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id='classDetailModal')
-        div.modal-dialog.modal-sm(role='document')
+    div.modal.fade(tabindex="-1" role="dialog" id='classDetailModal')
+        div.modal-dialog(role='document')
             div.modal-content
                 div.modal-header
                     h4.modal-title 约课详情
@@ -39,8 +45,65 @@ block content
                         tr
                             td 时间
                             td 课程
+                            td 状态
 
                         tbody(id='classDetailTable')
                 div.modal-footer
                     button.btn.btn-default(data-dismiss="modal") 返回
+
+
+    div.modal.fade(tabindex="-1" role="dialog" id='createMemberModal')
+        div.modal-dialog(role='document')
+            div.modal-content
+                div.modal-header
+                    h4.modal-title 新建会员
+                div.modal-body
+                    form.form-horizontal(role="form")
+                        div.form-group
+                            label.col-sm-2.control-label(for="customerName") 姓名
+                            div.col-sm-10
+                                input.form-control(id="customerName")
+
+                        div.form-group
+                            label.col-sm-2.control-label(for="username" type="number") 联系方式
+                            div.col-sm-10
+                                input.form-control(id="username")
+
+                        div.form-group
+                            label.col-sm-2.control-label(for="cardType") 卡种类型
+                            div.col-sm-10
+                                select.form-control(id="cardType")
+
+                        div.form-group
+                            label.col-sm-2.control-label(for="classRoom") 办卡教室
+                            div.col-sm-10
+                                select.form-control(id="classRoom")
+
+                        div.form-group
+                            label.col-sm-2.control-label(for="saler") 售卡人员
+                            div.col-sm-10
+                                select.form-control(id="saler")
+                div.modal-footer
+                    button.btn.btn-primary(id="createBtn") 确认发卡
+                    button.btn.btn-default(data-dismiss="modal") 返回
+
+
+
+    div.modal.fade(tabindex="-1" role="dialog" id='giftModal')
+        div.modal-dialog(role='document')
+            div.modal-content
+                div.modal-header
+                    h4.modal-title 约课详情
+                div.modal-body
+                    form.form-horizontal(role="form")
+                        div.form-group
+                            label.col-sm-2.control-label(for="customerName") 赠送次数
+                            div.col-sm-10
+                                input.form-control(id="giftNumber" type="number")
+                div.modal-footer
+                    button.btn.btn-primary(id="giftBtn") 确认赠送
+                    button.btn.btn-default(data-dismiss="modal") 返回
+
+    script(type='text/javascript', src='/lib/daterangepicker/moment.js')
+    script(type='text/javascript', src='/lib/daterangepicker/daterangepicker.js')
     script(type='text/javascript', src='/js/userList.js')
