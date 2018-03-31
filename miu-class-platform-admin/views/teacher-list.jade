@@ -2,5 +2,26 @@ extends layout
 
 block content
     meta(name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" )
+    link(rel='stylesheet', href='/stylesheets/teacher-list.css')
 
-    script(type='text/javascript', src='/js/teacher-list.js')
+    div.container
+        div.row
+            form.form-inline
+                div.form-group
+                    select.form-control(id='searchInfo')
+                        option(value="1") 有效
+                        option(value="2") 无效
+                    button.btn.btn-primary(id='newTeacher' type='button') 新建老师
+
+        div.row
+            div.table-responsive.col-md-12
+                table.table.table-hover
+                    thead
+                    tr
+                        td 选择
+                        td 姓名
+                        td 联系方式
+                        td 用户类型
+                    tbody(id='teacherListTable')
+
+    script(type='text/javascript', src='/js/teacherList.js')

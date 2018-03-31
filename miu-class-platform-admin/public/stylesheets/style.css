@@ -68,6 +68,7 @@
 .container {
     padding-top: 100px;
     margin-left: 250px;
+    min-width: 1000px;
 }
 
 td {
@@ -76,4 +77,8 @@ td {
 
 .form-inline {
     margin-bottom: 35px;
+}
+
+.form-inline .form-control {
+    width: 180px;
 }

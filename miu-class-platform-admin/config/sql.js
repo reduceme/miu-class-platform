@@ -20,7 +20,9 @@ var sql = {
     //赠送次数
     gift_count: 'insert into gift_member_number (`userid`, `gift_count`, `gift_time`) values (?, ?, ?)',
     //更新会员的剩余次数
-    update_last_count: 'update user_info set `lastCount` = `lastCount` + ? where userid = ?'
+    update_last_count: 'update user_info set `lastCount` = `lastCount` + ? where userid = ?',
+    //教师管理界面-获取教师列表
+    get_teacher_list_for_manage: 'select teacher_id, teacher_name, teacher_leave, phone from teacher_list where `teacher_status` = ?'
 };
 
 module.exports = sql;

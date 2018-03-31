@@ -17,7 +17,7 @@ router.get('/teacher-list', function (req, res, next) {
     if (!req.cookies.user) {
         return res.render('index', {title: '登录'})
     }
-    res.render('/teacher-list', {title: '教师列表'});
+    res.render('teacher-list', {title: '教师列表'});
 });
 
 module.exports = router;
