@@ -4,12 +4,12 @@ var sql = {
     //初始化开卡时间和过期时间
     init_open_time_and_last_time: 'update user_info set `openTime` = ?, `lastTime` = ? where `userid` = ?',
     //查询卡种信息
-    card_type: 'select cardTypeId,cardValidity from card_type_info',
+    card_type: 'select cardTypeId,cardValidity,card_limit from card_type_info',
     card_name: 'select cardTypeId,cardName from card_type_info',
     //查询所有教室
     classRoom: 'select * from class_room',
     //查询某个教室某一天的课表
-    timeTable: 'select * from timetable where `roomId` = ? and `week` = ? and status = "true"',
+    timeTable: 'select * from timetable where `roomId` = ? and `week` = ? and status = "true" order by time asc',
     //查询每节课已经预约了的人数
     get_reserved_count: 'select * from user_class_info where `time` = ? and `classId` in (?)',
     //查询用户的卡是否有效

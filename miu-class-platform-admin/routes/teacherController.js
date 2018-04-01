@@ -37,7 +37,7 @@ router.get('/', function (req, res, next) {
 router.post('/get_teacher_list', function (req, res, next) {
     pool.getConnection(function (err, connection) {
         //建立连接
-        connection.query(sql.get_teacher_list_for_manage, [req.body.status],function (err, result) {
+        connection.query(sql.get_teacher_list_for_manage, [req.body.status], function (err, result) {
             writeJSON(res, result);
             connection.release();
         })
@@ -48,8 +48,12 @@ router.post('/get_teacher_list', function (req, res, next) {
 router.post('/set_teacher_status', function (req, res, next) {
     pool.getConnection(function (err, connection) {
         //建立连接
-        connection.query(sql.update_teacher_status, [req.body.status, req.body.userid],function (err, result) {
-            writeJSON(res, result);
+        connection.query(sql.update_teacher_status, [req.body.status, req.body.userid], function (err, result) {
+            if (result.protocol41) {
+                writeJSON(res, result.protocol41);
+            }else {
+                writeJSON(res)
+            }
             connection.release();
         })
     })
@@ -59,8 +63,12 @@ router.post('/set_teacher_status', function (req, res, next) {
 router.post('/add_teacher', function (req, res, next) {
     pool.getConnection(function (err, connection) {
         //建立连接
-        connection.query(sql.add_teacher, [req.body.name, req.body.phone, req.body.status],function (err, result) {
-            writeJSON(res, []);
+        connection.query(sql.add_teacher, [req.body.name, req.body.username, req.body.password, req.body.status], function (err, result) {
+            if (result.protocol41) {
+                writeJSON(res, result.protocol41);
+            }else {
+                writeJSON(res)
+            }
             connection.release();
         })
     })

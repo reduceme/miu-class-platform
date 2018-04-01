@@ -20,4 +20,11 @@ router.get('/teacher-list', function (req, res, next) {
     res.render('teacher-list', {title: '教师列表'});
 });
 
+router.get('/card-type', function (req, res, next) {
+    if (!req.cookies.user) {
+        return res.render('index', {title: '登录'})
+    }
+    res.render('card-type', {title: '卡种设置'});
+});
+
 module.exports = router;

@@ -39,7 +39,7 @@ router.post('/login', function (req, res, next) {
         //建立连接
         connection.query(sql.login, [req.body.admin_id], function (err, result) {
             //todo - 密码加密
-            if (result.length >= 1) {
+            if (result.length >= 1 && result[0].admin_status === 1) {
                 //验证密码是否正确
                 if (req.body.password === result[0].password) {
                     res.cookie('user', result[0].admin_id, {
@@ -59,7 +59,6 @@ router.post('/login', function (req, res, next) {
                     };
                     //返回菜单
                     connection.query(sql.get_menu, [leaveList[req.cookies.leave]], function (err, menuResult) {
-                        console.log(menuResult);
                         res.send({
                             code: 0,
                             msg: '',
@@ -180,6 +179,20 @@ router.post('/gift_count', function (req, res, next) {
                 connection.release();
             })
         })
+    })
+});
+
+//会员续卡、升级卡等操作
+router.post('/update_customer_card', function (req, res, next) {
+    pool.getConnection(function (err, connection) {
+
+        connection.query(sql.create_update_card_history, [req.body.userid, req.body.time, req.body.prevType, req.body.nowType, req.body.remark, req.cookies.user], function (err, result) {
+            //建立连接
+            connection.query(sql.update_customer_card, [req.body.nowType, req.body.totalCount, req.body.totalCount, req.body.lastTime, req.body.userid], function (err, result) {
+                writeJSON(res, result);
+                connection.release();
+            })
+        });
     })
 });
 

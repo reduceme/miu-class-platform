@@ -34,16 +34,15 @@
                         '3': '南阳锦城教室'
                     };
                     for (var i = 0; i < userList.length; i++) {
-                        userList[i].cardType = cardType[userList[i].cardType];
+                        // userList[i].cardType = cardType[userList[i].cardType];
                         var item = userList[i];
                         html += '<tr>' +
-                            // '<td><input type="checkbox" class="select-member" value="'+item.userId+'"></td>' +
-                            '<td><input type="radio" name="select-member" class="select-member" value="' + item.userId + '"></td>' +
+                            '<td><input type="radio" name="select-member" class="select-member" data-lasttime="' + (item.lastTime || '') + '" data-card="' + (item.cardType || '') + '" data-name="' + (item.customerName || '') + '" value="' + item.userId + '"></td>' +
                             '<td>' + (item.customerName || '') + '</td>' +
                             '<td>' + (item.username || '') + '</td>' +
                             '<td>' + (classroom[item.createRoom] || '') + '</td>' +
                             // '<td>' + (item.createTeacher || '') + '</td>' +
-                            '<td>' + (item.cardType || '') + '</td>' +
+                            '<td>' + (cardType[item.cardType] || '') + '</td>' +
                             '<td>' + (item.createTime || '') + '</td>' +
                             '<td>' + (item.openTime || '') + '</td>' +
                             '<td>' + (item.lastTime || '') + '</td>' +
@@ -96,7 +95,7 @@
         })
     });
 
-    $('#lastTime').daterangepicker({
+    $('.time').daterangepicker({
         autoclose: true,
         singleDatePicker: true,
         startDate: moment(),
@@ -142,6 +141,9 @@
             case 'gift':
                 giftCount();
                 break;
+            case 'update':
+                updateUserCard();
+                break;
         }
     });
 
@@ -159,11 +161,12 @@
     }
 
     function createMember() {
-        getCardList();
         getClassroom();
         getTeacherList();
         $('#createMemberModal').modal('show');
     }
+
+    getCardList();
 
     //获取卡种列表
     function getCardList() {
@@ -178,6 +181,7 @@
                         html += '<option data-count="' + cardList[i].cardCount + '" value="' + cardList[i].cardTypeId + '">' + cardList[i].cardName + '</option>'
                     }
                     $('#cardType').html(html);
+                    $('#changeCardType').html(html);
                 } else {
                     alert('卡种列表获取失败')
                 }
@@ -341,5 +345,55 @@
                 alert('网络连接失败');
             }
         })
+    });
+
+    //修改
+    function updateUserCard() {
+        var checked = $('.select-member:radio[name="select-member"]:checked');
+        var userid = checked.val();
+        var cardid = checked.attr('data-card');
+        var username = checked.attr('data-name');
+        var lastTime = checked.attr('data-lasttime');
+        if (userid) {
+            $('#changeCardModal').modal('show').attr('data-id', userid).attr('data-last-card-type', cardid);
+            $('#name').val(username + ' ' + (lastTime) + '（失效日期）');
+            $('#changeCardType').val(cardid);
+            $('#changeLastTime').val(lastTime);
+        }
+    }
+
+    $('#changeBtn').on('click', function () {
+        var postData = {
+            userid: $('#changeCardModal').attr('data-id'),
+            time: getSpeTime().fullDate,
+            prevType: $('#changeCardModal').attr('data-last-card-type'),
+            nowType: $('#changeCardType').val(),
+            remark: $('#remark').val(),
+            totalCount: $('#changeCardType option:selected').attr('data-count'),
+            lastTime: $('#changeLastTime').val()
+        };
+
+        if (postData.remark) {
+            $.ajax({
+                method: 'post',
+                url: '/users/update_customer_card',
+                data: postData,
+                success: function (data) {
+                    if (data.code === 0) {
+                        alert('修改成功');
+                        $('#changeCardModal').modal('hide').attr('data-id', '').attr('data-last-card-type', '');
+                        $('.change-info').val('');
+                        getUserList('get', '/users/get_user_list', '');
+                    }else {
+                        alert('修改失败');
+                    }
+                },
+                error: function (err) {
+                    alert('网络连接失败');
+                }
+            })
+        } else {
+            alert('请填写备注信息');
+        }
     })
 })();

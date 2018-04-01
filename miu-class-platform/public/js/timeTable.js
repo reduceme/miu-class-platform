@@ -45,6 +45,7 @@
             });
         }
     }
+
     navTimeTouch();
 
     var weekday = {
@@ -175,7 +176,7 @@
                             '</td>' +
 
                             '<td class="schedule-third-col" data-card-count="' + item.swipeNumber + '">' +
-                            '<button class="class-btn" data-classid="' + item.classId + '">预约</button>' +
+                            '<button class="class-btn" data-class-limit="' + item.classType + '" data-classid="' + item.classId + '">预约</button>' +
                             '</td>' +
                             '</tr>';
 
@@ -284,7 +285,8 @@
         var postData = {
             classId: classId,
             time: time,
-            swipeNumber: swipeNumber
+            swipeNumber: swipeNumber,
+            classLimit: $(this).attr('data-class-limit')
         };
 
         if (!isCancle) {

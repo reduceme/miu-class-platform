@@ -13,9 +13,9 @@
                     for (var i = 0; i < teacherList.length; i++) {
                         var item = teacherList[i];
                         html += '<tr>' +
-                            '<td><input type="radio" name="select-teacher" class="select-teacher" value="' + item.teacher_id + '"></td>' +
+                            '<td><input type="radio" name="select-teacher" class="select-teacher" value="' + item.admin_id + '"></td>' +
                             '<td>' + (item.teacher_name || '') + '</td>' +
-                            '<td>' + (item.phone || '') + '</td>' +
+                            '<td>' + (item.admin_name || '') + '</td>' +
                             '</tr>'
                     }
 
@@ -79,11 +79,19 @@
     }
 
     $('#createBtn').on('click', function () {
+        var username = $('#phone').val();
+        if(username.length !== 11){
+            alert('请输入正确的联系方式');
+            return;
+        }
+
         var item = {
             name: $('#customerName').val(),
-            phone: $('#phone').val(),
+            username: username,
+            password: username.slice(5,11),
             status: $('#teacherStatus').val()
         };
+
 
         $.ajax({
             method: 'post',
@@ -91,7 +99,8 @@
             data: item,
             success: function (data) {
                 if (data.code === 0) {
-
+                    $('#createMemberModal').modal('hide');
+                    $('.teacher-info').val('')
                 }else {
                     alert('添加老师失败');
                 }

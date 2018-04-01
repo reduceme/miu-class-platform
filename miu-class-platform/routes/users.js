@@ -160,7 +160,17 @@ router.post('/user_reservation_class', function (req, res, next) {
         //查询用户是否还有可用次数
         connection.query(sql.select_user_card_valid, [req.cookies.user], function (err, result) {
             lastCount = result[0].lastCount;
-
+            console.log(result[0]);
+            console.log(req.body);
+            if (result[0].cardType !== Number(req.body.classLimit)) {
+                res.send({
+                    code: 1,
+                    msg: '您不能预约该课程。',
+                    data: ''
+                });
+                connection.release();
+                return;
+            }
             //设置开卡日期和过期日期
             if (!result[0].openTime) {
                 connection.query(sql.card_type, function (err, cardResult) {

@@ -9,10 +9,11 @@ block content
             form.form-inline
                 div.form-group
                     input.form-control(placeholder='请输入会员姓名或卡号' id='searchInfo')
-                    input.form-control(placeholder='失效截止日期' id='lastTime')
+                    input.form-control.time(placeholder='失效日期' id='lastTime')
                     button.btn.btn-primary(id='search' type='button') 查询
                     button.btn.btn-primary(id='newMember' type='button') 新建会员
                     button.btn.btn-primary(id='gift' type='button') 次数赠送
+                    button.btn.btn-primary(id='update' type='button') 续卡（卡种更改）
 
         div.row
             div.table-responsive.col-md-12
@@ -23,8 +24,6 @@ block content
                         td 会员姓名
                         td 联系电话
                         td 办卡教室
-                        //
-                            td 办卡人员
                         td 卡种类型
                         td 创建时间
                         td 开卡时间
@@ -50,7 +49,6 @@ block content
                         tbody(id='classDetailTable')
                 div.modal-footer
                     button.btn.btn-default(data-dismiss="modal") 返回
-
 
     div.modal.fade(tabindex="-1" role="dialog" id='createMemberModal')
         div.modal-dialog(role='document')
@@ -87,8 +85,6 @@ block content
                     button.btn.btn-primary(id="createBtn") 确认发卡
                     button.btn.btn-default(data-dismiss="modal") 返回
 
-
-
     div.modal.fade(tabindex="-1" role="dialog" id='giftModal')
         div.modal-dialog(role='document')
             div.modal-content
@@ -102,6 +98,37 @@ block content
                                 input.form-control(id="giftNumber" type="number")
                 div.modal-footer
                     button.btn.btn-primary(id="giftBtn") 确认赠送
+                    button.btn.btn-default(data-dismiss="modal") 返回
+
+    div.modal.fade(tabindex="-1" role="dialog" id='changeCardModal')
+        div.modal-dialog(role='document')
+            div.modal-content
+                div.modal-header
+                    h4.modal-title 修改会员信息
+                div.modal-body
+                    form.form-horizontal(role="form")
+                        div.form-group
+                            label.col-sm-2.control-label(for="name") 会员姓名
+                            div.col-sm-10
+                                input.form-control.change-info(id="name" disabled)
+
+                        div.form-group
+                            label.col-sm-2.control-label(for="changeCardType") 卡种类型
+                            div.col-sm-10
+                                select.form-control(id="changeCardType")
+
+                        div.form-group
+                            label.col-sm-2.control-label(for="changeLastTime") 失效时间
+                            div.col-sm-10
+                                input.form-control.time.change-info(id="changeLastTime")
+
+                        div.form-group
+                            label.col-sm-2.control-label(for="remark") 备注
+                            div.col-sm-10
+                                textarea.form-control.change-info(id="remark" style="resize: none")
+
+                div.modal-footer
+                    button.btn.btn-primary(id="changeBtn") 确认修改
                     button.btn.btn-default(data-dismiss="modal") 返回
 
     script(type='text/javascript', src='/lib/daterangepicker/moment.js')
