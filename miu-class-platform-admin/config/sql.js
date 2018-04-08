@@ -24,7 +24,6 @@ var sql = {
     //教师管理界面-获取教师列表
     get_teacher_list_for_manage: 'select admin_id, teacher_name, admin_name from admin_user_list where `admin_status` = ?',
     //设置老师的有效状态
-    // update_teacher_status: 'update teacher_list set `teacher_status` = ? where teacher_id = ?',
     update_teacher_status: 'update admin_user_list set `admin_status` = ? where admin_id = ?',
     //添加老师
     add_teacher: 'insert into admin_user_list (`teacher_name`, `admin_name`, `password`, `admin_status`, `admin_leave`) values (?, ?, ?, ?, 2)',
@@ -37,7 +36,11 @@ var sql = {
     //添加卡种
     create_card_type: 'insert into card_type_info (`cardName`, `cardCount`, `cardValidity`, `card_limit`) values (?, ?, ?, ?)',
     //修改卡种信息
-    update_card_type: 'update card_type_info set `cardName` = ?, `cardCount` = ?, `cardValidity` = ?, `card_limit` = ? where `cardTypeId` = ?'
+    update_card_type: 'update card_type_info set `cardName` = ?, `cardCount` = ?, `cardValidity` = ?, `card_limit` = ? where `cardTypeId` = ?',
+    //查询课程表
+    get_timetable: 'select classId, time, teacher, week, maxCount, minCount, classname, swipeNumber from timetable where `roomId` = ? and `status` = "true" order by week asc',
+    //获取指定课程的信息
+    get_special_class: ''
 };
 
 module.exports = sql;

@@ -9,6 +9,7 @@ var index = require('./routes/index');
 var users = require('./routes/usersController');
 var teacher = require('./routes/teacherController');
 var cardType = require('./routes/cardTypeController');
+var timetable = require('./routes/timeTableController');
 
 var app = express();
 
@@ -28,6 +29,7 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/teacher', teacher);
 app.use('/card_type', cardType);
+app.use('/timetable', timetable);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

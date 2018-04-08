@@ -27,4 +27,11 @@ router.get('/card-type', function (req, res, next) {
     res.render('card-type', {title: '卡种设置'});
 });
 
+router.get('/timetable', function (req, res, next) {
+    if (!req.cookies.user) {
+        return res.render('index', {title: '登录'})
+    }
+    res.render('timetable', {title: '课表设置'});
+});
+
 module.exports = router;

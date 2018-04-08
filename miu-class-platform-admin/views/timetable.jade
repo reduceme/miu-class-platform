@@ -1,0 +1,62 @@
+extends layout
+
+block content
+    meta(name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" )
+    link(rel='stylesheet', href='/stylesheets/timetable.css')
+
+    div.container
+        div.row
+            form.form-inline
+                div.form-group
+                    select.form-control.has-margin(id="roomSelect" style="width: auto")
+                    button.btn.btn-primary.has-margin(id='searchClass' type='button') 查询
+                    button.btn.btn-primary.has-margin(id='changeClass' type='button') 修改课程
+                    button.btn.btn-primary.has-margin(id='deleteClass' type='button') 删除课程
+
+
+        div.row
+            div.table-responsive.col-md-12
+                table.table.table-hover
+                    thead
+                        tr
+                            td.class-title <h3>周一</h3>
+                            td.class-title <h3>周二</h3>
+                            td.class-title <h3>周三</h3>
+                            td.class-title <h3>周四</h3>
+                            td.class-title <h3>周五</h3>
+                            td.class-title <h3>周六</h3>
+
+                    tbody(id='timetableList')
+                        tr.morning-class
+                            td.monday-class.class-info
+                            td.tuesday-class.class-info
+                            td.wednesday-class.class-info
+                            td.thurday-class.class-info
+                            td.friday-class.class-info
+                            td.saturday-class.class-info
+
+                        tr.afternoon-class
+                            td.monday-class.class-info
+                            td.tuesday-class.class-info
+                            td.wednesday-class.class-info
+                            td.thurday-class.class-info
+                            td.friday-class.class-info
+                            td.saturday-class.class-info
+
+                        tr.evening-first-class
+                            td.monday-class.class-info
+                            td.tuesday-class.class-info
+                            td.wednesday-class.class-info
+                            td.thurday-class.class-info
+                            td.friday-class.class-info
+                            td.saturday-class.class-info
+
+                        tr.evening-second-class
+                            td.monday-class.class-info
+                            td.tuesday-class.class-info
+                            td.wednesday-class.class-info
+                            td.thurday-class.class-info
+                            td.friday-class.class-info
+                            td.saturday-class.class-info
+
+    script(type='text/javascript', src='/js/timetable.js')
