@@ -59,8 +59,8 @@ router.get('/get_classroom', function (req, res, next) {
 router.post('/get_special_class', function (req, res, next) {
     pool.getConnection(function (err, connection) {
         //建立连接
-        connection.query(sql.get_special_class, [req.body.roomId], function (err, result) {
-            writeJSON(res, result);
+        connection.query(sql.get_special_class, [req.body.classId], function (err, result) {
+            writeJSON(res, result[0]);
             connection.release();
         })
     })

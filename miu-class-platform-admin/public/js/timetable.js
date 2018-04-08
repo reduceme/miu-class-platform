@@ -150,13 +150,13 @@
         if (classId) {
             $.ajax({
                 method: 'post',
-                url: '',
+                url: '/timetable/get_special_class',
                 data: {
                     classId: classId
                 },
                 success: function (data) {
                     if (data.code === 0) {
-
+                        console.log(data.data);
                     }
                 },
                 error: function (err) {

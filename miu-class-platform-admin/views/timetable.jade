@@ -59,4 +59,41 @@ block content
                             td.friday-class.class-info
                             td.saturday-class.class-info
 
+        div.modal.fade(tabindex="-1" role="dialog" id='classInfoModal')
+            div.modal-dialog(role='document')
+                div.modal-content
+                    div.modal-header
+                        h4.modal-title 修改课程信息
+                    div.modal-body
+                        form.form-horizontal(role="form")
+                            div.form-group
+                                label.col-sm-2.control-label(for="classname") 课程名称
+                                div.col-sm-10
+                                    input.form-control(id="classname")
+
+                            div.form-group
+                                label.col-sm-2.control-label(for="teacher") 上课老师
+                                div.col-sm-10
+                                    input.form-control(id="teacher")
+
+                            div.form-group
+                                label.col-sm-2.control-label(for="week") 周次
+                                div.col-sm-10
+                                    select.form-control(id="week")
+                                        option(value="1") 周一
+                                        option(value="2") 周二
+                                        option(value="3") 周三
+                                        option(value="4") 周四
+                                        option(value="5") 周五
+                                        option(value="6") 周六
+
+                            div.form-group
+                                label.col-sm-2.control-label(for="time") 时间
+                                div.col-sm-10
+                                    input.form-control(id="time")
+
+                    div.modal-footer
+                        button.btn.btn-primary(id="createBtn")
+                        button.btn.btn-default(data-dismiss="modal") 返回
+
     script(type='text/javascript', src='/js/timetable.js')

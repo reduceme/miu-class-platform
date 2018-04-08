@@ -40,7 +40,7 @@ var sql = {
     //查询课程表
     get_timetable: 'select classId, time, teacher, week, maxCount, minCount, classname, swipeNumber from timetable where `roomId` = ? and `status` = "true" order by week asc',
     //获取指定课程的信息
-    get_special_class: ''
+    get_special_class: 'select time, teacher, week, maxCount, minCount, classname, swipeNumber from timetable where `classId` = ?'
 };
 
 module.exports = sql;
