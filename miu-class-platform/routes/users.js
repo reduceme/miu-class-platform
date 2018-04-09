@@ -133,11 +133,12 @@ router.post('/get_reserved_count', function (req, res, next) {
                 data[i] = {};
                 var count = 0;
                 var key = req.body.classIdList[i];
-                for (var j = i; j < result.length; j++) {
+                // for (var j = i; j < result.length; j++) {
+                for (var j = 0; j < result.length; j++) {
                     if (result[j].classId === key && result[j].isEffective === 1) {
                         count++;
                     }
-                    if (result[j].classId === key && result[j].isEffective === 1 && Number(req.cookies.user) === Number(result[j].userId)) {
+                    if (result[j].classId === key && result[j].isEffective === 1 && parseInt(req.cookies.user) === parseInt(result[j].userId)) {
                         data[i].hasReservation = 1;
                     }
                 }
@@ -160,8 +161,6 @@ router.post('/user_reservation_class', function (req, res, next) {
         //查询用户是否还有可用次数
         connection.query(sql.select_user_card_valid, [req.cookies.user], function (err, result) {
             lastCount = result[0].lastCount;
-            console.log(result[0]);
-            console.log(req.body);
             if (result[0].cardType !== Number(req.body.classLimit)) {
                 res.send({
                     code: 1,
@@ -204,7 +203,7 @@ router.post('/user_reservation_class', function (req, res, next) {
 
                 //扣除相应次数
                 connection.query(sql.update_last_count, [classSwipeNum, req.cookies.user], function (err, reserv_result) {
-                    writeJSON(res, []);
+                    writeJSON(res, reserv_result.protocol41);
                     connection.release();
                 });
             } else {
@@ -232,22 +231,108 @@ router.post('/cancle_class', function (req, res, next) {
     })
 });
 
+//对象去重
+function objDelRepeat(data){
+    var tmp = [];
+    data.forEach(function(item){
+        tmp[JSON.stringify(item)] = item;
+    });
+    data = Object.keys(tmp).map(function(item){
+        return JSON.parse(item);
+    });
+
+    return data;
+}
+
+//定时任务
+function setTimeFn() {
+    pool.getConnection(function (err, connection) {
+        connection.query(sql.get_class_time, function (err, result) {
+            var composite = [];
+            for (var i = 0; i < result.length; i++) {
+                var timeArr = result[i].time.split(':');
+                var hour = parseInt(timeArr[0] - 1);
+                if (hour < 0) {
+                    hour = 23;
+                }
+                composite.push({
+                    h: [hour],
+                    m: [parseInt(timeArr[1])]
+                })
+            }
+            composite = objDelRepeat(composite);
+
+            // console.log(composite);
+            var sched = {
+                schedules: composite
+            };
+
+            later.date.localTime();
+
+            var t = later.setInterval(function () {
+                var time = getTime(new Date());
+                var classid = [];
+                var minCount = 0;
+                //查询指定时间的课程的约课人数，如果不满足开课要求，则删除
+                pool.getConnection(function (err, connection) {
+                    var swipeNumber = 0;
+                    var count = 0;
+                    var userIdList = [];
+
+                    //查询课程的classId
+                    connection.query(sql.select_classinfo_for_reservation, [time.week, time.complate], function (err, result) {
+                        if (result[0].classId) {
+                            classid.push(result[0].classId);
+                            minCount = result[0].minCount;
+                            //课程扣除的次数
+                            swipeNumber = result[0].swipeNumber
+                        } else {
+                            return
+                        }
+
+                        //查询约课人数
+                        connection.query(sql.get_reserved_count, [time.time, classid], function (err, result) {
+                            //约课人数
+                            count = result.length;
+                            for (var i = 0; i < result.length; i++) {
+                                userIdList.push(result[i].userId);
+                            }
+                            if (count < minCount) {
+                                //删除已经预约了的信息
+                                connection.query(sql.delete_min_count, [classid, time.complate], function (err, result) {
+                                    //恢复已经扣除的次数
+                                    connection.query(sql.update_last_count, [-swipeNumber, userIdList], function (err, result) {
+                                    });
+                                });
+                            }
+                            connection.release();
+                        });
+                    });
+                })
+            }, sched);
+        });
+    })
+}
+setTimeFn();
+
+setInterval(setTimeFn, 4 * 60 * 60 * 1000);
+
 //定时任务，每天的某个时间查询约课人数，判断是否约课成功
-var composite = [
+/*var composite = [
     {h: [9], m: [0]},
     {h: [14], m: [0]},
     {h: [17], m: [20]},
     {h: [18], m: [30]}
-];
+];*/
 
-var sched = {
+/*var sched = {
     schedules: composite
-};
+};*/
 
-later.date.localTime();
+// later.date.localTime();
 
 //定时任务
-var t = later.setInterval(function () {
+/*var t = later.setInterval(function () {
     var time = getTime(new Date());
     var classid = [];
     var minCount = 0;
@@ -287,6 +372,6 @@ var t = later.setInterval(function () {
             });
         });
     })
-}, sched);
+}, sched);*/
 
 module.exports = router;

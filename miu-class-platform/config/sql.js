@@ -33,7 +33,9 @@ var sql = {
     //上课详情
     class_record: 'select classId, time, isEffective from user_class_info where `userId` = ? order by time desc',
     //根据classId查询课表
-    get_time_table_by_classid: 'select classId, time, classname from timetable'
+    get_time_table_by_classid: 'select classId, time, classname from timetable',
+    //获取课程的时间
+    get_class_time: 'select time from timetable'
 };
 
 module.exports = sql;

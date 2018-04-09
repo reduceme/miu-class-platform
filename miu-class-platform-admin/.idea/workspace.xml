@@ -31,11 +31,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user-list.jade" pinned="false" current-in-tab="true">
+      <file leaf-file-name="user-list.jade" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/user-list.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="15" column="35" lean-forward="true" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
+            <state relative-caret-position="506">
+              <caret line="32" column="31" lean-forward="true" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -44,7 +44,7 @@
       <file leaf-file-name="reserRecord.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/reserRecord.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
+            <state relative-caret-position="541">
               <caret line="62" column="51" lean-forward="false" selection-start-line="62" selection-start-column="51" selection-end-line="62" selection-end-column="51" />
               <folding>
                 <element signature="e#61#212#0" expanded="false" />
@@ -64,10 +64,20 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="timeTableController.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/routes/timeTableController.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="643">
+              <caret line="101" column="47" lean-forward="false" selection-start-line="101" selection-start-column="37" selection-end-line="101" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="reserRecordController.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/reserRecordController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="673">
+            <state relative-caret-position="607">
               <caret line="50" column="51" lean-forward="false" selection-start-line="50" selection-start-column="51" selection-end-line="50" selection-end-column="51" />
               <folding />
             </state>
@@ -537,12 +547,12 @@
       <workItem from="1523244605669" duration="79000" />
       <workItem from="1523244891745" duration="8492000" />
       <workItem from="1523260392527" duration="440000" />
-      <workItem from="1523260922447" duration="1598000" />
+      <workItem from="1523260922447" duration="2854000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="264452000" />
+    <option name="totallyTimeSpent" value="265708000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -725,13 +735,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/timeTableController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="91" column="13" lean-forward="true" selection-start-line="91" selection-start-column="13" selection-end-line="91" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/teacherList.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="775">
@@ -850,30 +853,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/reserRecordController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="673">
-          <caret line="50" column="51" lean-forward="false" selection-start-line="50" selection-start-column="51" selection-end-line="50" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/reser-record.jade">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="528">
           <caret line="24" column="43" lean-forward="false" selection-start-line="24" selection-start-column="30" selection-end-line="24" selection-end-column="43" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/reserRecord.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="62" column="51" lean-forward="false" selection-start-line="62" selection-start-column="51" selection-end-line="62" selection-end-column="51" />
-          <folding>
-            <element signature="e#61#212#0" expanded="false" />
-            <element signature="e#245#1087#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -887,8 +871,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/user-list.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="15" column="35" lean-forward="true" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
+        <state relative-caret-position="506">
+          <caret line="32" column="31" lean-forward="true" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/reserRecord.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="541">
+          <caret line="62" column="51" lean-forward="false" selection-start-line="62" selection-start-column="51" selection-end-line="62" selection-end-column="51" />
+          <folding>
+            <element signature="e#61#212#0" expanded="false" />
+            <element signature="e#245#1087#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/reserRecordController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="607">
+          <caret line="50" column="51" lean-forward="false" selection-start-line="50" selection-start-column="51" selection-end-line="50" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/timeTableController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="643">
+          <caret line="101" column="47" lean-forward="false" selection-start-line="101" selection-start-column="37" selection-end-line="101" selection-end-column="47" />
           <folding />
         </state>
       </provider>
