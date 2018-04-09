@@ -10,7 +10,6 @@
             success: function (data) {
                 if (data.code === 0) {
                     sessionStorage.setItem("menuList", JSON.stringify(data.data));
-
                     window.location.href = '/user-list';
                 } else {
                     $('#error').modal('show');

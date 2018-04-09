@@ -20,10 +20,6 @@
 
     getMenuList();
 
-    function addActive() {
-
-    }
-
     $('.menu-href').each(function () {
         //parent
         var href = $(this).attr('href').toLocaleLowerCase();

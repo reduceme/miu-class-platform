@@ -34,4 +34,11 @@ router.get('/timetable', function (req, res, next) {
     res.render('timetable', {title: '课表设置'});
 });
 
+router.get('/reser-record', function (req, res, next) {
+    if (!req.cookies.user) {
+        return res.render('index', {title: '登录'})
+    }
+    res.render('reser-record', {title: '预约信息'});
+});
+
 module.exports = router;

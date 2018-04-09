@@ -59,6 +59,7 @@ router.post('/login', function (req, res, next) {
                     };
                     //返回菜单
                     connection.query(sql.get_menu, [leaveList[req.cookies.leave]], function (err, menuResult) {
+                        console.log(menuResult);
                         res.send({
                             code: 0,
                             msg: '',

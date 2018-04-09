@@ -1,0 +1,29 @@
+extends layout
+
+block content
+    meta(name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" )
+    link(rel='stylesheet', href='/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css')
+    link(rel='stylesheet', href='/stylesheets/timetable.css')
+
+    div.container
+        div.row
+            form.form-inline
+                div.form-group
+                    input.form-control.has-margin(id="time" placeholder="课程时间")
+                    select.form-control.has-margin(id="classSelect")
+                    button.btn.btn-primary(id='addCard' type='button') 查询
+
+        div.row
+            div.table-responsive.col-md-12
+                table.table.table-hover
+                    thead
+                    tr
+                        td 会员姓名
+                        td 课程名称
+                        td 时间
+                        td 约课状态
+                    tbody(id='userListTable')
+
+    script(type='text/javascript', src='/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js')
+    script(type='text/javascript', src='/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.zh-CN.js')
+    script(type='text/javascript', src='/js/reserRecord.js')

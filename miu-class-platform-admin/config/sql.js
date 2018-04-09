@@ -44,7 +44,11 @@ var sql = {
     //新增课程
     insert_new_class: 'insert into timetable (`roomId`, `time`, `teacher`, `week`, `maxCount`, `minCount`, `classname`, `swipeNumber`, `classType`, `status`) values (?, ?, ?, ?, ?, ?, ?, ?, ?, "true")',
     //删除课程
-    delete_class_info: 'update timetable set `status` = "false" where `classId` = ?'
+    delete_class_info: 'update timetable set `status` = "false" where `classId` = ?',
+    //预约信息获取某一天的课程
+    get_reser_record_class: 'select classname, classId from timetable where `week` = ? and `status` = "true"',
+    //获取某节课的约课详情
+    get_user_class_info: 'select u_i.customerName, t_t.time, t_t.classname, u_c_i.isEffective from user_info u_i,timetable t_t,user_class_info u_c_i where u_c_i.time = ? and u_c_i.classId = ? and u_i.userid = u_c_i.userId and u_c_i.classId=t_t.classId order by u_c_i.isEffective asc'
 };
 
 module.exports = sql;

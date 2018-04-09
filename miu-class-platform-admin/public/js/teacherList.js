@@ -92,7 +92,6 @@
             status: $('#teacherStatus').val()
         };
 
-
         $.ajax({
             method: 'post',
             url: '/teacher/add_teacher',
@@ -100,6 +99,7 @@
             success: function (data) {
                 if (data.code === 0) {
                     $('#createMemberModal').modal('hide');
+                    getTeacherList();
                     $('.teacher-info').val('')
                 }else {
                     alert('添加老师失败');
