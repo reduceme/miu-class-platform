@@ -15,12 +15,13 @@
     function createTimetableContainer() {
         var html = '<span class="class-name"></span><br/>' +
             '<span class="class-teacher"></span><br/>' +
+            '<span class="class-time"></span><br/>' +
             '<span class="class-max-student"></span><br/>' +
             '<span class="class-min-student"></span><br/>' +
-            '<span class="class-swipe"></span><br/>' +
-            '<span class="class-time"></span>';
+            '<span class="class-swipe"></span><br/>';
         $('.class-info').append(html);
     }
+
     //对象分组
     function objGroup(arr) {
         var map = {};
@@ -187,7 +188,7 @@
 
     getTeacherList();
 
-    $('#timetableList').on('click', '.class-info',function () {
+    $('#timetableList').on('click', '.class-info', function () {
         $('#timetableList tr .class-info').removeClass('active');
         $(this).addClass('active');
     });

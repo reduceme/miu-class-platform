@@ -1,7 +1,7 @@
 /*
- Navicat Premium Data Transfer
+ Navicat MySQL Data Transfer
 
- Source Server         : miuyoga_class_platform
+ Source Server         : localhost_3306
  Source Server Type    : MySQL
  Source Server Version : 50717
  Source Host           : localhost:3306
@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : 65001
 
- Date: 01/04/2018 15:18:01
+ Date: 09/04/2018 17:29:43
 */
 
 SET NAMES utf8mb4;
@@ -29,15 +29,14 @@ CREATE TABLE `admin_user_list`  (
   `admin_leave` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '权限等级',
   `admin_status` int(32) NOT NULL COMMENT '状态码：1.有效 2.无效',
   PRIMARY KEY (`admin_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of admin_user_list
 -- ----------------------------
 INSERT INTO `admin_user_list` VALUES (1, '18030850749', '戴瑞', '123456', '1', 1);
 INSERT INTO `admin_user_list` VALUES (2, '15902827532', '钟妙', '827532', '2', 1);
-INSERT INTO `admin_user_list` VALUES (3, '18030851243', '叶洪英', '851243', '2', 2);
-INSERT INTO `admin_user_list` VALUES (4, '13699097908', '戴生林', '097908', '2', 2);
+INSERT INTO `admin_user_list` VALUES (5, '13699413149', '张露丹', '413149', '2', 1);
 
 -- ----------------------------
 -- Table structure for card_type_info
@@ -71,7 +70,7 @@ CREATE TABLE `class_room`  (
   `roomId` int(64) NOT NULL AUTO_INCREMENT,
   `classroom` varchar(512) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`roomId`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 30000 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of class_room
@@ -106,31 +105,16 @@ CREATE TABLE `menu_list`  (
   `menu_leave` int(255) NOT NULL COMMENT '菜单等级',
   `menu_icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'icon',
   PRIMARY KEY (`menu_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of menu_list
 -- ----------------------------
-INSERT INTO `menu_list` VALUES (1, '会员管理', '/user-list', 2, 'fa fa-database');
-INSERT INTO `menu_list` VALUES (2, '教师管理', '/teacher-list', 1, 'fa fa-database');
-INSERT INTO `menu_list` VALUES (3, '卡种设置', '/card-type', 1, 'fa fa-database');
-
--- ----------------------------
--- Table structure for teacher_list
--- ----------------------------
-DROP TABLE IF EXISTS `teacher_list`;
-CREATE TABLE `teacher_list`  (
-  `teacher_id` int(64) NOT NULL AUTO_INCREMENT COMMENT '教师id',
-  `teacher_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '教师姓名',
-  `teacher_status` int(64) NOT NULL COMMENT '在职状态：1.有效   2.无效',
-  `phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '联系方式',
-  PRIMARY KEY (`teacher_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of teacher_list
--- ----------------------------
-INSERT INTO `teacher_list` VALUES (1, '妙', 1, '15902827532');
+INSERT INTO `menu_list` VALUES (1, '会员管理', '/user-list', 2, 'glyphicon glyphicon-user');
+INSERT INTO `menu_list` VALUES (2, '教师管理', '/teacher-list', 1, 'glyphicon glyphicon-lock');
+INSERT INTO `menu_list` VALUES (3, '卡种设置', '/card-type', 1, 'glyphicon glyphicon-list-alt');
+INSERT INTO `menu_list` VALUES (4, '课表设置', '/timetable', 1, 'glyphicon glyphicon-book');
+INSERT INTO `menu_list` VALUES (5, '约课信息', '/reser-record', 1, 'glyphicon glyphicon-road');
 
 -- ----------------------------
 -- Table structure for timetable
@@ -138,20 +122,20 @@ INSERT INTO `teacher_list` VALUES (1, '妙', 1, '15902827532');
 DROP TABLE IF EXISTS `timetable`;
 CREATE TABLE `timetable`  (
   `classId` int(11) NOT NULL AUTO_INCREMENT,
-  `roomId` int(11) NOT NULL,
-  `time` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `teacher` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `week` int(11) NOT NULL,
-  `maxCount` int(11) NOT NULL,
-  `minCount` int(11) NOT NULL,
-  `classname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `swipeNumber` int(64) NOT NULL,
-  `classType` int(64) NOT NULL,
+  `roomId` int(11) NOT NULL COMMENT '上课教室',
+  `time` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '时间',
+  `teacher` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '上课老师',
+  `week` int(11) NOT NULL COMMENT '星期几',
+  `maxCount` int(11) NOT NULL COMMENT '最多人数',
+  `minCount` int(11) NOT NULL COMMENT '最少人数',
+  `classname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '课程名称',
+  `status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '课程状态',
+  `swipeNumber` int(64) NOT NULL COMMENT '刷卡次数',
+  `classType` int(64) NOT NULL COMMENT '课程类型：1.次数课程 2.孕妇课程 3.产后课程',
   PRIMARY KEY (`classId`) USING BTREE,
   INDEX `for_roomid`(`roomId`) USING BTREE,
   CONSTRAINT `for_roomid` FOREIGN KEY (`roomId`) REFERENCES `class_room` (`roomId`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 20005 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 20013 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of timetable
@@ -164,9 +148,18 @@ INSERT INTO `timetable` VALUES (5, 1, '10:05', '毛毛老师', 5, 5, 2, '入门�
 INSERT INTO `timetable` VALUES (6, 1, '10:06', '毛毛老师', 6, 5, 2, '流瑜伽', 'true', 2, 1);
 INSERT INTO `timetable` VALUES (8, 1, '19:30', '蛋蛋老师', 3, 5, 2, '拜日式', 'true', 2, 1);
 INSERT INTO `timetable` VALUES (20000, 1, '15:50', '钟', 5, 5, 2, '球', 'true', 2, 1);
-INSERT INTO `timetable` VALUES (20001, 1, '18:55', 'd', 5, 5, 2, 'd', 'true', 2, 1);
-INSERT INTO `timetable` VALUES (20002, 1, '15:00', 'd', 2, 5, 2, 'da', 'true', 2, 1);
-INSERT INTO `timetable` VALUES (20003, 1, '19:20', 'test', 2, 5, 2, 'dd', 'true', 2, 1);
+INSERT INTO `timetable` VALUES (20001, 1, '18:55', 'd', 5, 5, 2, 'd', 'false', 2, 1);
+INSERT INTO `timetable` VALUES (20002, 1, '19:20', 'd', 2, 5, 2, 'da', 'false', 2, 1);
+INSERT INTO `timetable` VALUES (20003, 1, '18:20', 'test', 2, 5, 2, 'dd', 'false', 2, 1);
+INSERT INTO `timetable` VALUES (20004, 1, '10:00', '钟妙', 1, 7, 2, '空中瑜伽', 'true', 2, 1);
+INSERT INTO `timetable` VALUES (20005, 1, '15:00', '钟妙', 1, 5, 1, '产后修复', 'false', 1, 3);
+INSERT INTO `timetable` VALUES (20006, 1, '15:00', '钟妙', 1, 5, 1, '产后修复', 'false', 1, 3);
+INSERT INTO `timetable` VALUES (20007, 1, '15:00', '钟妙', 1, 5, 1, '产后修复', 'false', 1, 3);
+INSERT INTO `timetable` VALUES (20008, 1, '18:00', '钟妙', 1, 12, 2, '1', 'false', 2, 1);
+INSERT INTO `timetable` VALUES (20009, 1, '00:00', '钟妙', 1, 2, 2, '2', 'false', 2, 1);
+INSERT INTO `timetable` VALUES (20010, 1, '00:00', '钟妙', 1, 2, 2, '2', 'false', 2, 1);
+INSERT INTO `timetable` VALUES (20011, 1, '17:50', '钟妙', 7, 5, 2, '星期天的课程', 'true', 1, 1);
+INSERT INTO `timetable` VALUES (20012, 1, '21:00', '张露丹', 1, 5, 2, '约课测试', 'true', 2, 1);
 
 -- ----------------------------
 -- Table structure for update_card_type
@@ -190,7 +183,7 @@ CREATE TABLE `user_class_info`  (
   `classId` int(11) NOT NULL,
   `time` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `cardCount` int(11) NOT NULL,
-  `isEffective` int(11) NOT NULL COMMENT '1：开课；2：未开课；3：用户取消课程；4：不满足开课条件，系统自动取消课程'
+  `isEffective` int(11) NOT NULL COMMENT '1：开课；2：不满足开课条件，系统自动取消课程；3：用户取消课程'
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -200,6 +193,11 @@ INSERT INTO `user_class_info` VALUES (10007, 4, '2018-03-29', 2, 3);
 INSERT INTO `user_class_info` VALUES (10011, 1, '2018-04-02', 2, 1);
 INSERT INTO `user_class_info` VALUES (10007, 1, '2018-04-02', 2, 3);
 INSERT INTO `user_class_info` VALUES (10007, 2, '2018-04-03', 1, 3);
+INSERT INTO `user_class_info` VALUES (10007, 2, '2018-04-10', 1, 3);
+INSERT INTO `user_class_info` VALUES (10007, 3, '2018-04-11', 2, 3);
+INSERT INTO `user_class_info` VALUES (10007, 8, '2018-04-11', 2, 3);
+INSERT INTO `user_class_info` VALUES (10007, 20012, '2018-04-09', 2, 3);
+INSERT INTO `user_class_info` VALUES (10007, 4, '2018-04-12', 2, 3);
 
 -- ----------------------------
 -- Table structure for user_info
@@ -221,12 +219,12 @@ CREATE TABLE `user_info`  (
   PRIMARY KEY (`userid`) USING BTREE,
   INDEX `for_total_count`(`totalCount`) USING BTREE,
   INDEX `for_card_type`(`cardType`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 10013 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 10012 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_info
 -- ----------------------------
-INSERT INTO `user_info` VALUES ('18030850749', '123456', '戴瑞', 10007, 1, 500, 412, '2018-04-14', '2018-03-22', '2018-03-20', '1', '1');
+INSERT INTO `user_info` VALUES ('18030850749', '123456', '戴瑞', 10007, 1, 500, 398, '2018-04-14', '2018-03-22', '2018-03-20', '1', '1');
 INSERT INTO `user_info` VALUES ('15902827532', '827532', '钟妙', 10010, 1, 500, 500, NULL, NULL, '2018-03-31', '1', '1');
 INSERT INTO `user_info` VALUES ('18030851243', '851243', '叶洪英', 10011, 1, 500, 498, '2018-09-30', '2018-03-31', '2018-03-31', '1', '1');
 

@@ -21,75 +21,36 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="reser-record.jade" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/reser-record.jade">
+      <file leaf-file-name="layout.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/layout.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="24" column="43" lean-forward="false" selection-start-line="24" selection-start-column="30" selection-end-line="24" selection-end-column="43" />
+            <state relative-caret-position="393">
+              <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user-list.jade" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/user-list.jade">
+      <file leaf-file-name="layout.jade" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/layout.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="506">
-              <caret line="32" column="31" lean-forward="true" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
+            <state relative-caret-position="462">
+              <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="reserRecord.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/reserRecord.js">
+      <file leaf-file-name="timetable.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/js/timetable.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="541">
-              <caret line="62" column="51" lean-forward="false" selection-start-line="62" selection-start-column="51" selection-end-line="62" selection-end-column="51" />
+            <state relative-caret-position="154">
+              <caret line="17" column="50" lean-forward="false" selection-start-line="17" selection-start-column="50" selection-end-line="17" selection-end-column="50" />
               <folding>
-                <element signature="e#61#212#0" expanded="false" />
-                <element signature="e#245#1087#0" expanded="false" />
+                <element signature="e#745#1794#0" expanded="false" />
+                <element signature="e#5037#5797#0" expanded="false" />
+                <element signature="e#6901#7272#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="reser-record.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/stylesheets/reser-record.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="11" lean-forward="false" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="timeTableController.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/routes/timeTableController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="643">
-              <caret line="101" column="47" lean-forward="false" selection-start-line="101" selection-start-column="37" selection-end-line="101" selection-end-column="47" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="reserRecordController.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/reserRecordController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="607">
-              <caret line="50" column="51" lean-forward="false" selection-start-line="50" selection-start-column="51" selection-end-line="50" selection-end-column="51" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sql.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/sql.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="682">
-              <caret line="46" column="49" lean-forward="false" selection-start-line="46" selection-start-column="49" selection-end-line="46" selection-end-column="49" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -177,7 +138,6 @@
         <option value="$PROJECT_DIR$/public/js/timeTable.js" />
         <option value="$PROJECT_DIR$/public/stylesheets/index.css" />
         <option value="$PROJECT_DIR$/views/index.jade" />
-        <option value="$PROJECT_DIR$/views/layout.jade" />
         <option value="$PROJECT_DIR$/public/stylesheets/user-list.css" />
         <option value="$PROJECT_DIR$/public/stylesheets/style.css" />
         <option value="$PROJECT_DIR$/public/stylesheets/teacher-list.css" />
@@ -191,7 +151,6 @@
         <option value="$PROJECT_DIR$/public/js/cardType.js" />
         <option value="$PROJECT_DIR$/public/stylesheets/timetable.css" />
         <option value="$PROJECT_DIR$/routes/timeTableController.js" />
-        <option value="$PROJECT_DIR$/public/js/timetable.js" />
         <option value="$PROJECT_DIR$/public/js/userList.js" />
         <option value="$PROJECT_DIR$/views/user-list.jade" />
         <option value="$PROJECT_DIR$/public/js/teacherList.js" />
@@ -206,6 +165,8 @@
         <option value="$PROJECT_DIR$/routes/reserRecordController.js" />
         <option value="$PROJECT_DIR$/public/js/reserRecord.js" />
         <option value="$PROJECT_DIR$/config/sql.js" />
+        <option value="$PROJECT_DIR$/views/layout.jade" />
+        <option value="$PROJECT_DIR$/public/js/timetable.js" />
       </list>
     </option>
   </component>
@@ -547,12 +508,12 @@
       <workItem from="1523244605669" duration="79000" />
       <workItem from="1523244891745" duration="8492000" />
       <workItem from="1523260392527" duration="440000" />
-      <workItem from="1523260922447" duration="2854000" />
+      <workItem from="1523260922447" duration="3077000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="265708000" />
+    <option name="totallyTimeSpent" value="265931000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -607,7 +568,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="9" />
+      <option name="time" value="10" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -756,20 +717,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/layout.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" column="81" lean-forward="false" selection-start-line="8" selection-start-column="81" selection-end-line="8" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/layout.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/cardTypeController.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="261">
@@ -803,18 +750,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="11" lean-forward="false" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="11" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/timetable.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1210">
-          <caret line="11" column="7" lean-forward="true" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
-          <folding>
-            <element signature="e#739#1788#0" expanded="false" />
-            <element signature="e#5031#5791#0" expanded="false" />
-            <element signature="e#6894#7265#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -898,9 +833,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/timeTableController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="643">
-          <caret line="101" column="47" lean-forward="false" selection-start-line="101" selection-start-column="37" selection-end-line="101" selection-end-column="47" />
+        <state relative-caret-position="330">
+          <caret line="42" column="10" lean-forward="true" selection-start-line="42" selection-start-column="10" selection-end-line="42" selection-end-column="10" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/layout.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/layout.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/timetable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="17" column="50" lean-forward="false" selection-start-line="17" selection-start-column="50" selection-end-line="17" selection-end-column="50" />
+          <folding>
+            <element signature="e#745#1794#0" expanded="false" />
+            <element signature="e#5037#5797#0" expanded="false" />
+            <element signature="e#6901#7272#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
