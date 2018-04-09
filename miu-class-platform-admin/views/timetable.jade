@@ -2,6 +2,7 @@ extends layout
 
 block content
     meta(name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" )
+    link(rel='stylesheet', href='/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css')
     link(rel='stylesheet', href='/stylesheets/timetable.css')
 
     div.container
@@ -25,39 +26,9 @@ block content
                             td.class-title <h3>周四</h3>
                             td.class-title <h3>周五</h3>
                             td.class-title <h3>周六</h3>
+                            td.class-title <h3>周日</h3>
 
                     tbody(id='timetableList')
-                        tr.morning-class
-                            td.monday-class.class-info
-                            td.tuesday-class.class-info
-                            td.wednesday-class.class-info
-                            td.thurday-class.class-info
-                            td.friday-class.class-info
-                            td.saturday-class.class-info
-
-                        tr.afternoon-class
-                            td.monday-class.class-info
-                            td.tuesday-class.class-info
-                            td.wednesday-class.class-info
-                            td.thurday-class.class-info
-                            td.friday-class.class-info
-                            td.saturday-class.class-info
-
-                        tr.evening-first-class
-                            td.monday-class.class-info
-                            td.tuesday-class.class-info
-                            td.wednesday-class.class-info
-                            td.thurday-class.class-info
-                            td.friday-class.class-info
-                            td.saturday-class.class-info
-
-                        tr.evening-second-class
-                            td.monday-class.class-info
-                            td.tuesday-class.class-info
-                            td.wednesday-class.class-info
-                            td.thurday-class.class-info
-                            td.friday-class.class-info
-                            td.saturday-class.class-info
 
         div.modal.fade(tabindex="-1" role="dialog" id='classInfoModal')
             div.modal-dialog(role='document')
@@ -69,31 +40,62 @@ block content
                             div.form-group
                                 label.col-sm-2.control-label(for="classname") 课程名称
                                 div.col-sm-10
-                                    input.form-control(id="classname")
+                                    input.form-control.class-detail.class-require(id="classname")
+
+                            div.form-group
+                                label.col-sm-2.control-label(for="roomId") 上课教室
+                                div.col-sm-10
+                                    select.form-control.class-require(id="roomId")
 
                             div.form-group
                                 label.col-sm-2.control-label(for="teacher") 上课老师
                                 div.col-sm-10
-                                    input.form-control(id="teacher")
+                                    select.form-control.class-require(id="teacher")
 
                             div.form-group
                                 label.col-sm-2.control-label(for="week") 周次
                                 div.col-sm-10
-                                    select.form-control(id="week")
+                                    select.form-control.class-require(id="week")
                                         option(value="1") 周一
                                         option(value="2") 周二
                                         option(value="3") 周三
                                         option(value="4") 周四
                                         option(value="5") 周五
                                         option(value="6") 周六
+                                        option(value="7") 周日
 
                             div.form-group
                                 label.col-sm-2.control-label(for="time") 时间
                                 div.col-sm-10
-                                    input.form-control(id="time")
+                                    input.form-control.class-detail.class-require(id="time")
+
+                            div.form-group
+                                label.col-sm-2.control-label(for="classType") 课程类型
+                                div.col-sm-10
+                                    select.form-control.class-require(id="classType")
+                                        option(value="1") 次数课程
+                                        option(value="2") 孕妇课程
+                                        option(value="3") 产后课程
+
+                            div.form-group
+                                label.col-sm-2.control-label(for="maxCount") 课容量
+                                div.col-sm-10
+                                    input.form-control.class-detail.class-require(id="maxCount" type="number")
+
+                            div.form-group
+                                label.col-sm-2.control-label(for="minCount") 最少开课人数
+                                div.col-sm-10
+                                    input.form-control.class-detail.class-require(id="minCount" type="number")
+
+                            div.form-group
+                                label.col-sm-2.control-label(for="swipeNumber") 刷卡次数
+                                div.col-sm-10
+                                    input.form-control.class-detail.class-require(id="swipeNumber" type="number")
 
                     div.modal-footer
-                        button.btn.btn-primary(id="createBtn")
+                        button.btn.btn-primary(id="createBtn") 确认
                         button.btn.btn-default(data-dismiss="modal") 返回
 
+    script(type='text/javascript', src='/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js')
+    script(type='text/javascript', src='/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.zh-CN.js')
     script(type='text/javascript', src='/js/timetable.js')

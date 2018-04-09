@@ -40,7 +40,11 @@ var sql = {
     //查询课程表
     get_timetable: 'select classId, time, teacher, week, maxCount, minCount, classname, swipeNumber from timetable where `roomId` = ? and `status` = "true" order by week asc',
     //获取指定课程的信息
-    get_special_class: 'select time, teacher, week, maxCount, minCount, classname, swipeNumber from timetable where `classId` = ?'
+    get_special_class: 'select time, teacher, week, maxCount, minCount, classname, swipeNumber from timetable where `classId` = ?',
+    //新增课程
+    insert_new_class: 'insert into timetable (`roomId`, `time`, `teacher`, `week`, `maxCount`, `minCount`, `classname`, `swipeNumber`, `classType`, `status`) values (?, ?, ?, ?, ?, ?, ?, ?, ?, "true")',
+    //删除课程
+    delete_class_info: 'update timetable set `status` = "false" where `classId` = ?'
 };
 
 module.exports = sql;

@@ -66,4 +66,43 @@ router.post('/get_special_class', function (req, res, next) {
     })
 });
 
+//获取老师列表
+router.get('/get_teacher_list', function (req, res, next) {
+    pool.getConnection(function (err, connection) {
+        //建立连接
+        connection.query(sql.get_teacher_list_for_manage, ['1'], function (err, result) {
+            writeJSON(res, result);
+            connection.release();
+        })
+    })
+});
+
+router.post('/insert_new_class', function (req, res, next) {
+    pool.getConnection(function (err, connection) {
+        //建立连接
+        connection.query(sql.insert_new_class, [req.body.roomId, req.body.time, req.body.teacher, req.body.week, req.body.maxCount, req.body.minCount, req.body.classname, req.body.swipeNumber, req.body.classType], function (err, result) {
+            if (result.protocol41) {
+                connection.query(sql.delete_class_info, [req.body.classId], function (err, delResult) {
+                    writeJSON(res, delResult.protocol41);
+                    connection.release();
+                })
+            } else {
+                writeJSON(res);
+                connection.release();
+            }
+
+        })
+    })
+});
+
+router.post('/delete_class_info', function (req, res, next) {
+    pool.getConnection(function (err, connection) {
+        //建立连接
+        connection.query(sql.delete_class_info, [req.body.classId], function (err, delResult) {
+            writeJSON(res, delResult.protocol41);
+            connection.release();
+        })
+    })
+});
+
 module.exports = router;

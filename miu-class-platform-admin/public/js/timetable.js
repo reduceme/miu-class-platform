@@ -1,4 +1,17 @@
 (function () {
+    $('#time').datetimepicker({
+        language: 'zh-CN',
+        autoclose: true,
+        weekStart: 1,
+        todayBtn: 1,
+        format: 'hh:ii',
+        startView: 1,
+        minView: 0,
+        maxView: 1,
+        forceParse: 0
+    });
+
+    //课表容器
     function createTimetableContainer() {
         var html = '<span class="class-name"></span><br/>' +
             '<span class="class-teacher"></span><br/>' +
@@ -8,9 +21,6 @@
             '<span class="class-time"></span>';
         $('.class-info').append(html);
     }
-
-    createTimetableContainer();
-
     //对象分组
     function objGroup(arr) {
         var map = {};
@@ -20,7 +30,8 @@
             if (!map[ai.week]) {
                 dest.push({
                     week: ai.week,
-                    data: [ai]
+                    data: [ai],
+                    dataLength: 1
                 });
                 map[ai.week] = ai;
             } else {
@@ -28,6 +39,7 @@
                     var dj = dest[j];
                     if (dj.week === ai.week) {
                         dj.data.push(ai);
+                        dj.dataLength++;
                         break;
                     }
                 }
@@ -63,11 +75,39 @@
                         '3': 'wednesday-class',
                         '4': 'thurday-class',
                         '5': 'friday-class',
-                        '6': 'saturday-class'
+                        '6': 'saturday-class',
+                        '7': 'sunday-class'
                     };
+
+                    //简历课表的行
+                    var html = '<tr>' +
+                        '<td class="monday-class class-info"></td>' +
+                        '<td class="tuesday-class class-info"></td>' +
+                        '<td class="wednesday-class class-info"></td>' +
+                        '<td class="thurday-class class-info"></td>' +
+                        '<td class="friday-class class-info"></td>' +
+                        '<td class="saturday-class class-info"></td>' +
+                        '<td class="sunday-class class-info"></td>' +
+                        '</tr>';
+
 
                     //根据周次，对课程进行分组并根据time进行排序
                     var groupList = objGroup(data.data);
+
+                    var maxLen = 0;
+                    for (var j = 0, len = groupList.length; j < len; j++) {
+                        if (maxLen < groupList[j].dataLength) {
+                            maxLen = groupList[j].dataLength;
+                        }
+                    }
+
+                    $('#timetableList').empty();
+                    for (var l = 0; l < maxLen; l++) {
+                        $('#timetableList').append(html);
+                    }
+                    createTimetableContainer();
+
+                    $('.class-info').attr('data-id', '').children().text('');
                     for (var i = 0; i < groupList.length; i++) {
                         var classname = classDic[groupList[i].week];
                         $('.' + classname).each(function (index) {
@@ -82,11 +122,6 @@
                                 $(this).children('.class-time').text('上课时间：' + item.time);
                             }
                         });
-                    }
-
-                    console.log(groupList);
-                    if (groupList.length === 0) {
-                        $('.class-info').attr('data-id', '').children().text('');
                     }
                 } else {
                     alert('获取课表失败');
@@ -113,6 +148,7 @@
                         html += '<option value="' + classroomList[i].roomId + '">' + classroomList[i].classroom + '</option>'
                     }
                     $('#roomSelect').html(html);
+                    $('#roomId').html(html);
                 } else {
                     alert('获取教室信息失败');
                 }
@@ -125,8 +161,34 @@
 
     getClassroom();
 
-    $('.class-info').on('click', function () {
-        $('.class-info').removeClass('active');
+    //获取教师列表
+    function getTeacherList() {
+        $.ajax({
+            method: 'get',
+            url: '/timetable/get_teacher_list',
+            success: function (data) {
+                if (data.code === 0) {
+                    var html = '';
+                    var teacherList = data.data;
+                    for (var i = 0; i < teacherList.length; i++) {
+                        var item = teacherList[i];
+                        html += '<option value="' + item.teacher_name + '" data-id="' + item.admin_id + '">' + item.teacher_name + '</option>'
+                    }
+                    $('#teacher').html(html);
+                } else {
+                    alert('获取教师列表失败');
+                }
+            },
+            error: function (err) {
+                alert('网络连接失败');
+            }
+        })
+    }
+
+    getTeacherList();
+
+    $('#timetableList').on('click', '.class-info',function () {
+        $('#timetableList tr .class-info').removeClass('active');
         $(this).addClass('active');
     });
 
@@ -145,6 +207,7 @@
         }
     });
 
+    //获取修改的课程的详细信息
     function changeClassInfo() {
         var classId = $('.active').attr('data-id');
         if (classId) {
@@ -156,21 +219,94 @@
                 },
                 success: function (data) {
                     if (data.code === 0) {
-                        console.log(data.data);
+                        $('#classInfoModal').modal('show').attr('data-classid', classId);
+                        for (var i in data.data) {
+                            $('#' + i).val(data.data[i]);
+                        }
                     }
                 },
                 error: function (err) {
                     alert('请检查网络连接');
                 }
             });
-            console.log(classId);
+        } else {
+            $('#classInfoModal').modal('show').attr('data-classid', '');
+            $('.class-detail').val('');
         }
     }
+
+    function getCreateInfo() {
+        var postData = {
+            classname: $('#classname').val(),
+            roomId: $('#roomId').val(),
+            teacher: $('#teacher').val(),
+            week: $('#week').val(),
+            time: $('#time').val(),
+            classType: $('#classType').val(),
+            maxCount: $('#maxCount').val(),
+            minCount: $('#minCount').val(),
+            swipeNumber: $('#swipeNumber').val(),
+            classId: $('#classInfoModal').attr('data-classid')
+        };
+
+        return postData;
+    }
+
+    $('#createBtn').on('click', function () {
+        var classInfo = getCreateInfo();
+
+        var flag = true;
+        $('.class-require').each(function () {
+            if (!$(this).val()) {
+                flag = false;
+            }
+        });
+
+        if (flag) {
+            $.ajax({
+                method: 'post',
+                url: '/timetable/insert_new_class',
+                data: classInfo,
+                success: function (data) {
+                    if (data.code === 0) {
+                        alert('修改成功');
+                        $('#classInfoModal').modal('hide').attr('data-classid', '');
+                        getTimetable($('#roomSelect').val());
+                    } else {
+                        alert('添加失败');
+                    }
+                },
+                error: function () {
+                    alert('网络连接失败');
+                }
+            })
+        } else {
+            alert('请完成课程详细信息;');
+            return;
+        }
+    });
 
     function deleteClassInfo() {
         var classId = $('.active').attr('data-id');
         if (classId) {
-            console.log(classId);
+            $.ajax({
+                method: 'post',
+                url: '/timetable/delete_class_info',
+                data: {
+                    classId: classId
+                },
+                success: function (data) {
+                    if (data.code === 0) {
+                        alert('删除成功');
+                        getTimetable($('#roomSelect').val());
+                    } else {
+                        alert('删除失败')
+                    }
+                },
+                error: function () {
+                    alert('网络连接失败');
+                }
+            })
         } else {
             alert('请选择要修改的课程');
         }

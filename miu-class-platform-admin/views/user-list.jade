@@ -3,7 +3,8 @@ extends layout
 block content
     meta(name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" )
     link(rel='stylesheet', href='/stylesheets/user-list.css')
-    link(rel='stylesheet', href='/lib/daterangepicker/daterangepicker.css')
+    link(rel='stylesheet', href='/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css')
+
     div.container
         div.row
             form.form-inline
@@ -131,6 +132,6 @@ block content
                     button.btn.btn-primary(id="changeBtn") 确认修改
                     button.btn.btn-default(data-dismiss="modal") 返回
 
-    script(type='text/javascript', src='/lib/daterangepicker/moment.js')
-    script(type='text/javascript', src='/lib/daterangepicker/daterangepicker.js')
+    script(type='text/javascript', src='/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js')
+    script(type='text/javascript', src='/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.zh-CN.js')
     script(type='text/javascript', src='/js/userList.js')
