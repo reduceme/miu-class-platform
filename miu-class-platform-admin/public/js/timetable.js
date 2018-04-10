@@ -125,11 +125,11 @@
                         });
                     }
                 } else {
-                    alert('获取课表失败');
+                    showNotice('获取课表失败');
                 }
             },
             error: function (err) {
-                alert('请检查网络连接');
+                showNotice('请检查网络连接');
             }
         })
     }
@@ -151,11 +151,11 @@
                     $('#roomSelect').html(html);
                     $('#roomId').html(html);
                 } else {
-                    alert('获取教室信息失败');
+                    showNotice('获取教室信息失败');
                 }
             },
             error: function () {
-                alert('请检查网络连接');
+                showNotice('请检查网络连接');
             }
         })
     }
@@ -177,11 +177,11 @@
                     }
                     $('#teacher').html(html);
                 } else {
-                    alert('获取教师列表失败');
+                    showNotice('获取教师列表失败');
                 }
             },
             error: function (err) {
-                alert('网络连接失败');
+                showNotice('网络连接失败');
             }
         })
     }
@@ -227,7 +227,7 @@
                     }
                 },
                 error: function (err) {
-                    alert('请检查网络连接');
+                    showNotice('请检查网络连接');
                 }
             });
         } else {
@@ -270,19 +270,19 @@
                 data: classInfo,
                 success: function (data) {
                     if (data.code === 0) {
-                        alert('修改成功');
+                        showNotice('修改成功');
                         $('#classInfoModal').modal('hide').attr('data-classid', '');
                         getTimetable($('#roomSelect').val());
                     } else {
-                        alert('添加失败');
+                        showNotice('添加失败');
                     }
                 },
                 error: function () {
-                    alert('网络连接失败');
+                    showNotice('网络连接失败');
                 }
             })
         } else {
-            alert('请完成课程详细信息;');
+            showNotice('请完成课程详细信息;');
             return;
         }
     });
@@ -298,18 +298,18 @@
                 },
                 success: function (data) {
                     if (data.code === 0) {
-                        alert('删除成功');
+                        showNotice('删除成功');
                         getTimetable($('#roomSelect').val());
                     } else {
-                        alert('删除失败')
+                        showNotice('删除失败')
                     }
                 },
                 error: function () {
-                    alert('网络连接失败');
+                    showNotice('网络连接失败');
                 }
             })
         } else {
-            alert('请选择要修改的课程');
+            showNotice('请选择要修改的课程');
         }
     }
 })();

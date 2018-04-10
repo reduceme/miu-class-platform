@@ -25,11 +25,11 @@
                     }
                     $('#classSelect').html(html);
                 } else {
-                    alert('获取课程信息失败');
+                    showNotice('获取课程信息失败');
                 }
             },
             error: function () {
-                alert('网络连接失败');
+                showNotice('网络连接失败');
             }
         })
     });
@@ -62,11 +62,11 @@
 
                     $('#userListTable').html(html);
                 } else {
-                    alert('获取约课信息失败');
+                    showNotice('获取约课信息失败');
                 }
             },
             error: function () {
-                alert('网络连接失败');
+                showNotice('网络连接失败');
             }
         })
     })

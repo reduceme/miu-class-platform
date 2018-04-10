@@ -77,21 +77,6 @@ td {
     width: 180px;
 }
 
-.message-content{
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background: gainsboro;
-    opacity: 0.5;
-    position: absolute;
-    z-index: 1000;
-    margin: 0 auto;
-}
-
-.show-message{
-    width: 380px;
-    height: 160px;
-    background: #00b3ee;
-    margin: 100px auto;
-    border-radius: 10px;
+#noticeModal {
+    z-index: 1111;
 }

@@ -21,11 +21,11 @@
 
                     $('#teacherListTable').html(html);
                 } else {
-                    alert('获取教师列表失败');
+                    showNotice('获取教师列表失败');
                 }
             },
             error: function (err) {
-                alert('网络连接失败');
+                showNotice('网络连接失败');
             }
         })
     }
@@ -79,16 +79,21 @@
     }
 
     $('#createBtn').on('click', function () {
+        if (!$('#customerName').val() || !$('#phone').val()) {
+            showNotice('请完善老师信息');
+            return;
+        }
+
         var username = $('#phone').val();
-        if(username.length !== 11){
-            alert('请输入正确的联系方式');
+        if (username.length !== 11) {
+            showNotice('请输入正确的联系方式');
             return;
         }
 
         var item = {
             name: $('#customerName').val(),
             username: username,
-            password: username.slice(5,11),
+            password: username.slice(5, 11),
             status: $('#teacherStatus').val()
         };
 
@@ -101,12 +106,12 @@
                     $('#createMemberModal').modal('hide');
                     getTeacherList();
                     $('.teacher-info').val('')
-                }else {
-                    alert('添加老师失败');
+                } else {
+                    showNotice('添加老师失败');
                 }
             },
             error: function (err) {
-                alert('网络连接失败');
+                showNotice('网络连接失败');
             }
         })
     })

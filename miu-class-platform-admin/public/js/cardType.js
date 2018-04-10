@@ -26,11 +26,11 @@
                     $('#cardListTable').html(html);
 
                 } else {
-                    alert('获取卡中列表失败');
+                    showNotice('获取卡中列表失败');
                 }
             },
             error: function (err) {
-                alert('网络连接失败');
+                showNotice('网络连接失败');
             }
         })
     }
@@ -69,18 +69,18 @@
                         if (data.code === 0) {
                             $('#cardModal').modal('hide');
                             $('.card-info').val('');
-                            alert('添加成功');
+                            showNotice('添加成功');
                             getCardList();
                         } else {
-                            alert('添加失败');
+                            showNotice('添加失败');
                         }
                     },
                     error: function (err) {
-                        alert('网络连接失败');
+                        showNotice('网络连接失败');
                     }
                 })
             } else {
-                alert('请完善卡种信息');
+                showNotice('请完善卡种信息');
             }
         })
     };
@@ -119,18 +119,18 @@
                                 $('#cardModal').modal('hide');
                                 $('.card-info').val('');
                                 selected.val('').attr('data-limit', '').attr('data-validity', '').attr('data-count', '').attr('data-name', '');
-                                alert('添加成功');
+                                showNotice('添加成功');
                                 getCardList();
                             } else {
-                                alert('添加失败');
+                                showNotice('添加失败');
                             }
                         },
                         error: function (err) {
-                            alert('网络连接失败');
+                            showNotice('网络连接失败');
                         }
                     })
                 } else {
-                    alert('请完善卡种信息');
+                    showNotice('请完善卡种信息');
                 }
             });
 

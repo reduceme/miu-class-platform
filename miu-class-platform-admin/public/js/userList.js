@@ -12,7 +12,7 @@
                 }
             },
             error: function () {
-                alert('获取卡种失败');
+                showNotice('获取卡种失败');
             }
         })
     }
@@ -52,7 +52,7 @@
                     }
                     $('#userListTable').html(html);
                 } else {
-                    alert('获取会员列表失败');
+                    showNotice('获取会员列表失败');
                 }
             },
             error: function () {
@@ -159,11 +159,11 @@
                     $('#cardType').html(html);
                     $('#changeCardType').html(html);
                 } else {
-                    alert('卡种列表获取失败')
+                    showNotice('卡种列表获取失败')
                 }
             },
             error: function (err) {
-                alert('网络连接失败')
+                showNotice('网络连接失败')
             }
         })
     }
@@ -182,11 +182,11 @@
                     }
                     $('#classRoom').html(html);
                 } else {
-                    alert('教室列表获取失败')
+                    showNotice('教室列表获取失败')
                 }
             },
             error: function (err) {
-                alert('网络连接失败')
+                showNotice('网络连接失败')
             }
         })
     }
@@ -205,11 +205,11 @@
                     }
                     $('#saler').html(html);
                 } else {
-                    alert('教室列表获取失败')
+                    showNotice('教室列表获取失败')
                 }
             },
             error: function (err) {
-                alert('网络连接失败')
+                showNotice('网络连接失败')
             }
         })
     }
@@ -257,11 +257,11 @@
     function addMember() {
         var postData = getMemberData();
         if (postData.customerName === '') {
-            alert('请输入会员姓名');
+            showNotice('请输入会员姓名');
             return;
         }
         if (postData.username === '' || postData.username.length !== 11) {
-            alert('请验证会员联系方式是否正确');
+            showNotice('请验证会员联系方式是否正确');
             return;
         }
 
@@ -276,11 +276,11 @@
                     $('#createMemberModal').modal('hide');
                     getUserList('get', '/users/get_user_list', '');
                 } else {
-                    alert('添加失败');
+                    showNotice('添加失败');
                 }
             },
             error: function (err) {
-                alert('网络连接失败');
+                showNotice('网络连接失败');
             }
         })
     }
@@ -311,14 +311,14 @@
             success: function (data) {
                 if (data.code === 0) {
                     $('#giftModal').modal('hide').attr('data-id', '');
-                    alert('赠送成功');
+                    showNotice('赠送成功');
                     getUserList('get', '/users/get_user_list', '');
                 } else {
-                    alert('赠送失败');
+                    showNotice('赠送失败');
                 }
             },
             error: function (err) {
-                alert('网络连接失败');
+                showNotice('网络连接失败');
             }
         })
     });
@@ -356,20 +356,20 @@
                 data: postData,
                 success: function (data) {
                     if (data.code === 0) {
-                        alert('修改成功');
+                        showNotice('修改成功');
                         $('#changeCardModal').modal('hide').attr('data-id', '').attr('data-last-card-type', '');
                         $('.change-info').val('');
                         getUserList('get', '/users/get_user_list', '');
                     }else {
-                        alert('修改失败');
+                        showNotice('修改失败');
                     }
                 },
                 error: function (err) {
-                    alert('网络连接失败');
+                    showNotice('网络连接失败');
                 }
             })
         } else {
-            alert('请填写备注信息');
+            showNotice('请填写备注信息');
         }
     })
 })();

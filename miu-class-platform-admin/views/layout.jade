@@ -7,7 +7,6 @@ html
         link(rel='stylesheet', href='/stylesheets/style.css')
         script(type='text/javascript', src='/lib/jquery/jquery.min.js')
         script(type='text/javascript', src='/lib/bootstrap/dist/js/bootstrap.js')
-
     body
         div.layout-container
             div.topbar
@@ -18,12 +17,19 @@ html
                                 strong miuYoga后台管理
                         div.collapse.navbar-collapse
             div.menu-content
-                ul.menu-list
+                ul.menu-list(id="menuList")
 
-        div.message-content
-            div.show-message
-                span.message
+        div.modal.fade.bs-example-modal-sm(role="dialog" aria-labelledby="mySmallModalLabel" id='noticeModal')
+            div.modal-dialog.modal-sm(role='document')
+                div.modal-content
+                    div.modal-header
+                        h4.modal-title 提示
+                    div.modal-body
+                        p(id="message")
+                    div.modal-footer
+                        button.btn.btn-default(data-dismiss="modal") 返回
 
         block content
+
 
     script(type='text/javascript', src='/js/layout.js')

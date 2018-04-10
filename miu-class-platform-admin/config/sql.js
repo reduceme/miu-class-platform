@@ -8,7 +8,7 @@ var sql = {
     //获取卡种类型
     get_card_type_list: 'select cardTypeId, cardName, cardCount from card_type_info',
     //课程详情
-    get_user_class_detail: 'select u_c.classId, u_c.isEffective, u_c.time, t_t.classname, t_t.time as t_t_minute from user_class_info u_c inner join timetable t_t on u_c.classId = t_t.classId where u_c.userId = ?',
+    get_user_class_detail: 'select u_c.classId, u_c.isEffective, u_c.time, t_t.classname, t_t.time as t_t_minute from user_class_info u_c inner join timetable t_t on u_c.classId = t_t.classId where u_c.userId = ? order by u_c.time asc',
     //根据电话或者姓名查询
     get_special_user: 'select userid, username, customerName, cardType, totalCount, lastCount, lastTime, openTime, createTime, createRoom, createTeacher, userId from user_info where `username` = ? or `customerName` = ? or `lastTime` <= ?',
     //教室查询
