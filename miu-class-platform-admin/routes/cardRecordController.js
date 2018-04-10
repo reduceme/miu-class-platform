@@ -34,15 +34,29 @@ router.get('/', function (req, res, next) {
 });
 
 //获取赠卡记录
-router.post('/get_gift_record', function (req, res, next) {
+router.post('/get_card_record', function (req, res, next) {
     pool.getConnection(function (err, connection) {
-        var sqlStr = sql.get_all_gift_record;
-        if(req.body.username !== ''){
-            sqlStr = sql.get_detail_gift_record;
+        var sqlStr = sql.get_all_card_record;
+        if (req.body.username !== '') {
+            sqlStr = sql.get_detail_card_record;
         }
         //建立连接
         connection.query(sqlStr, [req.body.username], function (err, result) {
             writeJSON(res, result);
+            connection.release();
+        })
+    })
+});
+
+router.get('/get_card_record', function (req, res, next) {
+    pool.getConnection(function (err, connection) {
+        //建立连接
+        connection.query(sql.get_all_card_list, function (err, result) {
+            var cardList = {};
+            for (var i = 0; i < result.length; i++) {
+                cardList[result[i].cardTypeId] = result[i].cardName
+            }
+            writeJSON(res, cardList);
             connection.release();
         })
     })

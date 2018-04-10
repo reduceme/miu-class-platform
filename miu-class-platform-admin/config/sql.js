@@ -52,7 +52,12 @@ var sql = {
     //查询所有赠卡记录
     get_all_gift_record: 'select u_i.customerName, u_i.username, g_m_n.gift_time, g_m_n.gift_count, g_m_n.gift_remark, a_u_l.teacher_name from user_info u_i, gift_member_number g_m_n, admin_user_list a_u_l where g_m_n.userid = u_i.userid and g_m_n.manage_id = a_u_l.admin_id',
     //获取指定会员的赠卡记录
-    get_detail_gift_record: 'select u_i.customerName, u_i.username, g_m_n.gift_time, g_m_n.gift_count, g_m_n.gift_remark, a_u_l.teacher_name from user_info u_i, gift_member_number g_m_n, admin_user_list a_u_l where u_i.customerName = ? and g_m_n.userid = u_i.userid and g_m_n.manage_id = a_u_l.admin_id '
+    get_detail_gift_record: 'select u_i.customerName, u_i.username, g_m_n.gift_time, g_m_n.gift_count, g_m_n.gift_remark, a_u_l.teacher_name from user_info u_i, gift_member_number g_m_n, admin_user_list a_u_l where u_i.customerName = ? and g_m_n.userid = u_i.userid and g_m_n.manage_id = a_u_l.admin_id ',
+    //获取所有的续卡记录
+    get_all_card_record: 'SELECT user_info.customerName,user_info.username, update_card_type.update_time, update_card_type.now_card_type, update_card_type.prev_card_type, update_card_type.remark, admin_user_list.teacher_name FROM update_card_type INNER JOIN user_info ON user_info.userid = update_card_type.user_id INNER JOIN admin_user_list ON admin_user_list.admin_id = update_card_type.manage_id',
+    get_detail_card_record: 'SELECT user_info.customerName,user_info.username, update_card_type.update_time, update_card_type.now_card_type, update_card_type.prev_card_type, update_card_type.remark, admin_user_list.teacher_name FROM update_card_type INNER JOIN user_info ON user_info.userid = update_card_type.user_id INNER JOIN admin_user_list ON admin_user_list.admin_id = update_card_type.manage_id where user_info.customerName = ?',
+    //续卡记录获取卡种列表
+    get_all_card_list: 'select cardTypeId, cardName from card_type_info',
 };
 
 module.exports = sql;

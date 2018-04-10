@@ -1,4 +1,3 @@
-// (function () {
 function getMenuList() {
     var menuList = sessionStorage.getItem("menuList");
     if (menuList) {
@@ -40,4 +39,3 @@ function showNotice(str) {
     $('#noticeModal').modal('show');
     $('#message').text(str);
 }
-// })();
