@@ -196,4 +196,17 @@ router.post('/update_customer_card', function (req, res, next) {
     })
 });
 
+router.post('/card_update_info', function (req, res, next) {
+    pool.getConnection(function (err, connection) {
+
+        connection.query(sql.create_update_card_history, [req.body.userid, req.body.time, req.body.prevType, req.body.nowType, req.body.remark, req.cookies.user], function (err, result) {
+            //建立连接
+            connection.query(sql.card_update_info, [req.body.nowType, req.body.totalCount, req.body.totalCount, req.body.lastTime, req.body.userid], function (err, result) {
+                writeJSON(res, result);
+                connection.release();
+            })
+        });
+    })
+});
+
 module.exports = router;

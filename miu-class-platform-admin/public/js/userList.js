@@ -119,6 +119,16 @@
                 break;
             case 'update':
                 updateUserCard();
+                $('#changeBtn').off().on('click', function () {
+                    changeFn('/users/update_customer_card');
+                });
+                break;
+            case 'cardUpdate':
+                updateUserCard();
+                $('#changeBtn').off().on('click', function () {
+                    // changeFn();
+                    changeFn('/users/card_update_info');
+                });
                 break;
         }
     });
@@ -344,7 +354,43 @@
         }
     }
 
-    $('#changeBtn').on('click', function () {
+    function changeFn(url) {
+        var postData = {
+            userid: $('#changeCardModal').attr('data-id'),
+            time: getSpeTime().fullDate,
+            prevType: $('#changeCardModal').attr('data-last-card-type'),
+            nowType: $('#changeCardType').val(),
+            remark: $('#remark').val(),
+            totalCount: $('#changeCardType option:selected').attr('data-count'),
+            lastTime: $('#changeLastTime').val()
+        };
+
+        if (postData.remark) {
+            $.ajax({
+                method: 'post',
+                // url: '/users/update_customer_card',
+                url: url,
+                data: postData,
+                success: function (data) {
+                    if (data.code === 0) {
+                        showNotice('修改成功');
+                        $('#changeCardModal').modal('hide').attr('data-id', '').attr('data-last-card-type', '');
+                        $('.change-info').val('');
+                        getUserList('get', '/users/get_user_list', '');
+                    } else {
+                        showNotice('修改失败');
+                    }
+                },
+                error: function (err) {
+                    showNotice('网络连接失败');
+                }
+            })
+        } else {
+            showNotice('请填写备注信息');
+        }
+    }
+
+    /*$('#changeBtn').on('click', function () {
         var postData = {
             userid: $('#changeCardModal').attr('data-id'),
             time: getSpeTime().fullDate,
@@ -377,5 +423,5 @@
         } else {
             showNotice('请填写备注信息');
         }
-    })
+    })*/
 })();

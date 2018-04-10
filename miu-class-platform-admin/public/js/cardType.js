@@ -52,6 +52,7 @@
     function addCard() {
         $('#cardModal').modal('show');
         $('#cardTitle').text('添加卡种');
+        $('.card-info').val('');
 
         $('#createBtn').text('确认添加').off().on('click', function () {
             var postData = {

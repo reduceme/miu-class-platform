@@ -27,8 +27,10 @@ var sql = {
     update_teacher_status: 'update admin_user_list set `admin_status` = ? where admin_id = ?',
     //添加老师
     add_teacher: 'insert into admin_user_list (`teacher_name`, `admin_name`, `password`, `admin_status`, `admin_leave`) values (?, ?, ?, ?, 2)',
-    //会员续卡、升级卡
+    //会员续卡
     update_customer_card: 'update user_info set `cardType` = ? , `totalCount` = `totalCount` +  ?, `lastCount` = `lastCount` + ?, `lastTime` = ? where `userid` = ?',
+    //会员升级卡
+    card_update_info: 'update user_info set user_info.cardType = ?, user_info.lastCount = ? - (user_info.totalCount - user_info.lastCount), user_info.totalCount = ?, user_info.lastTime = ? where user_info.userid = ?',
     //升级卡的操作记录
     create_update_card_history: 'insert into update_card_type (`user_id`, `update_time`, `prev_card_type`, `now_card_type`, `remark`, `manage_id`) values (?, ?, ?, ?, ?, ?)',
     //获取卡种类型-卡种设置
