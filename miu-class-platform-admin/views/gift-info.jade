@@ -1,0 +1,27 @@
+extends layout
+
+block content
+    meta(name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" )
+    link(rel='stylesheet', href='/stylesheets/container-style.css')
+
+    div.container
+        div.row
+            form.form-inline
+                div.form-group
+                    input.form-control.has-margin(pattern="请输入会员姓名" id="username")
+                    button.btn.btn-primary(id='search' type='button') 查询
+
+        div.row
+            div.table-responsive.col-md-12
+                table.table.table-hover
+                    thead
+                    tr
+                        td 会员姓名
+                        td 联系方式
+                        td 赠送时间
+                        td 赠送次数
+                        td 备注
+                        td 操作人员
+                    tbody(id='giftDetailTable')
+
+    script(type='text/javascript', src='/js/giftInfo.js')

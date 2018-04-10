@@ -18,7 +18,7 @@ var sql = {
     //创建会员
     create_member: 'insert into user_info (`username`, `password`, `customerName`, `cardType`, `totalCount`, `lastCount`, `createTime`, `createRoom`, `createTeacher`) values (?, ?, ?, ?, ?, ?, ?, ?, ?)',
     //赠送次数
-    gift_count: 'insert into gift_member_number (`userid`, `gift_count`, `gift_time`) values (?, ?, ?)',
+    gift_count: 'insert into gift_member_number (`userid`, `gift_count`, `gift_time`, `gift_remark`, `manage_id`) values (?, ?, ?, ?, ?)',
     //更新会员的剩余次数
     update_last_count: 'update user_info set `lastCount` = `lastCount` + ? where userid = ?',
     //教师管理界面-获取教师列表
@@ -48,7 +48,11 @@ var sql = {
     //预约信息获取某一天的课程
     get_reser_record_class: 'select classname, classId from timetable where `week` = ? and `status` = "true"',
     //获取某节课的约课详情
-    get_user_class_info: 'select u_i.customerName, t_t.time, t_t.classname, u_c_i.isEffective from user_info u_i,timetable t_t,user_class_info u_c_i where u_c_i.time = ? and u_c_i.classId = ? and u_i.userid = u_c_i.userId and u_c_i.classId=t_t.classId order by u_c_i.isEffective asc'
+    get_user_class_info: 'select u_i.customerName, t_t.time, t_t.classname, u_c_i.isEffective from user_info u_i,timetable t_t,user_class_info u_c_i where u_c_i.time = ? and u_c_i.classId = ? and u_i.userid = u_c_i.userId and u_c_i.classId=t_t.classId order by u_c_i.isEffective asc',
+    //查询所有赠卡记录
+    get_all_gift_record: 'select u_i.customerName, u_i.username, g_m_n.gift_time, g_m_n.gift_count, g_m_n.gift_remark, a_u_l.teacher_name from user_info u_i, gift_member_number g_m_n, admin_user_list a_u_l where g_m_n.userid = u_i.userid and g_m_n.manage_id = a_u_l.admin_id',
+    //获取指定会员的赠卡记录
+    get_detail_gift_record: 'select u_i.customerName, u_i.username, g_m_n.gift_time, g_m_n.gift_count, g_m_n.gift_remark, a_u_l.teacher_name from user_info u_i, gift_member_number g_m_n, admin_user_list a_u_l where where u_i.customerName = ? and g_m_n.userid = u_i.userid and g_m_n.manage_id = a_u_l.admin_id'
 };
 
 module.exports = sql;

@@ -174,7 +174,7 @@ router.post('/create_member', function (req, res, next) {
 router.post('/gift_count', function (req, res, next) {
     pool.getConnection(function (err, connection) {
         //建立连接
-        connection.query(sql.gift_count, [req.body.userid, req.body.count, req.body.time], function (err, result) {
+        connection.query(sql.gift_count, [req.body.userid, req.body.count, req.body.time, req.body.remark, req.cookies.user], function (err, result) {
             connection.query(sql.update_last_count, [req.body.count, req.body.userid], function (err, result) {
                 writeJSON(res, []);
                 connection.release();

@@ -2,6 +2,7 @@ extends layout
 
 block content
     meta(name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" )
+    link(rel='stylesheet', href='/stylesheets/container-style.css')
     link(rel='stylesheet', href='/stylesheets/user-list.css')
     link(rel='stylesheet', href='/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css')
 
@@ -9,12 +10,12 @@ block content
         div.row
             form.form-inline
                 div.form-group
-                    input.form-control(placeholder='请输入会员姓名或卡号' id='searchInfo')
-                    input.form-control.time(placeholder='失效日期' id='lastTime')
-                    button.btn.btn-primary(id='search' type='button') 查询
-                    button.btn.btn-primary(id='newMember' type='button') 新建会员
-                    button.btn.btn-primary(id='gift' type='button') 次数赠送
-                    button.btn.btn-primary(id='update' type='button') 续卡（卡种更改）
+                    input.form-control.has-margin(placeholder='请输入会员姓名或卡号' id='searchInfo')
+                    input.form-control.time.has-margin(placeholder='失效日期' id='lastTime')
+                    button.btn.btn-primary.has-margin(id='search' type='button') 查询
+                    button.btn.btn-primary.has-margin(id='newMember' type='button') 新建会员
+                    button.btn.btn-primary.has-margin(id='gift' type='button') 次数赠送
+                    button.btn.btn-primary.has-margin(id='update' type='button') 续卡（卡种更改）
 
         div.row
             div.table-responsive.col-md-12
@@ -96,7 +97,13 @@ block content
                         div.form-group
                             label.col-sm-2.control-label(for="customerName") 赠送次数
                             div.col-sm-10
-                                input.form-control(id="giftNumber" type="number")
+                                input.form-control.gift-info(id="giftNumber" type="number")
+
+                        div.form-group
+                            label.col-sm-2.control-label(for="giftReamrk") 备注
+                            div.col-sm-10
+                                textarea.form-control.gift-info(id="giftReamrk" style="resize: none")
+
                 div.modal-footer
                     button.btn.btn-primary(id="giftBtn") 确认赠送
                     button.btn.btn-default(data-dismiss="modal") 返回

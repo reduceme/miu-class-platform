@@ -2,13 +2,3 @@
     cursor: pointer;
     color: #ff6633;
 }
-
-.form-group button, #lastTime {
-    margin-left: 10px;
-}
-
-.container {
-    padding-top: 100px;
-    margin-left: 250px;
-    min-width: 1000px;
-}

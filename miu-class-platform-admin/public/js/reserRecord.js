@@ -11,7 +11,7 @@
         var week = ev.date.getDay();
         $.ajax({
             method: 'post',
-            url: '/reser-record/get_reser_record_class',
+            url: '/reser_record/get_reser_record_class',
             data: {
                 week: week
             },
@@ -37,7 +37,7 @@
     $('#addCard').on('click', function () {
         $.ajax({
             method: 'post',
-            url: '/reser-record/get_user_class_info',
+            url: '/reser_record/get_user_class_info',
             data: {
                 time: $('#time').val(),
                 classId: $('#classSelect').val()

@@ -11,6 +11,7 @@ var teacher = require('./routes/teacherController');
 var cardType = require('./routes/cardTypeController');
 var timetable = require('./routes/timeTableController');
 var reserRecord = require('./routes/reserRecordController');
+var giftInfo = require('./routes/giftController');
 
 var app = express();
 
@@ -32,6 +33,7 @@ app.use('/teacher', teacher);
 app.use('/card_type', cardType);
 app.use('/timetable', timetable);
 app.use('/reser-record', reserRecord);
+app.use('/gift_info', giftInfo);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

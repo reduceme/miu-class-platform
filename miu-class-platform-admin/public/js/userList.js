@@ -301,26 +301,32 @@
         var postData = {
             userid: $('#giftModal').attr('data-id'),
             count: $('#giftNumber').val(),
-            time: getSpeTime().fullDate
+            time: getSpeTime().fullDate,
+            remark: $('#giftReamrk').val()
         };
 
-        $.ajax({
-            method: 'post',
-            url: '/users/gift_count',
-            data: postData,
-            success: function (data) {
-                if (data.code === 0) {
-                    $('#giftModal').modal('hide').attr('data-id', '');
-                    showNotice('赠送成功');
-                    getUserList('get', '/users/get_user_list', '');
-                } else {
-                    showNotice('赠送失败');
+        if (postData.count && postData.remark) {
+            $.ajax({
+                method: 'post',
+                url: '/users/gift_count',
+                data: postData,
+                success: function (data) {
+                    if (data.code === 0) {
+                        $('#giftModal').modal('hide').attr('data-id', '');
+                        showNotice('赠送成功');
+                        $('.gift-info').val('');
+                        getUserList('get', '/users/get_user_list', '');
+                    } else {
+                        showNotice('赠送失败');
+                    }
+                },
+                error: function (err) {
+                    showNotice('网络连接失败');
                 }
-            },
-            error: function (err) {
-                showNotice('网络连接失败');
-            }
-        })
+            })
+        } else {
+            showNotice('请完善赠送信息');
+        }
     });
 
     //修改
@@ -360,7 +366,7 @@
                         $('#changeCardModal').modal('hide').attr('data-id', '').attr('data-last-card-type', '');
                         $('.change-info').val('');
                         getUserList('get', '/users/get_user_list', '');
-                    }else {
+                    } else {
                         showNotice('修改失败');
                     }
                 },

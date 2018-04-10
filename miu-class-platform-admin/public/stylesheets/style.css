@@ -80,3 +80,7 @@ td {
 #noticeModal {
     z-index: 1111;
 }
+
+.has-margin {
+    margin-right: 10px;
+}

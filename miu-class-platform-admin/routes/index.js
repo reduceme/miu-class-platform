@@ -41,4 +41,11 @@ router.get('/reser-record', function (req, res, next) {
     res.render('reser-record', {title: '预约信息'});
 });
 
+router.get('/gift-info', function (req, res, next) {
+    if (!req.cookies.user) {
+        return res.render('index', {title: '登录'})
+    }
+    res.render('gift-info', {title: '赠卡记录'});
+});
+
 module.exports = router;
