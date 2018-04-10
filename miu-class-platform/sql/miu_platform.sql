@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : 65001
 
- Date: 09/04/2018 17:29:43
+ Date: 10/04/2018 10:32:52
 */
 
 SET NAMES utf8mb4;
@@ -29,7 +29,7 @@ CREATE TABLE `admin_user_list`  (
   `admin_leave` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '权限等级',
   `admin_status` int(32) NOT NULL COMMENT '状态码：1.有效 2.无效',
   PRIMARY KEY (`admin_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of admin_user_list
@@ -135,23 +135,23 @@ CREATE TABLE `timetable`  (
   PRIMARY KEY (`classId`) USING BTREE,
   INDEX `for_roomid`(`roomId`) USING BTREE,
   CONSTRAINT `for_roomid` FOREIGN KEY (`roomId`) REFERENCES `class_room` (`roomId`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 20013 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 20017 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of timetable
 -- ----------------------------
 INSERT INTO `timetable` VALUES (1, 1, '10:00', '毛毛老师', 1, 5, 2, '空中瑜伽', 'true', 2, 1);
-INSERT INTO `timetable` VALUES (2, 1, '10:01', '毛毛老师', 2, 5, 2, '初级瑜伽', 'true', 1, 1);
+INSERT INTO `timetable` VALUES (2, 1, '10:01', '毛毛老师', 2, 5, 2, '初级瑜伽', 'false', 1, 1);
 INSERT INTO `timetable` VALUES (3, 1, '10:03', '毛毛老师', 3, 5, 2, '高温瑜珈', 'true', 2, 1);
 INSERT INTO `timetable` VALUES (4, 1, '10:04', '毛毛老师', 4, 5, 2, '肩颈理疗', 'true', 2, 1);
 INSERT INTO `timetable` VALUES (5, 1, '10:05', '毛毛老师', 5, 5, 2, '入门瑜伽', 'true', 2, 1);
 INSERT INTO `timetable` VALUES (6, 1, '10:06', '毛毛老师', 6, 5, 2, '流瑜伽', 'true', 2, 1);
-INSERT INTO `timetable` VALUES (8, 1, '19:30', '蛋蛋老师', 3, 5, 2, '拜日式', 'true', 2, 1);
-INSERT INTO `timetable` VALUES (20000, 1, '15:50', '钟', 5, 5, 2, '球', 'true', 2, 1);
+INSERT INTO `timetable` VALUES (8, 1, '19:30', '蛋蛋老师', 3, 5, 2, '拜日式', 'false', 2, 1);
+INSERT INTO `timetable` VALUES (20000, 1, '15:50', '钟', 5, 5, 2, '球', 'false', 2, 1);
 INSERT INTO `timetable` VALUES (20001, 1, '18:55', 'd', 5, 5, 2, 'd', 'false', 2, 1);
 INSERT INTO `timetable` VALUES (20002, 1, '19:20', 'd', 2, 5, 2, 'da', 'false', 2, 1);
 INSERT INTO `timetable` VALUES (20003, 1, '18:20', 'test', 2, 5, 2, 'dd', 'false', 2, 1);
-INSERT INTO `timetable` VALUES (20004, 1, '10:00', '钟妙', 1, 7, 2, '空中瑜伽', 'true', 2, 1);
+INSERT INTO `timetable` VALUES (20004, 1, '10:00', '钟妙', 1, 7, 2, '空中瑜伽', 'false', 2, 1);
 INSERT INTO `timetable` VALUES (20005, 1, '15:00', '钟妙', 1, 5, 1, '产后修复', 'false', 1, 3);
 INSERT INTO `timetable` VALUES (20006, 1, '15:00', '钟妙', 1, 5, 1, '产后修复', 'false', 1, 3);
 INSERT INTO `timetable` VALUES (20007, 1, '15:00', '钟妙', 1, 5, 1, '产后修复', 'false', 1, 3);
@@ -159,7 +159,11 @@ INSERT INTO `timetable` VALUES (20008, 1, '18:00', '钟妙', 1, 12, 2, '1', 'fal
 INSERT INTO `timetable` VALUES (20009, 1, '00:00', '钟妙', 1, 2, 2, '2', 'false', 2, 1);
 INSERT INTO `timetable` VALUES (20010, 1, '00:00', '钟妙', 1, 2, 2, '2', 'false', 2, 1);
 INSERT INTO `timetable` VALUES (20011, 1, '17:50', '钟妙', 7, 5, 2, '星期天的课程', 'true', 1, 1);
-INSERT INTO `timetable` VALUES (20012, 1, '21:00', '张露丹', 1, 5, 2, '约课测试', 'true', 2, 1);
+INSERT INTO `timetable` VALUES (20012, 1, '21:00', '张露丹', 1, 5, 2, '约课测试', 'false', 2, 1);
+INSERT INTO `timetable` VALUES (20013, 3, '18:30', '张露丹', 1, 5, 2, '喜剧之王', 'false', 1, 1);
+INSERT INTO `timetable` VALUES (20014, 1, '10:30', '钟妙', 2, 213, 2, 'test', 'true', 2, 1);
+INSERT INTO `timetable` VALUES (20015, 1, '01:05', '钟妙', 2, 2, 2, '321', 'false', 2, 1);
+INSERT INTO `timetable` VALUES (20016, 1, '06:30', '钟妙', 2, 2, 2, '2', 'false', 2, 1);
 
 -- ----------------------------
 -- Table structure for update_card_type
@@ -196,7 +200,7 @@ INSERT INTO `user_class_info` VALUES (10007, 2, '2018-04-03', 1, 3);
 INSERT INTO `user_class_info` VALUES (10007, 2, '2018-04-10', 1, 3);
 INSERT INTO `user_class_info` VALUES (10007, 3, '2018-04-11', 2, 3);
 INSERT INTO `user_class_info` VALUES (10007, 8, '2018-04-11', 2, 3);
-INSERT INTO `user_class_info` VALUES (10007, 20012, '2018-04-09', 2, 3);
+INSERT INTO `user_class_info` VALUES (10007, 20012, '2018-04-09', 2, 1);
 INSERT INTO `user_class_info` VALUES (10007, 4, '2018-04-12', 2, 3);
 
 -- ----------------------------
@@ -224,7 +228,7 @@ CREATE TABLE `user_info`  (
 -- ----------------------------
 -- Records of user_info
 -- ----------------------------
-INSERT INTO `user_info` VALUES ('18030850749', '123456', '戴瑞', 10007, 1, 500, 398, '2018-04-14', '2018-03-22', '2018-03-20', '1', '1');
+INSERT INTO `user_info` VALUES ('18030850749', '123456', '戴瑞', 10007, 1, 500, 396, '2018-04-14', '2018-03-22', '2018-03-20', '1', '1');
 INSERT INTO `user_info` VALUES ('15902827532', '827532', '钟妙', 10010, 1, 500, 500, NULL, NULL, '2018-03-31', '1', '1');
 INSERT INTO `user_info` VALUES ('18030851243', '851243', '叶洪英', 10011, 1, 500, 498, '2018-09-30', '2018-03-31', '2018-03-31', '1', '1');
 
