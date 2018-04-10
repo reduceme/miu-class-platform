@@ -52,7 +52,7 @@ var sql = {
     //查询所有赠卡记录
     get_all_gift_record: 'select u_i.customerName, u_i.username, g_m_n.gift_time, g_m_n.gift_count, g_m_n.gift_remark, a_u_l.teacher_name from user_info u_i, gift_member_number g_m_n, admin_user_list a_u_l where g_m_n.userid = u_i.userid and g_m_n.manage_id = a_u_l.admin_id',
     //获取指定会员的赠卡记录
-    get_detail_gift_record: 'select u_i.customerName, u_i.username, g_m_n.gift_time, g_m_n.gift_count, g_m_n.gift_remark, a_u_l.teacher_name from user_info u_i, gift_member_number g_m_n, admin_user_list a_u_l where where u_i.customerName = ? and g_m_n.userid = u_i.userid and g_m_n.manage_id = a_u_l.admin_id'
+    get_detail_gift_record: 'select u_i.customerName, u_i.username, g_m_n.gift_time, g_m_n.gift_count, g_m_n.gift_remark, a_u_l.teacher_name from user_info u_i, gift_member_number g_m_n, admin_user_list a_u_l where u_i.customerName = ? and g_m_n.userid = u_i.userid and g_m_n.manage_id = a_u_l.admin_id '
 };
 
 module.exports = sql;

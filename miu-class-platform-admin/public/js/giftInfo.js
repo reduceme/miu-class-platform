@@ -33,4 +33,8 @@
     }
 
     getGiftRecord('');
+
+    $('#search').on('click', function () {
+        getGiftRecord($('#username').val());
+    })
 })();

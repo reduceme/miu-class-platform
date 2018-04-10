@@ -42,6 +42,7 @@ router.post('/get_gift_record', function (req, res, next) {
         }
         //建立连接
         connection.query(sqlStr, [req.body.username], function (err, result) {
+            console.log(result);
             writeJSON(res, result);
             connection.release();
         })
