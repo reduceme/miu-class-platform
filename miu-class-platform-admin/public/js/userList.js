@@ -101,7 +101,7 @@
         weekStart: 1,
         format: 'yyyy-mm-dd',
         minView: 2,
-        maxView: 1,
+        maxView: 1
     });
 
     //各种点击事件
@@ -211,7 +211,7 @@
                     var teacherList = data.data;
                     var html = '';
                     for (var i = 0; i < teacherList.length; i++) {
-                        html += '<option value="' + teacherList[i].teacher_id + '">' + teacherList[i].teacher_name + '</option>'
+                        html += '<option value="' + teacherList[i].admin_id + '">' + teacherList[i].teacher_name + '</option>'
                     }
                     $('#saler').html(html);
                 } else {
@@ -389,39 +389,4 @@
             showNotice('请填写备注信息');
         }
     }
-
-    /*$('#changeBtn').on('click', function () {
-        var postData = {
-            userid: $('#changeCardModal').attr('data-id'),
-            time: getSpeTime().fullDate,
-            prevType: $('#changeCardModal').attr('data-last-card-type'),
-            nowType: $('#changeCardType').val(),
-            remark: $('#remark').val(),
-            totalCount: $('#changeCardType option:selected').attr('data-count'),
-            lastTime: $('#changeLastTime').val()
-        };
-
-        if (postData.remark) {
-            $.ajax({
-                method: 'post',
-                url: '/users/update_customer_card',
-                data: postData,
-                success: function (data) {
-                    if (data.code === 0) {
-                        showNotice('修改成功');
-                        $('#changeCardModal').modal('hide').attr('data-id', '').attr('data-last-card-type', '');
-                        $('.change-info').val('');
-                        getUserList('get', '/users/get_user_list', '');
-                    } else {
-                        showNotice('修改失败');
-                    }
-                },
-                error: function (err) {
-                    showNotice('网络连接失败');
-                }
-            })
-        } else {
-            showNotice('请填写备注信息');
-        }
-    })*/
 })();
