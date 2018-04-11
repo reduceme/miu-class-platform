@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : 65001
 
- Date: 10/04/2018 10:32:52
+ Date: 11/04/2018 08:57:09
 */
 
 SET NAMES utf8mb4;
@@ -84,15 +84,21 @@ INSERT INTO `class_room` VALUES (3, 'Miuyoga瑜伽工作室（南阳锦城）');
 -- ----------------------------
 DROP TABLE IF EXISTS `gift_member_number`;
 CREATE TABLE `gift_member_number`  (
-  `userid` int(64) NOT NULL,
-  `gift_count` int(64) NOT NULL,
-  `gift_time` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
+  `userid` int(64) NOT NULL COMMENT '会员ID',
+  `gift_count` int(64) NOT NULL COMMENT '赠送次数',
+  `gift_time` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '赠送时间',
+  `gift_remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '赠送备注信息',
+  `manage_id` int(16) NOT NULL COMMENT '操作人员'
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of gift_member_number
 -- ----------------------------
-INSERT INTO `gift_member_number` VALUES (10007, 12, '2018-03-31 15:30');
+INSERT INTO `gift_member_number` VALUES (10007, 12, '2018-03-31 15:30', 'test', 0);
+INSERT INTO `gift_member_number` VALUES (10007, 12, '2018-04-10 10:49', '续卡赠送', 0);
+INSERT INTO `gift_member_number` VALUES (10007, 1, '2018-04-10 10:53', '12', 1);
+INSERT INTO `gift_member_number` VALUES (10012, 2, '2018-04-10 16:23', '购卡赠送', 1);
+INSERT INTO `gift_member_number` VALUES (10012, -30, '2018-04-10 16:26', 'test', 1);
 
 -- ----------------------------
 -- Table structure for menu_list
@@ -105,7 +111,7 @@ CREATE TABLE `menu_list`  (
   `menu_leave` int(255) NOT NULL COMMENT '菜单等级',
   `menu_icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'icon',
   PRIMARY KEY (`menu_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of menu_list
@@ -114,7 +120,9 @@ INSERT INTO `menu_list` VALUES (1, '会员管理', '/user-list', 2, 'glyphicon g
 INSERT INTO `menu_list` VALUES (2, '教师管理', '/teacher-list', 1, 'glyphicon glyphicon-lock');
 INSERT INTO `menu_list` VALUES (3, '卡种设置', '/card-type', 1, 'glyphicon glyphicon-list-alt');
 INSERT INTO `menu_list` VALUES (4, '课表设置', '/timetable', 1, 'glyphicon glyphicon-book');
-INSERT INTO `menu_list` VALUES (5, '约课信息', '/reser-record', 1, 'glyphicon glyphicon-road');
+INSERT INTO `menu_list` VALUES (5, '约课信息', '/reser-record', 2, 'glyphicon glyphicon-road');
+INSERT INTO `menu_list` VALUES (6, '赠卡记录', '/gift-info', 1, 'glyphicon glyphicon-shopping-cart');
+INSERT INTO `menu_list` VALUES (7, '续卡记录', '/card-record', 1, 'glyphicon glyphicon-paperclip');
 
 -- ----------------------------
 -- Table structure for timetable
@@ -179,6 +187,14 @@ CREATE TABLE `update_card_type`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of update_card_type
+-- ----------------------------
+INSERT INTO `update_card_type` VALUES (10007, '2018-04-10 10:42', '1', '1', '续卡', 2);
+INSERT INTO `update_card_type` VALUES (10007, '2018-04-10 10:42', '1', '2', '续卡', 2);
+INSERT INTO `update_card_type` VALUES (10012, '2018-04-10 16:23', '2', '3', '卡种升级', 1);
+INSERT INTO `update_card_type` VALUES (10012, '2018-04-10 17:22', '2', '3', 'test', 1);
+
+-- ----------------------------
 -- Table structure for user_class_info
 -- ----------------------------
 DROP TABLE IF EXISTS `user_class_info`;
@@ -223,13 +239,16 @@ CREATE TABLE `user_info`  (
   PRIMARY KEY (`userid`) USING BTREE,
   INDEX `for_total_count`(`totalCount`) USING BTREE,
   INDEX `for_card_type`(`cardType`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 10012 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 10015 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_info
 -- ----------------------------
-INSERT INTO `user_info` VALUES ('18030850749', '123456', '戴瑞', 10007, 1, 500, 396, '2018-04-14', '2018-03-22', '2018-03-20', '1', '1');
+INSERT INTO `user_info` VALUES ('18030850749', '123456', '戴瑞', 10007, 2, 1030, 951, '2019-03-07', '2018-03-22', '2018-03-20', '1', '1');
 INSERT INTO `user_info` VALUES ('15902827532', '827532', '钟妙', 10010, 1, 500, 500, NULL, NULL, '2018-03-31', '1', '1');
 INSERT INTO `user_info` VALUES ('18030851243', '851243', '叶洪英', 10011, 1, 500, 498, '2018-09-30', '2018-03-31', '2018-03-31', '1', '1');
+INSERT INTO `user_info` VALUES ('13541147949', '147949', 'zhongmiao2', 10012, 3, 50, 35, '2019-05-10', NULL, '2018-04-10', '1', '1');
+INSERT INTO `user_info` VALUES ('13438968830', '968830', 'zhongmiao3', 10013, 2, 30, 30, NULL, NULL, '2018-04-10', '1', '1');
+INSERT INTO `user_info` VALUES ('13699097908', '097908', 'zhongmiao4', 10014, 4, 100, 100, NULL, NULL, '2018-04-10', '1', '13699097908');
 
 SET FOREIGN_KEY_CHECKS = 1;
