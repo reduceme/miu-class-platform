@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : 65001
 
- Date: 11/04/2018 08:57:09
+ Date: 14/04/2018 16:30:40
 */
 
 SET NAMES utf8mb4;
@@ -29,7 +29,7 @@ CREATE TABLE `admin_user_list`  (
   `admin_leave` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '权限等级',
   `admin_status` int(32) NOT NULL COMMENT '状态码：1.有效 2.无效',
   PRIMARY KEY (`admin_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of admin_user_list
@@ -193,6 +193,7 @@ INSERT INTO `update_card_type` VALUES (10007, '2018-04-10 10:42', '1', '1', '续
 INSERT INTO `update_card_type` VALUES (10007, '2018-04-10 10:42', '1', '2', '续卡', 2);
 INSERT INTO `update_card_type` VALUES (10012, '2018-04-10 16:23', '2', '3', '卡种升级', 1);
 INSERT INTO `update_card_type` VALUES (10012, '2018-04-10 17:22', '2', '3', 'test', 1);
+INSERT INTO `update_card_type` VALUES (10015, '2018-04-12 14:14', '1', '1', 'test', 10015);
 
 -- ----------------------------
 -- Table structure for user_class_info
@@ -218,6 +219,7 @@ INSERT INTO `user_class_info` VALUES (10007, 3, '2018-04-11', 2, 3);
 INSERT INTO `user_class_info` VALUES (10007, 8, '2018-04-11', 2, 3);
 INSERT INTO `user_class_info` VALUES (10007, 20012, '2018-04-09', 2, 1);
 INSERT INTO `user_class_info` VALUES (10007, 4, '2018-04-12', 2, 3);
+INSERT INTO `user_class_info` VALUES (10015, 5, '2018-04-13', 2, 1);
 
 -- ----------------------------
 -- Table structure for user_info
@@ -239,16 +241,17 @@ CREATE TABLE `user_info`  (
   PRIMARY KEY (`userid`) USING BTREE,
   INDEX `for_total_count`(`totalCount`) USING BTREE,
   INDEX `for_card_type`(`cardType`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 10015 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 10016 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_info
 -- ----------------------------
-INSERT INTO `user_info` VALUES ('18030850749', '123456', '戴瑞', 10007, 2, 1030, 951, '2019-03-07', '2018-03-22', '2018-03-20', '1', '1');
+INSERT INTO `user_info` VALUES ('18030850749', '123456', '戴瑞', 10007, 2, 1030, 28, '2019-03-07', '2018-03-22', '2018-03-20', '1', '1');
 INSERT INTO `user_info` VALUES ('15902827532', '827532', '钟妙', 10010, 1, 500, 500, NULL, NULL, '2018-03-31', '1', '1');
 INSERT INTO `user_info` VALUES ('18030851243', '851243', '叶洪英', 10011, 1, 500, 498, '2018-09-30', '2018-03-31', '2018-03-31', '1', '1');
 INSERT INTO `user_info` VALUES ('13541147949', '147949', 'zhongmiao2', 10012, 3, 50, 35, '2019-05-10', NULL, '2018-04-10', '1', '1');
 INSERT INTO `user_info` VALUES ('13438968830', '968830', 'zhongmiao3', 10013, 2, 30, 30, NULL, NULL, '2018-04-10', '1', '1');
 INSERT INTO `user_info` VALUES ('13699097908', '097908', 'zhongmiao4', 10014, 4, 100, 100, NULL, NULL, '2018-04-10', '1', '13699097908');
+INSERT INTO `user_info` VALUES ('13688133639', '133639', '叶4', 10015, 1, 1000, 998, '', '2018-04-12', '2018-04-12', '2', '1');
 
 SET FOREIGN_KEY_CHECKS = 1;
