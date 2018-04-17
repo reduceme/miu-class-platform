@@ -84,3 +84,21 @@ td {
 .has-margin {
     margin-right: 10px;
 }
+
+td {
+    text-align: left;
+}
+
+.order-ul {
+    display: none;
+    width: 100px;
+    position: absolute;
+    border: solid 1px gainsboro;
+    background: ghostwhite;
+    padding: 5px;
+    margin: 5px 0 0 -8px;
+}
+
+.order-li {
+    text-align: left;
+}

@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : 65001
 
- Date: 14/04/2018 16:30:40
+ Date: 17/04/2018 18:33:37
 */
 
 SET NAMES utf8mb4;
@@ -241,17 +241,13 @@ CREATE TABLE `user_info`  (
   PRIMARY KEY (`userid`) USING BTREE,
   INDEX `for_total_count`(`totalCount`) USING BTREE,
   INDEX `for_card_type`(`cardType`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 10016 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 10018 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_info
 -- ----------------------------
 INSERT INTO `user_info` VALUES ('18030850749', '123456', '戴瑞', 10007, 2, 1030, 28, '2019-03-07', '2018-03-22', '2018-03-20', '1', '1');
-INSERT INTO `user_info` VALUES ('15902827532', '827532', '钟妙', 10010, 1, 500, 500, NULL, NULL, '2018-03-31', '1', '1');
-INSERT INTO `user_info` VALUES ('18030851243', '851243', '叶洪英', 10011, 1, 500, 498, '2018-09-30', '2018-03-31', '2018-03-31', '1', '1');
-INSERT INTO `user_info` VALUES ('13541147949', '147949', 'zhongmiao2', 10012, 3, 50, 35, '2019-05-10', NULL, '2018-04-10', '1', '1');
-INSERT INTO `user_info` VALUES ('13438968830', '968830', 'zhongmiao3', 10013, 2, 30, 30, NULL, NULL, '2018-04-10', '1', '1');
-INSERT INTO `user_info` VALUES ('13699097908', '097908', 'zhongmiao4', 10014, 4, 100, 100, NULL, NULL, '2018-04-10', '1', '13699097908');
-INSERT INTO `user_info` VALUES ('13688133639', '133639', '叶4', 10015, 1, 1000, 998, '', '2018-04-12', '2018-04-12', '2', '1');
+INSERT INTO `user_info` VALUES ('15902827532', '827532', '钟妙', 10016, 2, 30, 30, NULL, NULL, '2018-04-17', '2', '1');
+INSERT INTO `user_info` VALUES ('13438968830', '968830', '叶2', 10017, 3, 50, 50, NULL, NULL, '2018-04-17', '3', '1');
 
 SET FOREIGN_KEY_CHECKS = 1;

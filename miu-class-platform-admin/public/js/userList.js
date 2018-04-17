@@ -1,6 +1,12 @@
 (function () {
     var cardType = undefined;
 
+    $('.order-td').mouseover(function () {
+        $(this).children('.order-ul').show();
+    }).mouseout(function () {
+        $(this).children('.order-ul').hide();
+    });
+
     function getCardTypeList() {
         $.ajax({
             method: 'get',
@@ -15,7 +21,7 @@
                 showNotice('获取卡种失败');
             }
         })
-    }
+    };
 
     function getUserList(method, url, postData) {
         $.ajax({
@@ -26,31 +32,10 @@
             success: function (data) {
                 if (data.code === 0) {
                     var userList = data.data;
-
-                    var html = '';
-                    var classroom = {
-                        '1': '光华逸家教室',
-                        '2': '南湖逸家教室',
-                        '3': '南阳锦城教室'
-                    };
-                    for (var i = 0; i < userList.length; i++) {
-                        // userList[i].cardType = cardType[userList[i].cardType];
-                        var item = userList[i];
-                        html += '<tr>' +
-                            '<td><input type="radio" name="select-member" class="select-member" data-lasttime="' + (item.lastTime || '') + '" data-card="' + (item.cardType || '') + '" data-name="' + (item.customerName || '') + '" value="' + item.userId + '"></td>' +
-                            '<td>' + (item.customerName || '') + '</td>' +
-                            '<td>' + (item.username || '') + '</td>' +
-                            '<td>' + (classroom[item.createRoom] || '') + '</td>' +
-                            // '<td>' + (item.createTeacher || '') + '</td>' +
-                            '<td>' + (cardType[item.cardType] || '') + '</td>' +
-                            '<td>' + (item.createTime || '') + '</td>' +
-                            '<td>' + (item.openTime || '') + '</td>' +
-                            '<td>' + (item.lastTime || '') + '</td>' +
-                            '<td>' + (item.totalCount || '') + '</td>' +
-                            '<td>' + (item.lastCount || '') + '</td>' +
-                            '<td><span data-id="' + item.userId + '" class="class-detail">上课详情</span></td>' + '</tr>'
-                    }
+                    var html = createList(userList);
                     $('#userListTable').html(html);
+                    //排序
+                    orderUserList(userList);
                 } else {
                     showNotice('获取会员列表失败');
                 }
@@ -62,6 +47,65 @@
 
     getCardTypeList();
     getUserList('get', '/users/get_user_list', '');
+
+    function orderUserList(userList) {
+        $('input[name="orderRadio"]').on('click', function () {
+            var orderData = $(this).val();
+            var orderDirect = $(this).attr('data-value');
+            userList.sort(compare(orderData, orderDirect));
+            var html = createList(userList);
+            $('#userListTable').html(html);
+        });
+    }
+
+    function compare(propertyName, orderDirect) {
+        return function (object1, object2) {
+            var value1 = object1[propertyName];
+            var value2 = object2[propertyName];
+            if (orderDirect === 'desc') {
+                if (value1 > value2) {
+                    return 1;
+                } else if (value1 < value2) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            } else {
+                if (value1 < value2) {
+                    return 1;
+                } else if (value1 > value2) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            }
+        };
+    }
+
+    function createList(userList) {
+        var html = '';
+        var classroom = {
+            '1': '光华逸家教室',
+            '2': '南湖逸家教室',
+            '3': '南阳锦城教室'
+        };
+        for (var i = 0; i < userList.length; i++) {
+            var item = userList[i];
+            html += '<tr>' +
+                '<td><input type="radio" name="select-member" class="select-member" data-lasttime="' + (item.lastTime || '') + '" data-card="' + (item.cardType || '') + '" data-name="' + (item.customerName || '') + '" value="' + item.userId + '"></td>' +
+                '<td>' + (item.customerName || '') + '</td>' +
+                '<td>' + (item.username || '') + '</td>' +
+                '<td>' + (classroom[item.createRoom] || '') + '</td>' +
+                '<td>' + (cardType[item.cardType] || '') + '</td>' +
+                '<td>' + (item.createTime || '') + '</td>' +
+                '<td>' + (item.openTime || '') + '</td>' +
+                '<td>' + (item.lastTime || '') + '</td>' +
+                '<td>' + (item.totalCount || '') + '</td>' +
+                '<td>' + (item.lastCount || '') + '</td>' +
+                '<td><span data-id="' + item.userId + '" class="class-detail">上课详情</span></td>' + '</tr>'
+        }
+        return html;
+    }
 
     $('#userListTable').on('click', '.class-detail', function () {
         var userId = $(this).attr('data-id');
@@ -126,9 +170,11 @@
             case 'cardUpdate':
                 updateUserCard();
                 $('#changeBtn').off().on('click', function () {
-                    // changeFn();
                     changeFn('/users/card_update_info');
                 });
+                break;
+            case 'delete':
+
                 break;
         }
     });
@@ -146,8 +192,19 @@
         }
     }
 
+    $('.select-classroom-detail').on('change', function () {
+        var isEffective = $('#isEffective').val();
+        var item = {
+            createRoom: $('#createRoom').val(),
+            lastTime: ''
+        };
+        if (isEffective === '1') {
+            item.lastTime = getSpeTime().date;
+        }
+        getUserList('post', '/users/get_special_classroom_user', item);
+    });
+
     function createMember() {
-        getClassroom();
         getTeacherList();
         $('#createMemberModal').modal('show');
     }
@@ -190,6 +247,7 @@
                     for (var i = 0; i < classroom.length; i++) {
                         html += '<option value="' + classroom[i].roomId + '">' + classroom[i].classroom + '</option>'
                     }
+                    $('#createRoom').append(html);
                     $('#classRoom').html(html);
                 } else {
                     showNotice('教室列表获取失败')
@@ -200,6 +258,8 @@
             }
         })
     }
+
+    getClassroom();
 
     //获取售卡人员列表
     function getTeacherList() {

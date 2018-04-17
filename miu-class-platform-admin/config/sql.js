@@ -1,6 +1,6 @@
 var sql = {
     //登录验证
-    login: 'select * from admin_user_list where admin_name = ?',
+    login: 'select * from admin_user_list where admin_name = ? and password = ?',
     //获取菜单
     get_menu: 'select * from menu_list where menu_leave in (?)',
     //获取会员列表
@@ -11,6 +11,8 @@ var sql = {
     get_user_class_detail: 'select u_c.classId, u_c.isEffective, u_c.time, t_t.classname, t_t.time as t_t_minute from user_class_info u_c inner join timetable t_t on u_c.classId = t_t.classId where u_c.userId = ? order by u_c.time asc',
     //根据电话或者姓名查询
     get_special_user: 'select userid, username, customerName, cardType, totalCount, lastCount, lastTime, openTime, createTime, createRoom, createTeacher, userId from user_info where `username` = ? or `customerName` = ? or `lastTime` <= ?',
+    get_classroom_user: 'select userid, username, customerName, cardType, totalCount, lastCount, lastTime, openTime, createTime, createRoom, createTeacher, userId from user_info',
+    get_special_classroom_user: 'select userid, username, customerName, cardType, totalCount, lastCount, lastTime, openTime, createTime, createRoom, createTeacher, userId from user_info where createRoom = ? or lastTime < ?',
     //教室查询
     get_classroom: 'select roomId, classroom from class_room',
     //获取教师列表

@@ -10,6 +10,12 @@ block content
         div.row
             form.form-inline
                 div.form-group
+                    select.form-control.has-margin.select-classroom-detail(id='createRoom')
+                        option(value="") 请选择建卡教室
+                    select.form-control.has-margin.select-classroom-detail(id='isEffective')
+                        option(value="") 是否失效
+                        option(value="1") 是
+                        option(value="0") 否
                     input.form-control.has-margin(placeholder='请输入会员姓名或卡号' id='searchInfo')
                     input.form-control.time.has-margin(placeholder='失效日期' id='lastTime')
                     button.btn.btn-primary.has-margin(id='search' type='button') 查询
@@ -24,15 +30,78 @@ block content
                     thead
                     tr
                         td 选择
-                        td 会员姓名
-                        td 联系电话
-                        td 办卡教室
-                        td 卡种类型
-                        td 创建时间
-                        td 开卡时间
-                        td 截止时间
-                        td 总次数
-                        td 剩余次数
+                        td.order-td 会员姓名
+                            ul.order-ul
+                                li.order-li
+                                    input(type="radio" name="orderRadio" value="customerName" data-value="desc")
+                                    span 升序
+                                li.order-li
+                                    input(type="radio" name="orderRadio" value="customerName" data-value="asc")
+                                    span 降序
+                        td.order-td 联系电话
+                            ul.order-ul
+                                li.order-li
+                                    input(type="radio" name="orderRadio" value="username" data-value="desc")
+                                    span 升序
+                                li.order-li
+                                    input(type="radio" name="orderRadio" value="username" data-value="asc")
+                                    span 降序
+                        td.order-td 办卡教室
+                            ul.order-ul
+                                li.order-li
+                                    input(type="radio" name="orderRadio" value="createRoom" data-value="desc")
+                                    span 升序
+                                li.order-li
+                                    input(type="radio" name="orderRadio" value="createRoom" data-value="asc")
+                                    span 降序
+                        td.order-td 卡种类型
+                            ul.order-ul
+                                li.order-li
+                                    input(type="radio" name="orderRadio" value="cardType" data-value="desc")
+                                    span 升序
+                                li.order-li
+                                    input(type="radio" name="orderRadio" value="cardType" data-value="asc")
+                                    span 降序
+                        td.order-td 创建时间
+                            ul.order-ul
+                                li.order-li
+                                    input(type="radio" name="orderRadio" value="createTime" data-value="desc")
+                                    span 升序
+                                li.order-li
+                                    input(type="radio" name="orderRadio" value="createTime" data-value="asc")
+                                    span 降序
+                        td.order-td 开卡时间
+                            ul.order-ul
+                                li.order-li
+                                    input(type="radio" name="orderRadio" value="openTime" data-value="desc")
+                                    span 升序
+                                li.order-li
+                                    input(type="radio" name="orderRadio" value="openTime" data-value="asc")
+                                    span 降序
+                        td.order-td 截止时间
+                            ul.order-ul
+                                li.order-li
+                                    input(type="radio" name="orderRadio" value="lastTime" data-value="desc")
+                                    span 升序
+                                li.order-li
+                                    input(type="radio" name="orderRadio" value="lastTime" data-value="asc")
+                                    span 降序
+                        td.order-td 总次数
+                            ul.order-ul
+                                li.order-li
+                                    input(type="radio" name="orderRadio" value="totalCount" data-value="desc")
+                                    span 升序
+                                li.order-li
+                                    input(type="radio" name="orderRadio" value="totalCount" data-value="asc")
+                                    span 降序
+                        td.order-td 剩余次数
+                            ul.order-ul
+                                li.order-li
+                                    input(type="radio" name="orderRadio" value="lastCount" data-value="desc")
+                                    span 升序
+                                li.order-li
+                                    input(type="radio" name="orderRadio" value="lastCount" data-value="asc")
+                                    span 降序
                         td 上课详情
                     tbody(id='userListTable')
 

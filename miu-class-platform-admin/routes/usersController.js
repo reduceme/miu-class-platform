@@ -37,39 +37,33 @@ router.get('/', function (req, res, next) {
 router.post('/login', function (req, res, next) {
     pool.getConnection(function (err, connection) {
         //建立连接
-        connection.query(sql.login, [req.body.admin_id], function (err, result) {
+        connection.query(sql.login, [req.body.admin_id, req.body.password], function (err, result) {
             //todo - 密码加密
             if (result.length >= 1 && result[0].admin_status === 1) {
-                //验证密码是否正确
-                if (req.body.password === result[0].password) {
-                    res.cookie('user', result[0].admin_id, {
-                        //过期时间，1小时
-                        maxAge: 60 * 60 * 1000
-                    });
+                res.cookie('user', result[0].admin_id, {
+                    //过期时间，1小时
+                    maxAge: 60 * 60 * 1000
+                });
 
-                    res.cookie('leave', result[0].admin_leave, {
-                        //过期时间，1小时
-                        maxAge: 60 * 60 * 1000
-                    });
+                res.cookie('leave', result[0].admin_leave, {
+                    //过期时间，1小时
+                    maxAge: 60 * 60 * 1000
+                });
 
-                    var leaveList = {
-                        '1': [1, 2, 3],
-                        '2': [2, 3],
-                        '3': [3]
-                    };
-                    //返回菜单
-                    connection.query(sql.get_menu, [leaveList[req.cookies.leave]], function (err, menuResult) {
-                        res.send({
-                            code: 0,
-                            msg: '',
-                            data: menuResult
-                        });
-                        connection.release();
-                    })
-                } else {
-                    writeJSON(res);
+                var leaveList = {
+                    '1': [1, 2, 3],
+                    '2': [2, 3],
+                    '3': [3]
+                };
+                //返回菜单
+                connection.query(sql.get_menu, [leaveList[req.cookies.leave]], function (err, menuResult) {
+                    res.send({
+                        code: 0,
+                        msg: '',
+                        data: menuResult
+                    });
                     connection.release();
-                }
+                })
             } else {
                 writeJSON(res);
                 connection.release();
@@ -119,6 +113,20 @@ router.post('/get_special_user', function (req, res, next) {
     pool.getConnection(function (err, connection) {
         //建立连接
         connection.query(sql.get_special_user, [req.body.username, req.body.customerName, req.body.lastTime], function (err, result) {
+            writeJSON(res, result);
+            connection.release();
+        })
+    })
+});
+
+router.post('/get_special_classroom_user', function (req, res, next) {
+    pool.getConnection(function (err, connection) {
+        //建立连接
+        var selectSql = sql.get_classroom_user;
+        if (req.body.createRoom !== '' || req.body.lastTime !== '') {
+            selectSql = sql.get_special_classroom_user;
+        }
+        connection.query(selectSql, [req.body.createRoom, req.body.lastTime], function (err, result) {
             writeJSON(res, result);
             connection.release();
         })
