@@ -13,6 +13,7 @@ var timetable = require('./routes/timeTableController');
 var reserRecord = require('./routes/reserRecordController');
 var giftInfo = require('./routes/giftController');
 var cardRecord = require('./routes/cardRecordController');
+var noticeInfo = require('./routes/noticeInfoController');
 
 var app = express();
 
@@ -36,6 +37,7 @@ app.use('/timetable', timetable);
 app.use('/reser-record', reserRecord);
 app.use('/gift_info', giftInfo);
 app.use('/card_record', cardRecord);
+app.use('/notice_info', noticeInfo);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

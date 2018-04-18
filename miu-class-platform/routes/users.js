@@ -69,33 +69,30 @@ router.get('/', function (req, res, next) {
 router.post('/login', function (req, res, next) {
     pool.getConnection(function (err, connection) {
         //建立连接
-        connection.query(sql.login, [req.body.username], function (err, result) {
+        connection.query(sql.login, [req.body.username, req.body.password], function (err, result) {
             //todo - 密码加密
-            if (result.length >= 1) {
-                //验证密码是否正确
-                if (req.body.password === result[0].password) {
-                    res.cookie('user', result[0].userid, {
-                        //过期时间，1小时
-                        maxAge: 60 * 60 * 1000
-                    });
-                }
+            //验证密码是否正确
+            res.cookie('user', result[0].userid, {
+                //过期时间，1小时
+                maxAge: 30 * 24 * 60 * 60 * 1000
+            });
 
-                //验证卡是否在有效期内，卡是否还有次数
-                var time = getTime(new Date()).time;
-                if (result[0].lastTime < time || result[0].lastCount <= 0) {
-                    res.send({
-                        code: 1,
-                        msg: '用户已过期',
-                        data: ''
-                    });
-                    connection.release();
-                    return;
-                } else {
-                    writeJSON(res, []);
-                    connection.release();
-                    return;
-                }
+            //验证卡是否在有效期内，卡是否还有次数
+            var time = getTime(new Date()).time;
+            if (result[0].lastTime < time || result[0].lastCount <= 0) {
+                res.send({
+                    code: 1,
+                    msg: '用户已过期',
+                    data: ''
+                });
+                connection.release();
+                return;
+            } else {
+                writeJSON(res, []);
+                connection.release();
+                return;
             }
+            // }
         });
     });
 });
@@ -160,8 +157,9 @@ router.post('/user_reservation_class', function (req, res, next) {
         var classSwipeNum = req.body.swipeNumber;
         //查询用户是否还有可用次数
         connection.query(sql.select_user_card_valid, [req.cookies.user], function (err, result) {
+            console.log(result);
             lastCount = result[0].lastCount;
-            if (result[0].cardType !== Number(req.body.classLimit)) {
+            if (parseInt(result[0].card_limit) !== parseInt(req.body.classLimit)) {
                 res.send({
                     code: 1,
                     msg: '您不能预约该课程。',
@@ -232,12 +230,12 @@ router.post('/cancle_class', function (req, res, next) {
 });
 
 //对象去重
-function objDelRepeat(data){
+function objDelRepeat(data) {
     var tmp = [];
-    data.forEach(function(item){
+    data.forEach(function (item) {
         tmp[JSON.stringify(item)] = item;
     });
-    data = Object.keys(tmp).map(function(item){
+    data = Object.keys(tmp).map(function (item) {
         return JSON.parse(item);
     });
 
@@ -319,59 +317,59 @@ setInterval(setTimeFn, 4 * 60 * 60 * 1000);
 
 //定时任务，每天的某个时间查询约课人数，判断是否约课成功
 /*var composite = [
-    {h: [9], m: [0]},
-    {h: [14], m: [0]},
-    {h: [17], m: [20]},
-    {h: [18], m: [30]}
-];*/
+ {h: [9], m: [0]},
+ {h: [14], m: [0]},
+ {h: [17], m: [20]},
+ {h: [18], m: [30]}
+ ];*/
 
 /*var sched = {
-    schedules: composite
-};*/
+ schedules: composite
+ };*/
 
 // later.date.localTime();
 
 //定时任务
 /*var t = later.setInterval(function () {
-    var time = getTime(new Date());
-    var classid = [];
-    var minCount = 0;
-    //查询指定时间的课程的约课人数，如果不满足开课要求，则删除
-    pool.getConnection(function (err, connection) {
-        var swipeNumber = 0;
-        var count = 0;
-        var userIdList = [];
+ var time = getTime(new Date());
+ var classid = [];
+ var minCount = 0;
+ //查询指定时间的课程的约课人数，如果不满足开课要求，则删除
+ pool.getConnection(function (err, connection) {
+ var swipeNumber = 0;
+ var count = 0;
+ var userIdList = [];
 
-        //查询课程的classId
-        connection.query(sql.select_classinfo_for_reservation, [time.week, time.complate], function (err, result) {
-            if (result[0].classId) {
-                classid.push(result[0].classId);
-                minCount = result[0].minCount;
-                //课程扣除的次数
-                swipeNumber = result[0].swipeNumber
-            } else {
-                return
-            }
+ //查询课程的classId
+ connection.query(sql.select_classinfo_for_reservation, [time.week, time.complate], function (err, result) {
+ if (result[0].classId) {
+ classid.push(result[0].classId);
+ minCount = result[0].minCount;
+ //课程扣除的次数
+ swipeNumber = result[0].swipeNumber
+ } else {
+ return
+ }
 
-            //查询约课人数
-            connection.query(sql.get_reserved_count, [time.time, classid], function (err, result) {
-                //约课人数
-                count = result.length;
-                for (var i = 0; i < result.length; i++) {
-                    userIdList.push(result[i].userId);
-                }
-                if (count < minCount) {
-                    //删除已经预约了的信息
-                    connection.query(sql.delete_min_count, [classid, time.complate], function (err, result) {
-                        //恢复已经扣除的次数
-                        connection.query(sql.update_last_count, [-swipeNumber, userIdList], function (err, result) {
-                        });
-                    });
-                }
-                connection.release();
-            });
-        });
-    })
-}, sched);*/
+ //查询约课人数
+ connection.query(sql.get_reserved_count, [time.time, classid], function (err, result) {
+ //约课人数
+ count = result.length;
+ for (var i = 0; i < result.length; i++) {
+ userIdList.push(result[i].userId);
+ }
+ if (count < minCount) {
+ //删除已经预约了的信息
+ connection.query(sql.delete_min_count, [classid, time.complate], function (err, result) {
+ //恢复已经扣除的次数
+ connection.query(sql.update_last_count, [-swipeNumber, userIdList], function (err, result) {
+ });
+ });
+ }
+ connection.release();
+ });
+ });
+ })
+ }, sched);*/
 
 module.exports = router;

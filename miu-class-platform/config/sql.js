@@ -1,6 +1,6 @@
 var sql = {
     //登录验证
-    login: 'select * from user_info where username = ?',
+    login: 'select * from user_info where username = ? and password = ?',
     //初始化开卡时间和过期时间
     init_open_time_and_last_time: 'update user_info set `openTime` = ?, `lastTime` = ? where `userid` = ?',
     //查询卡种信息
@@ -13,7 +13,7 @@ var sql = {
     //查询每节课已经预约了的人数
     get_reserved_count: 'select * from user_class_info where `time` = ? and `classId` in (?)',
     //查询用户的卡是否有效
-    select_user_card_valid: 'select cardType, openTime, lastCount from user_info where `userid` = ?',
+    select_user_card_valid: 'select c_t_i.card_limit, u_i.openTime, u_i.lastCount from user_info u_i, card_type_info c_t_i where u_i.userid = ? and u_i.cardType = c_t_i.cardTypeId',
     //查询某节课程的最小开课人数
     class_swipe_num: 'select * from timetable where `classId` = ?',
     //会员约课

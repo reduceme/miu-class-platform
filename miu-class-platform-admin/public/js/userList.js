@@ -425,6 +425,11 @@
             lastTime: $('#changeLastTime').val()
         };
 
+        if (!$('#changeLastTime').val()) {
+            showNotice('请完善相关信息');
+            return
+        }
+
         if (postData.remark) {
             $.ajax({
                 method: 'post',
