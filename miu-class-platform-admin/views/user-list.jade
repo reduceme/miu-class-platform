@@ -3,26 +3,27 @@ extends layout
 block content
     meta(name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" )
     link(rel='stylesheet', href='/stylesheets/container-style.css')
-    link(rel='stylesheet', href='/stylesheets/user-list.css')
     link(rel='stylesheet', href='/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css')
+    link(rel='stylesheet', href='/stylesheets/user-list.css')
 
     div.container
         div.row
             form.form-inline
                 div.form-group
-                    select.form-control.has-margin.select-classroom-detail(id='createRoom')
+                    select.form-control.form-control-width.has-margin.select-classroom-detail(id='createRoom')
                         option(value="") 请选择建卡教室
-                    select.form-control.has-margin.select-classroom-detail(id='isEffective')
+                    select.form-control.form-control-width.has-margin.select-classroom-detail(id='isEffective')
                         option(value="") 是否失效
                         option(value="1") 是
                         option(value="0") 否
-                    input.form-control.has-margin(placeholder='请输入会员姓名或卡号' id='searchInfo')
-                    input.form-control.time.has-margin(placeholder='失效日期' id='lastTime')
+                    input.form-control.form-control-width.has-margin(placeholder='请输入会员姓名或卡号' id='searchInfo')
+                    input.form-control.form-control-width.time.has-margin(placeholder='失效日期' id='lastTime')
                     button.btn.btn-primary.has-margin(id='search' type='button') 查询
                     button.btn.btn-primary.has-margin(id='newMember' type='button') 新建会员
                     button.btn.btn-primary.has-margin(id='gift' type='button') 次数赠送
                     button.btn.btn-primary.has-margin(id='update' type='button') 续卡
-                    button.btn.btn-primary(id='cardUpdate' type='button') 卡种升级
+                    button.btn.btn-primary.has-margin(id='cardUpdate' type='button') 卡种升级
+                    button.btn.btn-primary(id='addBodyInfo' type='button') 添加体侧信息
 
         div.row
             div.table-responsive.col-md-12
@@ -103,6 +104,7 @@ block content
                                     input(type="radio" name="orderRadio" value="lastCount" data-value="asc")
                                     span 降序
                         td 上课详情
+                        td 体侧信息
                     tbody(id='userListTable')
 
     div.modal.fade(tabindex="-1" role="dialog" id='classDetailModal')
@@ -207,6 +209,89 @@ block content
 
                 div.modal-footer
                     button.btn.btn-primary(id="changeBtn") 确认修改
+                    button.btn.btn-default(data-dismiss="modal") 返回
+
+    div.modal.fade(tabindex="-1" role="dialog" id='addBodyInfoModal')
+        div.modal-dialog(role='document')
+            div.modal-content
+                div.modal-header
+                    h4.modal-title 添加体侧信息
+                div.modal-body
+                    form.form-horizontal(role="form")
+                        div.form-group
+                            label.col-sm-3.control-label(for="weight") 体重（KG）
+                            div.col-sm-9
+                                input.form-control.require(id="weight" type="number")
+
+                        div.form-group
+                            label.col-sm-3.control-label(for="fatPercentage") 体内脂肪含量(%)
+                            div.col-sm-9
+                                input.form-control.require(id="fatPercentage" type="number")
+
+                        div.form-group
+                            label.col-sm-3.control-label(for="water") 身体水分(%)
+                            div.col-sm-9
+                                input.form-control.require(id="water" type="number")
+
+                        div.form-group
+                            label.col-sm-3.control-label(for="metabolism") 基础代谢
+                            div.col-sm-9
+                                input.form-control.require(id="metabolism" type="number")
+
+                        div.form-group
+                            label.col-sm-3.control-label(for="hasletFat") 内脏脂肪(KG)
+                            div.col-sm-9
+                                input.form-control.require(id="hasletFat" type="number")
+
+                        div.form-group
+                            label.col-sm-3.control-label(for="hasletFat") 内脏脂肪指数
+                            div.col-sm-9
+                                input.form-control.require(id="hasletFatIndex" type="number")
+
+                        div.form-group
+                            label.col-sm-3.control-label(for="bodyAge") 身体年龄
+                            div.col-sm-9
+                                input.form-control.require(id="bodyAge" type="number")
+
+                        div.form-group
+                            label.col-sm-3.control-label(for="bottomBust") 下胸围(CM)
+                            div.col-sm-9
+                                input.form-control.require(id="bottomBust" type="number")
+
+                        div.form-group
+                            label.col-sm-3.control-label(for="waist") 腰围
+                            div.col-sm-9
+                                input.form-control.require(id="waist" type="number")
+
+                        div.form-group
+                            label.col-sm-3.control-label(for="butt") 臀围
+                            div.col-sm-9
+                                input.form-control.require(id="butt" type="number")
+
+                        div.form-group
+                            label.col-sm-3.control-label(for="thigh") 大腿围
+                            div.col-sm-9
+                                input.form-control.require(id="thigh" type="number")
+
+                div.modal-footer
+                    button.btn.btn-primary(id="addBodyInfoBtn") 确认添加
+                    button.btn.btn-default(data-dismiss="modal") 返回
+
+    div.modal.fade(tabindex="-1" role="dialog" id='userBodyInfo')
+        div.modal-dialog(role='document')
+            div.modal-content
+                div.modal-header
+                    h4.modal-title 体侧信息
+                div.modal-body
+                    table.table.table-bordered
+                        thead
+                        tr
+                            td 时间
+                            td 课程
+                            td 状态
+
+                        tbody(id='classDetailTable')
+                div.modal-footer
                     button.btn.btn-default(data-dismiss="modal") 返回
 
     script(type='text/javascript', src='/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js')

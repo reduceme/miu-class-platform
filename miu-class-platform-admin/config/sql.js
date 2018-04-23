@@ -62,6 +62,10 @@ var sql = {
     get_detail_card_record: 'SELECT user_info.customerName,user_info.username, update_card_type.update_time, update_card_type.now_card_type, update_card_type.prev_card_type, update_card_type.remark, admin_user_list.teacher_name FROM update_card_type INNER JOIN user_info ON user_info.userid = update_card_type.user_id INNER JOIN admin_user_list ON admin_user_list.admin_id = update_card_type.manage_id where user_info.customerName = ?',
     //续卡记录获取卡种列表
     get_all_card_list: 'select cardTypeId, cardName from card_type_info',
+    //添加会员体侧信息
+    insert_body_info: 'insert into user_body_info (userid, weight, fat_percentage, water, metabolism, haslet_fat, haslet_fat_index, body_age, bottom_bust, waist, butt, thigh, manage_id, time) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+    //查询体侧信息
+    select_body_info: 'select * from user_body_info where userid = ?'
 };
 
 module.exports = sql;

@@ -1,4 +1,8 @@
-.class-detail:hover {
+.class-detail:hover, .user-body-info:hover {
     cursor: pointer;
     color: #ff6633;
+}
+
+.form-inline .form-control-width{
+    width: 150px;
 }

@@ -217,4 +217,27 @@ router.post('/card_update_info', function (req, res, next) {
     })
 });
 
+//添加会员体侧信息
+router.post('/insert_body_info', function (req, res, next) {
+    pool.getConnection(function (err, connection) {
+        connection.query(sql.insert_body_info, [req.body.userid, req.body.weight, req.body.fatPercentage, req.body.water, req.body.metabolism, req.body.hasletFat, req.body.hasletFatIndex, req.body.bodyAge, req.body.bottomBust, req.body.waist, req.body.butt, req.body.thigh, req.cookies.user, req.body.time], function (err, result) {
+            //建立连接
+            writeJSON(res, result.protocol41);
+            connection.release();
+        });
+    })
+});
+
+//查询会员体侧信息
+router.post('/select_body_info', function (req, res, next) {
+    pool.getConnection(function (err, connection) {
+        connection.query(sql.select_body_info, [req.body.userid], function (err, result) {
+            //建立连接
+            console.log(result);
+            writeJSON(res, result);
+            connection.release();
+        });
+    })
+});
+
 module.exports = router;

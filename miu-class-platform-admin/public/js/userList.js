@@ -102,7 +102,8 @@
                 '<td>' + (item.lastTime || '') + '</td>' +
                 '<td>' + (item.totalCount || '') + '</td>' +
                 '<td>' + (item.lastCount || '') + '</td>' +
-                '<td><span data-id="' + item.userId + '" class="class-detail">上课详情</span></td>' + '</tr>'
+                '<td><span data-id="' + item.userId + '" class="class-detail">上课详情</span></td>' +
+                '<td><span data-id="' + item.userId + '" class="user-body-info">体侧信息</span></td>' + '</tr>'
         }
         return html;
     }
@@ -135,6 +136,28 @@
 
                     $('#classDetailTable').html(html);
                 }
+            }
+        })
+    });
+
+    $('#userListTable').on('click', '.user-body-info', function () {
+        var userId = $(this).attr('data-id');
+        $.ajax({
+            method: 'post',
+            url: '/users/select_body_info',
+            data: {
+                userid: userId
+            },
+            success: function (data) {
+                console.log(data);
+                if (data.code === 0) {
+
+                }else {
+                    showNotice('查询失败');
+                }
+            },
+            error: function () {
+                showNotice('网络连接失败');
             }
         })
     });
@@ -173,8 +196,8 @@
                     changeFn('/users/card_update_info');
                 });
                 break;
-            case 'delete':
-
+            case 'addBodyInfo':
+                addBodyInfoFn();
                 break;
         }
     });
@@ -454,4 +477,46 @@
             showNotice('请填写备注信息');
         }
     }
+
+    function addBodyInfoFn() {
+        var checked = $('.select-member:radio[name="select-member"]:checked');
+        var userid = checked.val();
+        if (userid) {
+            $('#addBodyInfoModal').modal('show').attr('userid', userid);
+        }
+    }
+
+    $('#addBodyInfoBtn').on('click', function () {
+        var inputList = $('#addBodyInfoModal .form-control');
+        var postData = {};
+        for (var i = 0; i < inputList.length; i++) {
+            var keyList = (inputList.eq(i).attr('id'));
+            var valueList = (inputList.eq(i).val());
+            if (!valueList) {
+                showNotice('请完善体侧信息');
+                return;
+            }
+            postData[keyList] = valueList;
+        }
+        postData.userid = $('#addBodyInfoModal').attr('userid');
+        postData.time = new Date();
+
+        $.ajax({
+            method: 'post',
+            url: '/users/insert_body_info',
+            data: postData,
+            success: function (data) {
+                if (data.code === 0) {
+                    showNotice('添加成功');
+                    inputList.val('');
+                    $('#addBodyInfoModal').modal('hide');
+                } else {
+                    showNotice('添加失败');
+                }
+            },
+            error: function (data) {
+                showNotice('网络连接失败');
+            }
+        })
+    })
 })();
