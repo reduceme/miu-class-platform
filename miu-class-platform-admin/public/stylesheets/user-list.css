@@ -3,6 +3,10 @@
     color: #ff6633;
 }
 
-.form-inline .form-control-width{
+.form-inline .form-control-width {
     width: 150px;
+}
+
+.modal-lg {
+    width: 1200px;
 }

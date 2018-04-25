@@ -103,7 +103,7 @@
                 '<td>' + (item.totalCount || '') + '</td>' +
                 '<td>' + (item.lastCount || '') + '</td>' +
                 '<td><span data-id="' + item.userId + '" class="class-detail">上课详情</span></td>' +
-                '<td><span data-id="' + item.userId + '" class="user-body-info">体侧信息</span></td>' + '</tr>'
+                '<td><span data-name="' + item.customerName + '" data-id="' + item.userId + '" class="user-body-info">体测信息</span></td>' + '</tr>'
         }
         return html;
     }
@@ -142,6 +142,7 @@
 
     $('#userListTable').on('click', '.user-body-info', function () {
         var userId = $(this).attr('data-id');
+        var cusName = $(this).attr('data-name');
         $.ajax({
             method: 'post',
             url: '/users/select_body_info',
@@ -149,10 +150,30 @@
                 userid: userId
             },
             success: function (data) {
-                console.log(data);
                 if (data.code === 0) {
-
-                }else {
+                    var html = '';
+                    for (var i = 0; i < data.data.length; i++) {
+                        var item = data.data[i];
+                        html += '<tr>' +
+                            '<td>' + cusName + '</td>' +
+                            '<td>' + item.time + '</td>' +
+                            '<td>' + item.weight + '</td>' +
+                            '<td>' + item.fat_percentage + '</td>' +
+                            '<td>' + item.water + '</td>' +
+                            '<td>' + item.metabolism + '</td>' +
+                            '<td>' + item.haslet_fat + '</td>' +
+                            '<td>' + item.haslet_fat_index + '</td>' +
+                            '<td>' + item.body_age + '</td>' +
+                            '<td>' + item.bottom_bust + '</td>' +
+                            '<td>' + item.waist + '</td>' +
+                            '<td>' + item.butt + '</td>' +
+                            '<td>' + item.thigh + '</td>' +
+                            // '<td>' + item.manage_id + '</td>' +
+                            '</tr>'
+                    }
+                    $('#userBodyInfoTable').html(html);
+                    $('#userBodyInfo').modal('show');
+                } else {
                     showNotice('查询失败');
                 }
             },
@@ -499,7 +520,7 @@
             postData[keyList] = valueList;
         }
         postData.userid = $('#addBodyInfoModal').attr('userid');
-        postData.time = new Date();
+        postData.time = getSpeTime().fullDate;
 
         $.ajax({
             method: 'post',

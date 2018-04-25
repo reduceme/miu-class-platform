@@ -233,7 +233,6 @@ router.post('/select_body_info', function (req, res, next) {
     pool.getConnection(function (err, connection) {
         connection.query(sql.select_body_info, [req.body.userid], function (err, result) {
             //建立连接
-            console.log(result);
             writeJSON(res, result);
             connection.release();
         });
