@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : 65001
 
- Date: 17/04/2018 18:33:37
+ Date: 25/04/2018 09:43:06
 */
 
 SET NAMES utf8mb4;
@@ -111,7 +111,7 @@ CREATE TABLE `menu_list`  (
   `menu_leave` int(255) NOT NULL COMMENT '菜单等级',
   `menu_icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'icon',
   PRIMARY KEY (`menu_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of menu_list
@@ -196,6 +196,32 @@ INSERT INTO `update_card_type` VALUES (10012, '2018-04-10 17:22', '2', '3', 'tes
 INSERT INTO `update_card_type` VALUES (10015, '2018-04-12 14:14', '1', '1', 'test', 10015);
 
 -- ----------------------------
+-- Table structure for user_body_info
+-- ----------------------------
+DROP TABLE IF EXISTS `user_body_info`;
+CREATE TABLE `user_body_info`  (
+  `userid` int(16) NOT NULL COMMENT '用户id',
+  `weight` double(16, 0) NOT NULL COMMENT '体重',
+  `fat_percentage` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '脂肪含量',
+  `water` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '身体水分',
+  `metabolism` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '基础代谢',
+  `haslet_fat` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '内脏脂肪',
+  `haslet_fat_index` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '内脏脂肪指数',
+  `body_age` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '身体年龄',
+  `bottom_bust` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '下胸围',
+  `waist` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '腰围',
+  `butt` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '臀围',
+  `thigh` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '大腿围',
+  `manage_id` int(16) NOT NULL COMMENT '操作人员',
+  `time` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '体侧时间'
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of user_body_info
+-- ----------------------------
+INSERT INTO `user_body_info` VALUES (10007, 67, '11', '11', '1', '1', '1', '1', '1', '1', '1', '1', 1, '2018-04-25 09:35');
+
+-- ----------------------------
 -- Table structure for user_class_info
 -- ----------------------------
 DROP TABLE IF EXISTS `user_class_info`;
@@ -220,6 +246,8 @@ INSERT INTO `user_class_info` VALUES (10007, 8, '2018-04-11', 2, 3);
 INSERT INTO `user_class_info` VALUES (10007, 20012, '2018-04-09', 2, 1);
 INSERT INTO `user_class_info` VALUES (10007, 4, '2018-04-12', 2, 3);
 INSERT INTO `user_class_info` VALUES (10015, 5, '2018-04-13', 2, 1);
+INSERT INTO `user_class_info` VALUES (10007, 5, '2018-04-20', 2, 1);
+INSERT INTO `user_class_info` VALUES (10007, 4, '2018-04-19', 2, 1);
 
 -- ----------------------------
 -- Table structure for user_info
@@ -246,7 +274,7 @@ CREATE TABLE `user_info`  (
 -- ----------------------------
 -- Records of user_info
 -- ----------------------------
-INSERT INTO `user_info` VALUES ('18030850749', '123456', '戴瑞', 10007, 2, 1030, 28, '2019-03-07', '2018-03-22', '2018-03-20', '1', '1');
+INSERT INTO `user_info` VALUES ('18030850749', '123456', '戴瑞', 10007, 2, 1030, 24, '2019-03-07', '2018-03-22', '2018-03-20', '1', '1');
 INSERT INTO `user_info` VALUES ('15902827532', '827532', '钟妙', 10016, 2, 30, 30, NULL, NULL, '2018-04-17', '2', '1');
 INSERT INTO `user_info` VALUES ('13438968830', '968830', '叶2', 10017, 3, 50, 50, NULL, NULL, '2018-04-17', '3', '1');
 
