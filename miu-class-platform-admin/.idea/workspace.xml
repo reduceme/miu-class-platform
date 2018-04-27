@@ -23,20 +23,20 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="usersController.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="usersController.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/routes/usersController.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="576">
+                <state relative-caret-position="3004">
                   <caret line="235" column="0" lean-forward="false" selection-start-line="235" selection-start-column="0" selection-end-line="235" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="user-list.jade" pinned="false" current-in-tab="true">
+          <file leaf-file-name="user-list.jade" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/views/user-list.jade">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="480">
+                <state relative-caret-position="810">
                   <caret line="287" column="26" lean-forward="true" selection-start-line="287" selection-start-column="26" selection-end-line="287" selection-end-column="26" />
                   <folding>
                     <element signature="n#div#2;n#block#0;n#!!top" expanded="false" />
@@ -84,29 +84,37 @@
           <file leaf-file-name="userList.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/public/js/userList.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="548">
-                  <caret line="105" column="122" lean-forward="false" selection-start-line="105" selection-start-column="118" selection-end-line="105" selection-end-column="122" />
+                <state relative-caret-position="880">
+                  <caret line="250" column="0" lean-forward="false" selection-start-line="250" selection-start-column="0" selection-end-line="250" selection-end-column="0" />
                   <folding>
                     <element signature="e#251#623#0" expanded="false" />
                     <element signature="e#674#1261#0" expanded="false" />
+                    <element signature="e#1377#1710#0" expanded="false" />
                     <element signature="e#1760#2434#0" expanded="false" />
+                    <element signature="e#2519#2610#0" expanded="false" />
+                    <element signature="e#2662#3800#0" expanded="false" />
                     <element signature="e#3894#4979#0" expanded="false" />
                     <element signature="e#5050#6819#0" expanded="false" />
                     <element signature="e#6853#7003#0" expanded="false" />
                     <element signature="e#7075#7947#0" expanded="false" />
                     <element signature="e#7979#8377#0" expanded="false" />
                     <element signature="e#8438#8765#0" expanded="false" />
+                    <element signature="e#8797#8877#0" expanded="false" />
                     <element signature="e#8939#9755#0" expanded="false" />
                     <element signature="e#9798#10553#0" expanded="false" />
                     <element signature="e#10621#11337#0" expanded="false" />
                     <element signature="e#11379#11875#0" expanded="false" />
+                    <element signature="e#11903#12397#0" expanded="false" />
+                    <element signature="e#12425#12519#0" expanded="false" />
                     <element signature="e#12557#13468#0" expanded="false" />
                     <element signature="e#13514#13542#0" expanded="false" />
                     <element signature="e#13582#13772#0" expanded="false" />
                     <element signature="e#13816#14833#0" expanded="false" />
                     <element signature="e#14876#15453#0" expanded="false" />
+                    <element signature="e#15482#16880#0" expanded="false" />
                     <element signature="e#16050#16822#0" expanded="false" />
                     <element signature="e#16911#17138#0" expanded="false" />
+                    <element signature="e#17189#18250#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -332,7 +340,7 @@
   <component name="PropertiesComponent">
     <property name="nodejs_interpreter_path" value="D:/software/nodejs/node" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="D:/svn/CLB.RES" />
+    <property name="last_opened_file_path" value="D:/svn/crm1804" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -534,12 +542,12 @@
       <workItem from="1524032539586" duration="46000" />
       <workItem from="1524034217194" duration="859000" />
       <workItem from="1524041607838" duration="24000" />
-      <workItem from="1524468950419" duration="9490000" />
+      <workItem from="1524468950419" duration="10397000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="315078000" />
+    <option name="totallyTimeSpent" value="315985000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -594,7 +602,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="13" />
+      <option name="time" value="15" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -889,14 +897,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/usersController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="235" column="0" lean-forward="false" selection-start-line="235" selection-start-column="0" selection-end-line="235" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/stylesheets/user-list.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
@@ -907,42 +907,58 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/userList.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="548">
-          <caret line="105" column="122" lean-forward="false" selection-start-line="105" selection-start-column="118" selection-end-line="105" selection-end-column="122" />
+        <state relative-caret-position="880">
+          <caret line="250" column="0" lean-forward="false" selection-start-line="250" selection-start-column="0" selection-end-line="250" selection-end-column="0" />
           <folding>
             <element signature="e#251#623#0" expanded="false" />
             <element signature="e#674#1261#0" expanded="false" />
+            <element signature="e#1377#1710#0" expanded="false" />
             <element signature="e#1760#2434#0" expanded="false" />
+            <element signature="e#2519#2610#0" expanded="false" />
+            <element signature="e#2662#3800#0" expanded="false" />
             <element signature="e#3894#4979#0" expanded="false" />
             <element signature="e#5050#6819#0" expanded="false" />
             <element signature="e#6853#7003#0" expanded="false" />
             <element signature="e#7075#7947#0" expanded="false" />
             <element signature="e#7979#8377#0" expanded="false" />
             <element signature="e#8438#8765#0" expanded="false" />
+            <element signature="e#8797#8877#0" expanded="false" />
             <element signature="e#8939#9755#0" expanded="false" />
             <element signature="e#9798#10553#0" expanded="false" />
             <element signature="e#10621#11337#0" expanded="false" />
             <element signature="e#11379#11875#0" expanded="false" />
+            <element signature="e#11903#12397#0" expanded="false" />
+            <element signature="e#12425#12519#0" expanded="false" />
             <element signature="e#12557#13468#0" expanded="false" />
             <element signature="e#13514#13542#0" expanded="false" />
             <element signature="e#13582#13772#0" expanded="false" />
             <element signature="e#13816#14833#0" expanded="false" />
             <element signature="e#14876#15453#0" expanded="false" />
+            <element signature="e#15482#16880#0" expanded="false" />
             <element signature="e#16050#16822#0" expanded="false" />
             <element signature="e#16911#17138#0" expanded="false" />
+            <element signature="e#17189#18250#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/user-list.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
+        <state relative-caret-position="810">
           <caret line="287" column="26" lean-forward="true" selection-start-line="287" selection-start-column="26" selection-end-line="287" selection-end-column="26" />
           <folding>
             <element signature="n#div#2;n#block#0;n#!!top" expanded="false" />
             <element signature="n#div#3;n#block#0;n#!!top" expanded="false" />
             <element signature="n#div#4;n#block#0;n#!!top" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/usersController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3004">
+          <caret line="235" column="0" lean-forward="false" selection-start-line="235" selection-start-column="0" selection-end-line="235" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
